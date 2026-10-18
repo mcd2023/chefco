@@ -588,23 +588,32 @@
         let currentLang = 'tr';
         
         function changeLang(lang) {
+            if (!['tr', 'en', 'fr', 'ar'].includes(lang)) return;
+        
             currentLang = lang;
-            
-            // Update buttons
-            document.getElementById('btn-tr').classList.toggle('active', lang === 'tr');
-            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-            
-            // Update all elements with data-tr and data-en
-            document.querySelectorAll('[data-tr][data-en]').forEach(el => {
-                if (el.tagName === 'INPUT') {
-                    el.placeholder = lang === 'tr' ? el.getAttribute('data-tr') : el.getAttribute('data-en');
-                } else {
-                    el.innerHTML = lang === 'tr' ? el.getAttribute('data-tr') : el.getAttribute('data-en');
+        
+            ['tr', 'en', 'fr', 'ar'].forEach(code => {
+                const button = document.getElementById('btn-' + code);
+                if (button) {
+                    button.classList.toggle('active', code === lang);
+                    button.setAttribute('aria-pressed', String(code === lang));
                 }
             });
-            
-            // Update HTML lang attribute
+        
+            document.querySelectorAll('[data-tr]').forEach(el => {
+                const translation = el.getAttribute('data-' + lang);
+        
+                if (translation === null) return;
+        
+                if (el.matches('input, textarea')) {
+                    el.placeholder = translation;
+                } else {
+                    el.textContent = translation;
+                }
+            });
+        
             document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
         }
 
         // Mobile Menu Toggle
