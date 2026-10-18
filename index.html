@@ -96,11 +96,14 @@
                     </a>
                     
                     <!-- Language Switcher -->
-                    <div class="flex items-center gap-2 text-xs">
-                        <button onclick="changeLang('tr')" id="btn-tr" class="lang-btn active text-white hover:text-merci-gold transition-colors px-1">TR</button>
-                        <span class="text-merci-gray">|</span>
-                        <button onclick="changeLang('en')" id="btn-en" class="lang-btn text-white hover:text-merci-gold transition-colors px-1">EN</button>
+                   
+                    <div class="flex items-center gap-2 text-xs" aria-label="Language selector">
+                      <button onclick="changeLang('tr')" id="btn-tr" class="lang-btn active">TR</button>
+                      <button onclick="changeLang('en')" id="btn-en" class="lang-btn">EN</button>
+                      <button onclick="changeLang('fr')" id="btn-fr" class="lang-btn">FR</button>
+                      <button onclick="changeLang('ar')" id="btn-ar" class="lang-btn">AR</button>
                     </div>
+
 
                     <!-- Mobile Menu Button -->
                     <button id="mobile-menu-btn" class="lg:hidden text-white text-xl">
