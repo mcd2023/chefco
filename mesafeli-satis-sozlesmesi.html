@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index,follow">
+  <title>Mesafeli Satış Sözleşmesi | Mercichefco</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Montserrat', sans-serif; background:#0F1729; }
+    .font-serif { font-family:'Cormorant Garamond',serif; }
+    .lang-btn { border:1px solid rgba(255,255,255,.25); color:rgba(255,255,255,.7); padding:6px 9px; font-size:11px; }
+    .lang-btn.active, .lang-btn:hover { color:#C9A962; border-color:#C9A962; }
+    a { text-underline-offset:4px; }
+  </style>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { 'merci-gold':'#C9A962','merci-dark':'#0F1729' } } } };
+  </script>
+</head>
+<body class="min-h-screen text-white">
+  <header class="border-b border-white/10">
+    <div class="max-w-5xl mx-auto px-6 py-5 flex flex-wrap items-center justify-between gap-4">
+      <a href="index.html" class="font-serif text-2xl tracking-wide text-white">Merci<span class="text-merci-gold">Chef.Co</span></a>
+      <nav class="flex items-center gap-2" aria-label="Language selector">
+        <button class="lang-btn active" type="button" onclick="changeLang('tr')" id="btn-tr" aria-pressed="true">TR</button>
+        <button class="lang-btn" type="button" onclick="changeLang('en')" id="btn-en" aria-pressed="false">EN</button>
+        <button class="lang-btn" type="button" onclick="changeLang('fr')" id="btn-fr" aria-pressed="false">FR</button>
+        <button class="lang-btn" type="button" onclick="changeLang('ar')" id="btn-ar" aria-pressed="false">AR</button>
+      </nav>
+    </div>
+  </header>
+  <main class="max-w-4xl mx-auto px-6 py-12 md:py-16">
+    <a href="index.html" class="inline-flex mb-8 text-merci-gold text-xs uppercase tracking-widest hover:text-white"
+       data-tr="← Ana sayfaya dön" data-en="← Back to home" data-fr="← Retour à l’accueil" data-ar="← العودة إلى الصفحة الرئيسية">← Ana sayfaya dön</a>
+    <h1 class="font-serif text-4xl md:text-5xl text-white mb-6" data-tr="Mesafeli Satış Sözleşmesi" data-en="Distance Sales Agreement" data-fr="Contrat de vente à distance" data-ar="اتفاقية البيع عن بُعد">Mesafeli Satış Sözleşmesi</h1>
+    <p class="text-white/70 leading-8 text-sm md:text-base mb-10" data-tr="Bu taslak, Mercichefco üzerinden uzaktan kurulan hizmet sözleşmeleri için hazırlanmıştır. Köşeli parantezli alanlar gerçek işletme bilgileriyle doldurulmalıdır." data-en="This draft is intended for service contracts concluded remotely through Mercichefco. Complete all bracketed fields with accurate business information." data-fr="Ce projet concerne les contrats de services conclus à distance via Mercichefco. Remplacez tous les champs entre crochets par des informations exactes." data-ar="أُعدت هذه المسودة لعقود الخدمات المبرمة عن بُعد عبر Mercichefco. يجب استبدال جميع الحقول بين الأقواس بمعلومات النشاط الصحيحة.">Bu taslak, Mercichefco üzerinden uzaktan kurulan hizmet sözleşmeleri için hazırlanmıştır. Köşeli parantezli alanlar gerçek işletme bilgileriyle doldurulmalıdır.</p>
+    
+        <section class="mb-8">
+            <h2 class="font-serif text-2xl text-white mb-3" data-tr="1. Taraflar" data-en="1. Parties" data-fr="1. Parties" data-ar="١. الأطراف">1. Taraflar</h2>
+            <p class="text-white/70 leading-8 text-sm md:text-base" data-tr="Hizmet sağlayıcı: [Ticari unvan / ad soyad], [adres], [e-posta], [telefon], [vergi dairesi ve numarası]. Müşteri bilgileri, rezervasyon sırasında beyan edilen bilgilerden oluşur." data-en="Service provider: [Legal business name / full name], [address], [email], [phone], [tax office and number]. Customer details are those provided during booking." data-fr="Prestataire : [Dénomination légale / nom complet], [adresse], [e-mail], [téléphone], [bureau et numéro fiscal]. Les informations du client sont celles fournies lors de la réservation." data-ar="مقدم الخدمة: [الاسم التجاري القانوني / الاسم الكامل]، [العنوان]، [البريد الإلكتروني]، [الهاتف]، [مكتب ورقم الضريبة]. بيانات العميل هي البيانات المقدمة عند الحجز.">Hizmet sağlayıcı: [Ticari unvan / ad soyad], [adres], [e-posta], [telefon], [vergi dairesi ve numarası]. Müşteri bilgileri, rezervasyon sırasında beyan edilen bilgilerden oluşur.</p>
+        </section>
+        <section class="mb-8">
+            <h2 class="font-serif text-2xl text-white mb-3" data-tr="2. Sözleşmenin konusu" data-en="2. Subject of the agreement" data-fr="2. Objet du contrat" data-ar="٢. موضوع الاتفاقية">2. Sözleşmenin konusu</h2>
+            <p class="text-white/70 leading-8 text-sm md:text-base" data-tr="Sözleşme; müşterinin seçtiği şef kiralama, gastronomi veya özel etkinlik hizmetinin kapsamını, tarihini, yerini, toplam bedelini ve tarafların yükümlülüklerini düzenler. Kesin hizmet detayları rezervasyon teyidinde belirtilir." data-en="This agreement sets out the scope, date, location and total price of the chef hire, gastronomy or private-event service selected by the customer, along with each party’s obligations. Final service details are stated in the booking confirmation." data-fr="Le présent contrat définit le périmètre, la date, le lieu et le prix total du service de chef, de gastronomie ou d’événement privé choisi, ainsi que les obligations des parties. Les détails définitifs figurent dans la confirmation de réservation." data-ar="تنظم هذه الاتفاقية نطاق وتاريخ ومكان والسعر الإجمالي لخدمة استئجار الشيف أو خدمات الطهي أو الفعاليات الخاصة التي يختارها العميل، إضافة إلى التزامات الطرفين. وترد التفاصيل النهائية في تأكيد الحجز.">Sözleşme; müşterinin seçtiği şef kiralama, gastronomi veya özel etkinlik hizmetinin kapsamını, tarihini, yerini, toplam bedelini ve tarafların yükümlülüklerini düzenler. Kesin hizmet detayları rezervasyon teyidinde belirtilir.</p>
+        </section>
+        <section class="mb-8">
+            <h2 class="font-serif text-2xl text-white mb-3" data-tr="3. Ücret ve ödeme" data-en="3. Price and payment" data-fr="3. Prix et paiement" data-ar="٣. السعر والدفع">3. Ücret ve ödeme</h2>
+            <p class="text-white/70 leading-8 text-sm md:text-base" data-tr="Toplam ücret, vergiler ve varsa ek masraflar ödeme öncesinde müşteriye açıkça gösterilir. Ödeme yöntemi ve varsa ön ödeme/kalan bakiye koşulları rezervasyon ekranında belirtilir. Kart bilgileri Mercichefco tarafından saklanmamalı; ödeme, entegre ödeme sağlayıcısının güvenli ekranında tamamlanmalıdır." data-en="The total price, taxes and any additional charges are shown clearly before payment. The booking page states the payment method and any deposit/balance terms. Mercichefco should not store card details; payment should be completed on the integrated payment provider’s secure page." data-fr="Le prix total, les taxes et les frais supplémentaires éventuels sont clairement indiqués avant paiement. Le mode de paiement et les conditions d’acompte/solde figurent sur la page de réservation. Mercichefco ne doit pas conserver les données de carte ; le paiement doit être effectué sur la page sécurisée du prestataire intégré." data-ar="يُعرض السعر الإجمالي والضرائب وأي رسوم إضافية بوضوح قبل الدفع. وتوضح صفحة الحجز طريقة الدفع وشروط العربون أو الرصيد المتبقي. ينبغي ألا تحتفظ Mercichefco ببيانات البطاقة؛ بل يتم الدفع عبر صفحة مزود الدفع الآمنة المتكاملة.">Toplam ücret, vergiler ve varsa ek masraflar ödeme öncesinde müşteriye açıkça gösterilir. Ödeme yöntemi ve varsa ön ödeme/kalan bakiye koşulları rezervasyon ekranında belirtilir. Kart bilgileri Mercichefco tarafından saklanmamalı; ödeme, entegre ödeme sağlayıcısının güvenli ekranında tamamlanmalıdır.</p>
+        </section>
+        <section class="mb-8">
+            <h2 class="font-serif text-2xl text-white mb-3" data-tr="4. Hizmetin sunulması" data-en="4. Service delivery" data-fr="4. Exécution du service" data-ar="٤. تقديم الخدمة">4. Hizmetin sunulması</h2>
+            <p class="text-white/70 leading-8 text-sm md:text-base" data-tr="Hizmet, rezervasyon teyidinde kararlaştırılan tarih, saat, yer ve kapsamda sunulur. Müşteri, hizmetin yerine getirilebilmesi için gerekli doğru bilgileri ve erişim koşullarını sağlamalıdır. Değişiklikler tarafların yazılı teyidine tabidir." data-en="The service is provided on the date, at the time and location, and within the scope agreed in the booking confirmation. The customer must provide accurate information and access conditions needed to perform the service. Changes require written confirmation by both parties." data-fr="Le service est fourni à la date, à l’heure, au lieu et dans le périmètre convenus dans la confirmation. Le client doit fournir les informations exactes et les conditions d’accès nécessaires. Toute modification doit être confirmée par écrit par les deux parties." data-ar="تُقدم الخدمة في التاريخ والوقت والمكان والنطاق المتفق عليه في تأكيد الحجز. على العميل تقديم المعلومات الصحيحة وشروط الوصول اللازمة. وتتطلب التعديلات تأكيدًا كتابيًا من الطرفين.">Hizmet, rezervasyon teyidinde kararlaştırılan tarih, saat, yer ve kapsamda sunulur. Müşteri, hizmetin yerine getirilebilmesi için gerekli doğru bilgileri ve erişim koşullarını sağlamalıdır. Değişiklikler tarafların yazılı teyidine tabidir.</p>
+        </section>
+        <section class="mb-8">
+            <h2 class="font-serif text-2xl text-white mb-3" data-tr="5. Cayma, iptal ve uyuşmazlıklar" data-en="5. Withdrawal, cancellation and disputes" data-fr="5. Rétractation, annulation et litiges" data-ar="٥. العدول والإلغاء والنزاعات">5. Cayma, iptal ve uyuşmazlıklar</h2>
+            <p class="text-white/70 leading-8 text-sm md:text-base" data-tr="Cayma hakkı, istisnalar, iptal bedelleri ve iade koşulları hizmetin niteliğine ve yürürlükteki mevzuata göre değerlendirilir; ayrıntılar İptal ve İade Politikası ile Ön Bilgilendirme Formunda açıklanır. Uyuşmazlıklarda yürürlükteki tüketici mevzuatı ve yetkili merciler uygulanır." data-en="Withdrawal rights, exceptions, cancellation fees and refunds depend on the service and applicable law; details are explained in the Cancellation and Refund Policy and Pre-Contractual Information Form. Applicable consumer law and competent authorities govern disputes." data-fr="Le droit de rétractation, ses exceptions, les frais d’annulation et les remboursements dépendent du service et du droit applicable ; les détails figurent dans la politique d’annulation et le formulaire précontractuel. Le droit de la consommation et les autorités compétentes s’appliquent aux litiges." data-ar="تخضع حقوق العدول والاستثناءات ورسوم الإلغاء والاسترداد لطبيعة الخدمة والقانون المعمول به؛ وتُشرح التفاصيل في سياسة الإلغاء والاسترداد ونموذج المعلومات المسبقة. ويُطبق قانون حماية المستهلك والجهات المختصة على النزاعات.">Cayma hakkı, istisnalar, iptal bedelleri ve iade koşulları hizmetin niteliğine ve yürürlükteki mevzuata göre değerlendirilir; ayrıntılar İptal ve İade Politikası ile Ön Bilgilendirme Formunda açıklanır. Uyuşmazlıklarda yürürlükteki tüketici mevzuatı ve yetkili merciler uygulanır.</p>
+        </section>
+    <div class="mt-12 border-t border-white/10 pt-6 text-white/50 text-xs leading-6">
+      <p data-tr="İletişim: chefcomerci@gmail.com · +90 530 415 07 29" data-en="Contact: chefcomerci@gmail.com · +90 530 415 07 29" data-fr="Contact : chefcomerci@gmail.com · +90 530 415 07 29" data-ar="التواصل: chefcomerci@gmail.com · +90 530 415 07 29">İletişim: chefcomerci@gmail.com · +90 530 415 07 29</p>
+      <p class="mt-3" data-tr="Önemli: Bu metinler yayın öncesi işletme bilgileri ve fiilî işleyişe göre tamamlanmalı, uzman hukukçu tarafından kontrol edilmelidir." data-en="Important: Before publication, complete these texts using the actual business details and practices and have them reviewed by a qualified legal professional." data-fr="Important : avant publication, complétez ces textes selon les informations et pratiques réelles de l’entreprise et faites-les vérifier par un juriste qualifié." data-ar="مهم: قبل النشر، أكمل هذه النصوص وفق بيانات وممارسات النشاط الفعلية واطلب مراجعتها من مختص قانوني.">Önemli: Bu metinler yayın öncesi işletme bilgileri ve fiilî işleyişe göre tamamlanmalı, uzman hukukçu tarafından kontrol edilmelidir.</p>
+    </div>
+  </main>
+  <footer class="border-t border-white/10">
+    <div class="max-w-5xl mx-auto px-6 py-6 flex flex-wrap justify-between gap-3 text-white/50 text-xs">
+      <span>© 2026 Merci Chef.Co</span>
+      <a href="index.html" class="hover:text-merci-gold" data-tr="Ana sayfa" data-en="Home" data-fr="Accueil" data-ar="الرئيسية">Ana sayfa</a>
+    </div>
+  </footer>
+  <script>
+    function changeLang(lang) {
+      const supported = ['tr','en','fr','ar'];
+      if (!supported.includes(lang)) return;
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      document.querySelectorAll('[data-tr]').forEach(el => {
+        const value = el.getAttribute('data-' + lang) || el.getAttribute('data-en') || el.getAttribute('data-tr');
+        if (el.children.length === 0) el.textContent = value;
+      });
+      supported.forEach(code => {
+        const btn = document.getElementById('btn-' + code);
+        if (btn) {
+          btn.classList.toggle('active', code === lang);
+          btn.setAttribute('aria-pressed', String(code === lang));
+        }
+      });
+    }
+    changeLang('tr');
+  </script>
+</body>
+</html>
