@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Merci Chef.Co — yat ve onboard hizmetleri projelerimiz.">
+<meta name="theme-color" content="#0f1729">
+<title>Merci Chef.Co | Projelerimiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f1729;--navy2:#19243b;--gold:#c9a962;--cream:#f5f1eb;--muted:#aeb4bf;--white:#fffdf9}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;background:var(--cream);color:var(--navy);font-family:Montserrat,sans-serif}
+img,video,iframe{max-width:100%}
+.navbar{position:sticky;top:0;width:100%;min-height:76px;padding:12px 5%;display:flex;align-items:center;justify-content:space-between;gap:18px;z-index:50;background:rgba(15,23,41,.97);backdrop-filter:blur(12px)}
+.logo{font:600 25px 'Cormorant Garamond',serif;color:#fff;text-decoration:none;letter-spacing:2px;white-space:nowrap}
+.logo span{color:var(--gold)}
+nav{display:flex;align-items:center;gap:22px}
+nav a{color:#fff;text-decoration:none;font-size:11px;letter-spacing:1px;transition:color .2s}
+nav a:hover,nav a:focus-visible{color:var(--gold)}
+.nav-right,.langs{display:flex;align-items:center;gap:6px}
+.langs button,.menu-btn{border:0;background:none;color:#fff;cursor:pointer;padding:8px;font:inherit;font-size:11px}
+.langs button.active{color:var(--gold);border-bottom:1px solid var(--gold)}
+.menu-btn{display:none;font-size:24px}
+main{flex:1;width:100%}
+.projects{max-width:1440px;margin:0 auto;padding:42px 5% 58px}
+.section-heading{margin:0 0 28px;text-align:center}
+.section-heading h1{margin:0;font:600 clamp(32px,5vw,48px) 'Cormorant Garamond',serif;letter-spacing:1px}
+.section-heading p{margin:8px 0 0;color:#656b75;font-size:12px;line-height:1.8;letter-spacing:1.5px;text-transform:uppercase}
+.section-heading:after{content:"";display:block;width:58px;height:2px;margin:18px auto 0;background:var(--gold)}
+.project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}
+.project-card{min-width:0;display:flex;flex-direction:column;gap:0;margin:0;padding:0;overflow:hidden}
+@media(hover:hover){.project-card:hover{transform:translateY(-4px);box-shadow:0 20px 46px rgba(15,23,41,.15)}}
+.project-media{margin:0;padding:0;border:0;line-height:0}
+.project-image{width:100%;aspect-ratio:16/9;height:auto;display:block;object-fit:cover;object-position:center;margin:0;padding:0;border:0}
+.project-video{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#080d17;margin:0;padding:0;border:0;border-radius:0}
+.project-video iframe,.project-video video{position:absolute;inset:0;display:block;width:100%;height:100%;border:0;object-fit:contain}
+.video-fallback{padding:10px 18px;background:#080d17;text-align:right}
+.video-fallback a{color:var(--gold);font-size:12px;text-decoration:none}
+.video-fallback a:hover{text-decoration:underline}
+.project-caption{margin:0;padding:12px 0 0;line-height:1.4}
+.project-caption h2{margin:0;color:var(--navy);font:600 clamp(25px,3vw,34px) 'Cormorant Garamond',serif;letter-spacing:1px}
+.project-caption p{margin:7px 0 0;color:#656b75;font-size:11px;line-height:1.8;letter-spacing:1.5px;text-transform:uppercase}
+footer{padding:24px 5%;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;background:var(--navy);color:#d9dce2;border-top:1px solid rgba(201,169,98,.55);font-size:11px;line-height:1.8;letter-spacing:.5px}
+.footer-brand{color:var(--gold);font:600 20px 'Cormorant Garamond',serif;letter-spacing:1.5px}
+html[dir=rtl] .section-heading,html[dir=rtl] .project-caption{text-align:right}
+@media(max-width:1000px){nav{gap:12px}nav a{font-size:10px}.navbar{padding-inline:4%}.projects{padding-inline:4%}.project-grid{gap:20px}}
+@media(max-width:760px){
+.navbar{min-height:68px;padding:12px 4%}
+.navbar nav{display:none;position:absolute;top:100%;left:0;width:100%;padding:22px 6%;background:var(--navy);flex-direction:column;align-items:flex-start;gap:22px;border-top:1px solid rgba(201,169,98,.3)}
+.navbar nav.open{display:flex}.navbar nav a{font-size:12px}.menu-btn{display:block}.logo{font-size:21px}
+.projects{padding:30px 4% 38px}.project-grid{grid-template-columns:1fr;gap:22px}.project-image{aspect-ratio:auto;max-height:none}
+.project-caption{padding:16px 17px 19px}footer{padding:22px 5%}
+}
+@media(max-width:380px){.logo{font-size:18px;letter-spacing:1px}.langs{gap:0}.langs button{padding:7px 4px}.nav-right{gap:2px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<header class="navbar" id="navbar">
+<a class="logo" href="index.html" aria-label="Merci Chef.Co ana sayfa">MERCI <span>CHEF.CO</span></a>
+<nav id="mainNav" aria-label="Ana menü">
+<a href="index.html" data-i18n="navHome">ANA SAYFA</a>
+<a href="#projects" data-i18n="navProjects">PROJELER</a>
+<a href="#footer" data-i18n="navContact">İLETİŞİM</a>
+</nav>
+<div class="nav-right"><div class="langs" aria-label="Dil seçimi">
+<button type="button" data-lang="tr" class="active" aria-pressed="true">TR</button>
+<button type="button" data-lang="en" aria-pressed="false">EN</button>
+<button type="button" data-lang="fr" aria-pressed="false">FR</button>
+<button type="button" data-lang="ar" aria-pressed="false">AR</button>
+</div><button class="menu-btn" id="menuBtn" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mainNav">☰</button></div>
+</header>
+<main><section class="projects" id="projects" aria-label="Projelerimiz">
+<div class="section-heading"><h1 data-i18n="heading">Projelerimiz</h1><p data-i18n="subtitle">Yatlarda ayrıcalıklı hizmet ve deneyimler</p></div>
+<div class="project-grid">
+<article class="project-card">
+<div class="project-media"><img class="project-image" src="assets/table_design.jpeg" alt="Yat içi hizmetler projesi" fetchpriority="high" decoding="async" onerror="this.onerror=null;this.alt='Görsel yüklenemedi: assets/table_design.jpeg dosya yolunu kontrol edin';this.style.minHeight='220px'"></div>
+
+</article>
+<article class="project-card">
+<div class="project-video"><iframe src="https://www.youtube.com/embed/34xzCVieDqM" title="Yat projesi videosu" loading="lazy" referrerpolicy="origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<div class="video-fallback"><a href="https://www.youtube.com/watch?v=34xzCVieDqM" target="_blank" rel="noopener noreferrer">Videoyu YouTube’da izle</a></div>
+
+</article>
+<!-- Yerel MP4 eklemek için bu örneği açıp dosya adını değiştir:
+<article class="project-card">
+<div class="project-video"><video controls playsinline preload="metadata"><source src="assets/chef.mp4" type="video/mp4">Tarayıcınız bu videoyu oynatamıyor.</video></div>
+<div class="project-caption"><h2>PROJE BAŞLIĞI</h2></div>
+</article>
+-->
+</div></section></main>
+<footer id="footer"><span class="footer-brand">MERCI CHEF.CO</span><span>© <span id="year"></span> Merci Chef.Co. <span data-i18n="footer">Tüm hakları saklıdır.</span></span><span data-i18n="footerTagline">Yacht &amp; Onboard Services</span></footer>
+<script>
+const translations={
+tr:{navHome:"ANA SAYFA",navProjects:"PROJELER",navContact:"İLETİŞİM",heading:"Projelerimiz",subtitle:"Yatlarda ayrıcalıklı hizmet ve deneyimler",footer:"Tüm hakları saklıdır.",footerTagline:"Yat ve Yat İçi Hizmetler",menuOpen:"Menüyü aç",menuClose:"Menüyü kapat"},
+en:{navHome:"HOME",navProjects:"PROJECTS",navContact:"CONTACT",heading:"Our Projects",subtitle:"Exclusive services and experiences aboard yachts",footer:"All rights reserved.",footerTagline:"Yacht & Onboard Services",menuOpen:"Open menu",menuClose:"Close menu"},
+fr:{navHome:"ACCUEIL",navProjects:"PROJETS",navContact:"CONTACT",heading:"Nos projets",subtitle:"Services et expériences exclusifs à bord",footer:"Tous droits réservés.",footerTagline:"Yachts et services à bord",menuOpen:"Ouvrir le menu",menuClose:"Fermer le menu"},
+ar:{navHome:"الرئيسية",navProjects:"المشاريع",navContact:"اتصل بنا",heading:"مشاريعنا",subtitle:"خدمات وتجارب مميزة على متن اليخوت",footer:"جميع الحقوق محفوظة.",footerTagline:"اليخوت والخدمات على متنها",menuOpen:"فتح القائمة",menuClose:"إغلاق القائمة"}
+};
+const mainNav=document.getElementById("mainNav"),menuBtn=document.getElementById("menuBtn");
+document.getElementById("year").textContent=new Date().getFullYear();
+function updateMenuLabel(lang=document.documentElement.lang){const c=translations[lang]||translations.tr,open=mainNav.classList.contains("open");menuBtn.setAttribute("aria-label",open?c.menuClose:c.menuOpen);menuBtn.setAttribute("aria-expanded",String(open))}
+document.querySelectorAll("[data-lang]").forEach(button=>button.addEventListener("click",()=>{
+const lang=button.dataset.lang,c=translations[lang];document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+document.querySelectorAll("[data-lang]").forEach(item=>{const active=item===button;item.classList.toggle("active",active);item.setAttribute("aria-pressed",String(active))});
+document.querySelectorAll("[data-i18n]").forEach(el=>{const key=el.dataset.i18n;if(c[key]!==undefined)el.textContent=c[key]});updateMenuLabel(lang)
+}));
+menuBtn.addEventListener("click",()=>{mainNav.classList.toggle("open");updateMenuLabel()});
+mainNav.querySelectorAll("a").forEach(link=>link.addEventListener("click",()=>{mainNav.classList.remove("open");updateMenuLabel()}));
+</script>
+</body>
+</html>
