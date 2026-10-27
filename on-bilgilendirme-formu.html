@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index,follow">
+  <title>Ön Bilgilendirme Formu | Mercichefco</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Montserrat', sans-serif; background:#0F1729; }
+    .font-serif { font-family:'Cormorant Garamond',serif; }
+    .lang-btn { border:1px solid rgba(255,255,255,.25); color:rgba(255,255,255,.7); padding:6px 9px; font-size:11px; }
+    .lang-btn.active, .lang-btn:hover { color:#C9A962; border-color:#C9A962; }
+    a { text-underline-offset:4px; }
+  </style>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { 'merci-gold':'#C9A962','merci-dark':'#0F1729' } } } };
+  </script>
+</head>
+<body class="min-h-screen text-white">
+  <header class="border-b border-white/10">
+    <div class="max-w-5xl mx-auto px-6 py-5 flex flex-wrap items-center justify-between gap-4">
+      <a href="index.html" class="font-serif text-2xl tracking-wide text-white">Merci<span class="text-merci-gold">Chef.Co</span></a>
+      <nav class="flex items-center gap-2" aria-label="Language selector">
+        <button class="lang-btn active" type="button" onclick="changeLang('tr')" id="btn-tr" aria-pressed="true">TR</button>
+        <button class="lang-btn" type="button" onclick="changeLang('en')" id="btn-en" aria-pressed="false">EN</button>
+        <button class="lang-btn" type="button" onclick="changeLang('fr')" id="btn-fr" aria-pressed="false">FR</button>
+        <button class="lang-btn" type="button" onclick="changeLang('ar')" id="btn-ar" aria-pressed="false">AR</button>
+      </nav>
+    </div>
+  </header>
+  <main class="max-w-4xl mx-auto px-6 py-12 md:py-16">
+    <a href="index.html" class="inline-flex mb-8 text-merci-gold text-xs uppercase tracking-widest hover:text-white"
+       data-tr="← Ana sayfaya dön" data-en="← Back to home" data-fr="← Retour à l’accueil" data-ar="← العودة إلى الصفحة الرئيسية">← Ana sayfaya dön</a>
+    <h1 class="font-serif text-4xl md:text-5xl text-white mb-6" data-tr="Ön Bilgilendirme Formu" data-en="Pre-Contractual Information Form" data-fr="Formulaire d’information précontractuelle" data-ar="نموذج المعلومات المسبقة">Ön Bilgilendirme Formu</h1>
+    <p class="text-white/70 leading-8 text-sm md:text-base mb-10" data-tr="Müşteri, rezervasyonu tamamlamadan önce aşağıdaki bilgileri incelemelidir. Satın alma ekranında hizmete özgü bilgiler ve toplam bedel ayrıca gösterilmelidir." data-en="The customer should review the following information before completing a booking. Service-specific details and the total amount must also be displayed at checkout." data-fr="Le client doit consulter les informations suivantes avant de confirmer sa réservation. Les détails du service et le montant total doivent également apparaître lors du paiement." data-ar="ينبغي للعميل مراجعة المعلومات التالية قبل إتمام الحجز. كما يجب عرض تفاصيل الخدمة والسعر الإجمالي في صفحة الدفع.">Müşteri, rezervasyonu tamamlamadan önce aşağıdaki bilgileri incelemelidir. Satın alma ekranında hizmete özgü bilgiler ve toplam bedel ayrıca gösterilmelidir.</p>
+    
+        <section class="mb-8">
+            <h2 class="font-serif text-2xl text-white mb-3" data-tr="Hizmet sağlayıcı" data-en="Service provider" data-fr="Prestataire" data-ar="مقدم الخدمة">Hizmet sağlayıcı</h2>
+            <p class="text-white/70 leading-8 text-sm md:text-base" data-tr="Ticari unvan: YONCACILAR ENERJİ İNŞAAT GIDA SANAYİ VE TİCARET ANONİM ŞİRKETİ / MERT YONCACILAR. Adres: Soğukkuyu Mahallesi, 1595 Sokak, No: 10, Daire: 47, Eda Hanım Apt., Bayraklı / İzmir. E-posta: chefcomerci@gmail.com. Telefon: +90 530 415 07 29. Vergi dairesi: Yamanlar Vergi Dairesi. Vergi kimlik numarası: 9820796039." data-en="Legal business name: YONCACILAR ENERJİ İNŞAAT GIDA SANAYİ VE TİCARET ANONİM ŞİRKETİ / MERT YONCACILAR. Address: Soğukkuyu Mahallesi, 1595 Sokak, No: 10, Daire: 47, Eda Hanım Apt., Bayraklı / İzmir, Türkiye. Email: chefcomerci@gmail.com. Phone: +90 530 415 07 29. Tax office: Yamanlar Tax Office. Tax identification number: 9820796039." data-fr="Dénomination commerciale : YONCACILAR ENERJİ İNŞAAT GIDA SANAYİ VE TİCARET ANONİM ŞİRKETİ / MERT YONCACILAR. Adresse : Soğukkuyu Mahallesi, 1595 Sokak, n° 10, appartement 47, Eda Hanım Apt., Bayraklı / İzmir, Turquie. E-mail : chefcomerci@gmail.com. Téléphone : +90 530 415 07 29. Bureau des impôts : Yamanlar. Numéro d’identification fiscale : 9820796039." data-ar="الاسم التجاري: YONCACILAR ENERJİ İNŞAAT GIDA SANAYİ VE TİCARET ANONİM ŞİRKETİ / MERT YONCACILAR. العنوان: Soğukkuyu Mahallesi، 1595 Sokak، رقم 10، شقة 47، Eda Hanım Apt.، Bayraklı / İzmir، تركيا. البريد الإلكتروني: chefcomerci@gmail.com. الهاتف: +90 530 415 07 29. مكتب الضرائب: Yamanlar Vergi Dairesi. الرقم الضريبي: 9820796039.">Ticari unvan: YONCACILAR ENERJİ İNŞAAT GIDA SANAYİ VE TİCARET ANONİM ŞİRKETİ / MERT YONCACILAR. Adres: Soğukkuyu Mahallesi, 1595 Sokak, No: 10, Daire: 47, Eda Hanım Apt., Bayraklı / İzmir. E-posta: chefcomerci@gmail.com. Telefon: +90 530 415 07 29. Vergi dairesi: Yamanlar Vergi Dairesi. Vergi kimlik numarası: 9820796039.</p>
+        </section>
+        <section class="mb-8">
+            <h2 class="font-serif text-2xl text-white mb-3" data-tr="Hizmetin temel özellikleri" data-en="Main characteristics of the service" data-fr="Caractéristiques principales du service" data-ar="الخصائص الأساسية للخدمة">Hizmetin temel özellikleri</h2>
+            <p class="text-white/70 leading-8 text-sm md:text-base" data-tr="Hizmet türü, şef/ekip kapsamı, kişi sayısı, menü veya hizmet içeriği, etkinlik adresi, tarih ve süre teklif/rezervasyon onayında netleştirilir." data-en="Service type, chef/team scope, guest count, menu or service content, event address, date and duration are specified in the offer/booking confirmation." data-fr="Le type de service, l’équipe, le nombre de personnes, le menu ou le contenu, l’adresse, la date et la durée sont précisés dans l’offre/la confirmation." data-ar="يتم تحديد نوع الخدمة ونطاق الشيف/الفريق وعدد الضيوف والقائمة أو المحتوى والعنوان والتاريخ والمدة في العرض أو تأكيد الحجز.">Hizmet türü, şef/ekip kapsamı, kişi sayısı, menü veya hizmet içeriği, etkinlik adresi, tarih ve süre teklif/rezervasyon onayında netleştirilir.</p>
+        </section>
+        <section class="mb-8">
+            <h2 class="font-serif text-2xl text-white mb-3" data-tr="Toplam fiyat ve ödeme" data-en="Total price and payment" data-fr="Prix total et paiement" data-ar="السعر الإجمالي والدفع">Toplam fiyat ve ödeme</h2>
+            <p class="text-white/70 leading-8 text-sm md:text-base" data-tr="Toplam tutar, vergiler ve zorunlu ek ücretler dâhil ödeme öncesinde gösterilir. Para birimi, ödeme zamanı, ön ödeme ve varsa kalan tutar açıkça belirtilir." data-en="The total, including taxes and mandatory additional charges, is shown before payment. Currency, payment timing, deposit and any balance are stated clearly." data-fr="Le montant total, taxes et frais obligatoires compris, est indiqué avant paiement. La devise, l’échéance, l’acompte et le solde éventuel sont précisés." data-ar="يُعرض المبلغ الإجمالي شاملاً الضرائب والرسوم الإلزامية قبل الدفع. وتُوضح العملة وموعد الدفع والعربون وأي رصيد متبقٍ.">Toplam tutar, vergiler ve zorunlu ek ücretler dâhil ödeme öncesinde gösterilir. Para birimi, ödeme zamanı, ön ödeme ve varsa kalan tutar açıkça belirtilir.</p>
+        </section>
+        <section class="mb-8">
+            <h2 class="font-serif text-2xl text-white mb-3" data-tr="İfa, iptal ve iade" data-en="Performance, cancellation and refunds" data-fr="Exécution, annulation et remboursement" data-ar="التنفيذ والإلغاء والاسترداد">İfa, iptal ve iade</h2>
+            <p class="text-white/70 leading-8 text-sm md:text-base" data-tr="Hizmetin sunulacağı tarih ve yer rezervasyonda teyit edilir. İptal, değişiklik, cayma ve iade koşulları İptal ve İade Politikası ve sözleşmede belirtilir. Belirli tarihte sunulan hizmetlerde yasal istisnalar uygulanabilir." data-en="The service date and location are confirmed in the booking. Cancellation, changes, withdrawal and refund terms are set out in the Cancellation and Refund Policy and agreement. Legal exceptions may apply to services provided on a specific date." data-fr="La date et le lieu sont confirmés lors de la réservation. Les conditions d’annulation, de modification, de rétractation et de remboursement figurent dans la politique et le contrat. Des exceptions légales peuvent concerner les services à date déterminée." data-ar="يتم تأكيد تاريخ ومكان الخدمة عند الحجز. وترد شروط الإلغاء والتعديل والعدول والاسترداد في السياسة والاتفاقية. وقد تنطبق استثناءات قانونية على الخدمات المقدمة في تاريخ محدد.">Hizmetin sunulacağı tarih ve yer rezervasyonda teyit edilir. İptal, değişiklik, cayma ve iade koşulları İptal ve İade Politikası ve sözleşmede belirtilir. Belirli tarihte sunulan hizmetlerde yasal istisnalar uygulanabilir.</p>
+        </section>
+        <section class="mb-8">
+            <h2 class="font-serif text-2xl text-white mb-3" data-tr="Şikâyet ve başvuru" data-en="Complaints and applications" data-fr="Réclamations et recours" data-ar="الشكاوى والطلبات">Şikâyet ve başvuru</h2>
+            <p class="text-white/70 leading-8 text-sm md:text-base" data-tr="Sorular ve talepler için chefcomerci@gmail.com veya +90 530 415 07 29 üzerinden iletişim kurulabilir. Tüketicinin kanuni başvuru hakları saklıdır." data-en="For questions and requests, contact chefcomerci@gmail.com or +90 530 415 07 29. The consumer’s statutory rights remain unaffected." data-fr="Pour toute question ou demande, contactez chefcomerci@gmail.com ou le +90 530 415 07 29. Les droits légaux du consommateur restent réservés." data-ar="للاستفسارات والطلبات، تواصل عبر chefcomerci@gmail.com أو +90 530 415 07 29. وتظل الحقوق القانونية للمستهلك محفوظة.">Sorular ve talepler için chefcomerci@gmail.com veya +90 530 415 07 29 üzerinden iletişim kurulabilir. Tüketicinin kanuni başvuru hakları saklıdır.</p>
+        </section>
+    <div class="mt-12 border-t border-white/10 pt-6 text-white/50 text-xs leading-6">
+      <p data-tr="İletişim: chefcomerci@gmail.com · +90 530 415 07 29" data-en="Contact: chefcomerci@gmail.com · +90 530 415 07 29" data-fr="Contact : chefcomerci@gmail.com · +90 530 415 07 29" data-ar="التواصل: chefcomerci@gmail.com · +90 530 415 07 29">İletişim: chefcomerci@gmail.com · +90 530 415 07 29</p>
+    </div>
+  </main>
+  <footer class="border-t border-white/10">
+    <div class="max-w-5xl mx-auto px-6 py-6 flex flex-wrap justify-between gap-3 text-white/50 text-xs">
+      <span>© 2026 Merci Chef.Co</span>
+      <a href="index.html" class="hover:text-merci-gold" data-tr="Ana sayfa" data-en="Home" data-fr="Accueil" data-ar="الرئيسية">Ana sayfa</a>
+    </div>
+  </footer>
+  <script>
+    function changeLang(lang) {
+      const supported = ['tr','en','fr','ar'];
+      if (!supported.includes(lang)) return;
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      document.body.style.textAlign = lang === 'ar' ? 'right' : 'left';
+      document.querySelectorAll('[data-tr]').forEach(el => {
+        const value = el.getAttribute('data-' + lang) || el.getAttribute('data-en') || el.getAttribute('data-tr');
+        if (el.children.length === 0) el.textContent = value;
+      });
+      supported.forEach(code => {
+        const btn = document.getElementById('btn-' + code);
+        if (btn) {
+          btn.classList.toggle('active', code === lang);
+          btn.setAttribute('aria-pressed', String(code === lang));
+        }
+      });
+    }
+    changeLang('tr');
+  </script>
+</body>
+</html>

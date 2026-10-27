@@ -1,0 +1,1835 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mercichefco</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'merci-gold': '#C9A962',
+                        'merci-gold-light': '#D4BC7E',
+                        'merci-dark': '#0F1729',
+                        'merci-navy': '#1A2744',
+                        'merci-cream': '#F5F1EB',
+                        'merci-gray': '#8A8F98'
+                    },
+                    fontFamily: {
+                        'serif': ['Cormorant Garamond', 'serif'],
+                        'sans': ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Montserrat', sans-serif; }
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .hero-overlay { background: linear-gradient(to right, rgba(15,23,41,0.95) 0%, rgba(15,23,41,0.7) 50%, rgba(15,23,41,0.3) 100%); }
+        .gold-gradient { background: linear-gradient(135deg, #C9A962 0%, #D4BC7E 50%, #C9A962 100%); }
+        .text-gold-gradient { background: linear-gradient(135deg, #C9A962 0%, #D4BC7E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .venn-circle { border: 2px solid rgba(201,169,98,0.3); }
+        .service-card:hover .service-overlay { opacity: 1; }
+        .service-card:hover img { transform: scale(1.05); }
+        .project-card { transition: all 0.4s ease; }
+        .project-card:hover { transform: translateY(-5px); }
+        .nav-link { position: relative; }
+        .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: #C9A962; transition: width 0.3s; }
+        .nav-link:hover::after { width: 100%; }
+        .lang-btn.active { color: #C9A962; border-bottom: 1px solid #C9A962; }
+        html[dir="rtl"] body { text-align: right; }
+        html[dir="rtl"] .hero-overlay { background: linear-gradient(to left, rgba(15,23,41,0.95) 0%, rgba(15,23,41,0.7) 50%, rgba(15,23,41,0.3) 100%); }
+        html[dir="rtl"] .nav-link::after { left: auto; right: 0; }
+        .smooth-scroll { scroll-behavior: smooth; }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0F1729; }
+        ::-webkit-scrollbar-thumb { background: #C9A962; border-radius: 4px; }
+        
+        /* Animation classes */
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        
+        .venn-container { position: relative; width: 320px; height: 280px; }
+        .venn-top { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 140px; height: 140px; border-radius: 50%; border: 2px solid rgba(201,169,98,0.4); display: flex; align-items: center; justify-content: center; background: rgba(201,169,98,0.05); }
+        .venn-left { position: absolute; bottom: 20px; left: 20px; width: 140px; height: 140px; border-radius: 50%; border: 2px solid rgba(201,169,98,0.4); display: flex; align-items: center; justify-content: center; background: rgba(201,169,98,0.05); }
+        .venn-right { position: absolute; bottom: 20px; right: 20px; width: 140px; height: 140px; border-radius: 50%; border: 2px solid rgba(201,169,98,0.4); display: flex; align-items: center; justify-content: center; background: rgba(201,169,98,0.05); }
+        .venn-center { position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); width: 100px; height: 100px; border-radius: 50%; background: #0F1729; border: 2px solid #C9A962; display: flex; align-items: center; justify-content: center; z-index: 10; }
+        
+        @media (max-width: 768px) {
+            .venn-container { transform: scale(0.8); }
+        }
+    </style>
+</head>
+<body class="bg-merci-cream text-merci-dark overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent">
+        <div class="w-full px-6 lg:px-12 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <img src="assets/logo_chefco.jpg" alt="Logo" style="width:100px; border-radius:50%;" class="flex">                    
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="#home" class="nav-link text-white text-xs tracking-widest uppercase hover:text-merci-gold transition-colors" data-tr="ANA SAYFA" data-en="HOME">ANA SAYFA</a>
+                    <a href="#about" class="nav-link text-white text-xs tracking-widest uppercase hover:text-merci-gold transition-colors" data-tr="HAKKIMIZDA" data-en="ABOUT">HAKKIMIZDA</a>
+                    <a href="#services" class="nav-link text-white text-xs tracking-widest uppercase hover:text-merci-gold transition-colors" data-tr="YAT KİRALAMA" data-en="SERVICES">YAT KİRALAMA</a>
+                    <a href="/index_hirechief.html" target="_blank" rel="noopener noreferrer" class="nav-link text-white text-xs tracking-widest uppercase hover:text-merci-gold transition-colors" data-tr="ŞEF KİRALAMA" data-en="HIRE A CHEF" data-fr="LOCATION DE CHEF" data-ar="استئجار شيف">ŞEF KİRALAMA</a>
+                    <a href="#sectors" class="nav-link text-white text-xs tracking-widest uppercase hover:text-merci-gold transition-colors" data-tr="SEKTÖRLER" data-en="SECTORS">SEKTÖRLER</a>
+                    <a href="#projects" class="nav-link text-white text-xs tracking-widest uppercase hover:text-merci-gold transition-colors" data-tr="PROJELER" data-en="PROJECTS">PROJELER</a>
+                    <a href="#contact" class="nav-link text-white text-xs tracking-widest uppercase hover:text-merci-gold transition-colors" data-tr="İLETİŞİM" data-en="CONTACT">İLETİŞİM</a>
+                </div>
+
+                <!-- Right Side -->
+                <div class="flex items-center gap-6">
+                   <a href="https://wa.me/905304150729?text=Merhaba%20yat%20kiralama%20hakkında%20bilgi%20almak%20istiyorum."
+                    target="_blank"
+                    class="hidden md:flex items-center gap-2 border border-merci-gold text-merci-gold px-6 py-2 text-xs tracking-widest uppercase hover:bg-merci-gold hover:text-merci-dark transition-all duration-300">
+
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WHATSAPP İLETİŞİM</span>
+                    </a>
+                    
+                    <!-- Language Switcher -->
+                   
+                    <div class="flex items-center gap-2 text-xs" aria-label="Language selector">
+                      <button type="button" onclick="changeLang('tr')" id="btn-tr" class="lang-btn active" aria-label="Türkçe" aria-pressed="true">TR</button>
+                      <button type="button" onclick="changeLang('en')" id="btn-en" class="lang-btn" aria-label="English" aria-pressed="false">EN</button>
+                      <button type="button" onclick="changeLang('fr')" id="btn-fr" class="lang-btn" aria-label="Français" aria-pressed="false">FR</button>
+                      <button type="button" onclick="changeLang('ar')" id="btn-ar" class="lang-btn" aria-label="العربية" aria-pressed="false">AR</button>
+                    </div>
+
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="lg:hidden text-white text-xl">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="lg:hidden hidden bg-merci-dark/95 backdrop-blur-md absolute w-full">
+            <div class="px-6 py-8 flex flex-col gap-4">
+                <a href="#home" class="text-white text-sm tracking-widest uppercase py-2 border-b border-white/10" data-tr="ANA SAYFA" data-en="HOME">ANA SAYFA</a>
+                <a href="#habout" class="text-white text-sm tracking-widest uppercase py-2 border-b border-white/10" data-tr="HAKKIMIZDA" data-en="ABOUT US">HAKKIMIZDA</a>
+                <a href="#services" class="text-white text-sm tracking-widest uppercase py-2 border-b border-white/10" data-tr="YAT KİRALAMA" data-en="HIRE A YATCH">YAT KİRALAMA</a>
+                <a href="/index_hirechief.html" class="text-white text-sm tracking-widest uppercase py-2 border-b border-white/10" data-tr="ŞEF KİRALAMA" data-en="HIRE A CHIEF">ŞEF KİRALAMA</a>
+                <a href="#sectors" class="text-white text-sm tracking-widest uppercase py-2 border-b border-white/10" data-tr="SEKTÖRLER" data-en="SECTORS">SEKTÖRLER</a>
+                <a href="#projects" class="text-white text-sm tracking-widest uppercase py-2 border-b border-white/10" data-tr="PROJELER" data-en="PROJECTS">PROJELER</a>
+                <a href="#contact" class="text-white text-sm tracking-widest uppercase py-2 border-b border-white/10" data-tr="İLETİŞİM" data-en="CONTACT">İLETİŞİM</a>
+                <a href="#contact" class="border border-merci-gold text-merci-gold px-6 py-3 text-xs tracking-widest uppercase text-center mt-4 hover:bg-merci-gold hover:text-merci-dark transition-all" data-tr="ÖZEL GÖRÜŞME TALEP ET" data-en="REQUEST PRIVATE MEETING">
+                    ÖZEL GÖRÜŞME TALEP ET
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen min-h-[700px] flex items-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="#" alt="Luxury Yacht Dining" class="w-full h-full object-cover">
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 w-full px-6 lg:px-12 pt-20">
+            <div class="max-w-3xl">
+                <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl text-white leading-tight mb-8 fade-in">
+                    <span data-tr="Lüks Operasyonları" data-en="We Make Luxury">Lüks Operasyonları</span><br>
+                    <span data-tr="Kusursuz Hale Getiriyoruz." data-en="Operations Perfect.">Kusursuz Hale Getiriyoruz.</span>
+                </h1>
+                
+                <div class="flex flex-col gap-3 mb-10 fade-in" style="transition-delay: 0.2s;">
+                    <div class="flex items-center gap-3 text-white/90">
+                        <i class="fas fa-ship text-merci-gold text-sm"></i>
+                        <span class="text-sm tracking-wide" data-tr="Süperyat Kumanya Yönetimi" data-en="Superyacht Provisioning Management">Süperyat Kumanya Yönetimi</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-white/90">
+                        <i class="fas fa-utensils text-merci-gold text-sm"></i>
+                        <span class="text-sm tracking-wide" data-tr="Lüks Gastronomi Operasyonları" data-en="Luxury Gastronomy Operations">Lüks Gastronomi Operasyonları</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-white/90">
+                        <i class="fas fa-concierge-bell text-merci-gold text-sm"></i>
+                        <span class="text-sm tracking-wide" data-tr="Hospitality Danışmanlığı" data-en="Hospitality Consulting">Hospitality Danışmanlığı</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-white/90">
+                        <i class="fas fa-utensils  text-merci-gold text-sm"></i>
+                        <span class="text-sm tracking-wide"
+                            data-tr="Şef Kiralama"
+                            data-en="Hire A Chef"
+                            data-fr="Location de chef"
+                            data-ar="استئجار شيف">
+                            Şef Kiralama
+                        </span>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-4 fade-in" style="transition-delay: 0.4s;">
+                    <a href="#contact" class="gold-gradient text-merci-dark px-8 py-3 text-xs tracking-widest uppercase font-semibold hover:shadow-lg hover:shadow-merci-gold/30 transition-all" data-tr="ÖZEL GÖRÜŞME TALEP ET" data-en="REQUEST PRIVATE MEETING">
+                        ÖZEL GÖRÜŞME TALEP ET
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Location Tags -->
+        <div class="absolute bottom-0 left-0 w-full z-10 border-t border-white/10 bg-gradient-to-t from-merci-dark/80 to-transparent">
+            <div class="px-6 lg:px-12 py-6 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex flex-wrap gap-6 text-xs tracking-[0.2em] text-white/70">
+                    <span>DUBAI</span>
+                    <span class="text-merci-gold">|</span>
+                    <span>ISTANBUL</span>
+                    <span class="text-merci-gold">|</span>
+                    <span>BODRUM</span>
+                    <span class="text-merci-gold">|</span>
+                    <span>URLA</span>
+                    <span class="text-merci-gold">|</span>
+                    <span>GOCEK</span>
+                    <span class="text-merci-gold">|</span>
+                    <span>MARMARIS</span>
+                    <span></span>
+                </div>
+                <div class="text-xs tracking-widest text-merci-gold uppercase hidden md:block" data-tr="DÜNYA STANDARTLARINDA LÜKS OPERASYON YÖNETİMİ" data-en="WORLD-CLASS LUXURY OPERATION MANAGEMENT">
+                    DÜNYA STANDARTLARINDA LÜKS OPERASYON YÖNETİMİ
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 lg:py-32 bg-merci-cream">
+        <div class="w-full px-6 lg:px-12">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <!-- Left Content -->
+                <div class="fade-in">
+                    <div class="text-merci-gold text-xs tracking-[0.3em] uppercase mb-4" data-tr="MERCI CHEF.CO" data-en="MERCI CHEF.CO">MERCI CHEF.CO</div>
+                    <h2 class="font-serif text-4xl lg:text-5xl text-merci-dark mb-6 leading-tight">
+                        <span data-tr="Lüks Ağırlamanın" data-en="The Operational">Lüks Ağırlamanın</span><br>
+                        <span data-tr="Operasyonel Mimarisi" data-en="Architecture of Luxury">Operasyonel Mimarisi</span>
+                    </h2>
+                    <p class="text-merci-gray leading-relaxed mb-8" data-tr="Merci Chef.Co; süperyatlar, premium restoranlar, beach club'lar ve lüks destinasyonlar için operasyonel mükemmellik sistemleri tasarlar." data-en="Merci Chef.Co designs operational excellence systems for superyachts, premium restaurants, beach clubs and luxury destinations.">
+                        Merci Chef.Co; süperyatlar, premium restoranlar, beach club'lar ve lüks destinasyonlar için operasyonel mükemmellik sistemleri tasarlar.
+                    </p>
+                    <a href="hak_index.html" class="inline-flex items-center gap-2 text-merci-dark text-sm tracking-widest uppercase border-b border-merci-gold pb-1 hover:text-merci-gold transition-colors">
+                        <span data-tr="YAKLAŞIMIMIZI KEŞFET" data-en="DISCOVER OUR APPROACH">YAKLAŞIMIMIZI KEŞFET</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+
+                
+                   
+                </div>
+
+                <!-- Right Content -->
+                <div class="relative fade-in" style="transition-delay: 0.2s;">
+                    <div class="grid grid-cols-5 gap-4">
+                        <div class="col-span-3">
+                            <img src="assets/fine-dining.jpg" alt="Fine Dining" class="w-full h-[400px] object-cover shadow-2xl">
+                        </div>
+                        <div class="col-span-2 bg-merci-dark p-6 flex flex-col justify-center">
+                            <div class="text-merci-gold text-4xl mb-4">
+                                <i class="fas fa-compass"></i>
+                            </div>
+                            <p class="text-white/90 text-sm leading-relaxed mb-4" data-tr="Gastronomi, operasyon, finans ve marka yönetimini tek bir mükemmellik sisteminde birleştiriyoruz." data-en="We combine gastronomy, operations, finance and brand management in a single excellence system.">
+                                Gastronomi, operasyon, finans ve marka yönetimini tek bir mükemmellik sisteminde birleştiriyoruz.
+                            </p>
+                            <div class="font-serif text-merci-gold text-lg italic" data-tr="Merci Chef.Co" data-en="Merci Chef.Co">Merci Chef.Co</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+<section id="services" class="py-20 lg:py-32 bg-merci-dark">
+    <div class="w-full px-6 lg:px-12">
+
+        <div class="text-center mb-16 fade-in">
+            
+            <h2 class="font-serif text-4xl lg:text-5xl text-white"
+                data-tr="Fethiye'de Lüks Katamaran ve Yat Kiralama"
+                data-en="Luxury Catamaran and Yacht Rental in Fethiye"
+                data-fr="Location de catamarans et yachts de luxe à Fethiye"
+                data-ar="تأجير القوارب واليخوت الفاخرة في فتحية">
+                Fethiye'de Lüks Katamaran ve Yat Kiralama
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Lagoon 410 S2 -->
+            <div class="service-card group overflow-hidden rounded-2xl bg-black/20 border border-white/10 fade-in">
+                <div class="relative h-[450px] overflow-hidden">
+                    <img src="images/lagoon410.jpg"
+                         alt="Lagoon 410 S2"
+                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+
+                    <div class="absolute bottom-0 left-0 w-full p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-serif text-2xl text-white">
+                                Lagoon 410 S2
+                            </h3>
+                            <span class="text-merci-gold text-sm">
+                                2005
+                            </span>
+                        </div>
+
+                        <ul class="text-white/80 text-sm space-y-1 mb-5">
+                            <li data-tr="📏 Uzunluk: 12.37 m" data-en="📏 Length: 12.37 m" data-fr="📏 Longueur : 12,37 m" data-ar="📏 الطول: 12.37 م">📏 Uzunluk: 12.37 m</li>
+                            <li data-tr="🛏️ 4 Kabin" data-en="🛏️ 4 Cabins" data-fr="🛏️ 4 cabines" data-ar="🛏️ 4 كبائن">🛏️ 4 Kabin</li>
+                            <li data-tr="👥 8 Kişi" data-en="👥 8 Guests" data-fr="👥 8 personnes" data-ar="👥 8 أشخاص">👥 8 Kişi</li>
+                            <li data-tr="🚿 4 WC" data-en="🚿 4 Bathrooms" data-fr="🚿 4 salles de bain" data-ar="🚿 4 حمامات">🚿 4 WC</li>
+                            <li data-tr="📍 Fethiye Yacht Club Marina" data-en="📍 Fethiye Yacht Club Marina" data-fr="📍 Marina Fethiye Yacht Club" data-ar="📍 مرسى نادي فتحية لليخوت">📍 Fethiye Yacht Club Marina</li>
+                            <li data-tr="💰 6.000 EUR / hafta" data-en="💰 EUR 6,000 / week" data-fr="💰 6 000 EUR / semaine" data-ar="💰 6,000 يورو / أسبوع">💰 6.000 EUR / hafta</li>
+                        </ul>
+
+                        <a href="https://wa.me/905304150729?text=Merhaba%20yat%20kiralama%20hakkında%20bilgi%20almak%20istiyorum."
+                        target="_blank"
+                        class="hidden md:flex items-center gap-2 border border-merci-gold text-merci-gold px-6 py-2 text-xs tracking-widest uppercase hover:bg-merci-gold hover:text-merci-dark transition-all duration-300">
+
+                            <i class="fab fa-whatsapp"></i>
+                            <span data-tr="WHATSAPP İLETİŞİM"
+                                  data-en="CONTACT VIA WHATSAPP"
+                                  data-fr="CONTACT WHATSAPP"
+                                  data-ar="تواصل عبر واتساب">WHATSAPP İLETİŞİM</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lagoon 40 -->
+            <div class="service-card group overflow-hidden rounded-2xl bg-black/20 border border-white/10 fade-in">
+                <div class="relative h-[450px] overflow-hidden">
+                    <img src="images/lagoon40.jpg"
+                         alt="Lagoon 40"
+                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+
+                    <div class="absolute bottom-0 left-0 w-full p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-serif text-2xl text-white">
+                                Lagoon 40
+                            </h3>
+                            <span class="text-merci-gold text-sm">
+                                2021
+                            </span>
+                        </div>
+
+                        <ul class="text-white/80 text-sm space-y-1 mb-5">
+                            <li data-tr="📏 Uzunluk: 11.74 m" data-en="📏 Length: 11.74 m" data-fr="📏 Longueur : 11,74 m" data-ar="📏 الطول: 11.74 م">📏 Uzunluk: 11.74 m</li>
+                            <li data-tr="🛏️ 4+2 Kabin" data-en="🛏️ 4+2 Cabins" data-fr="🛏️ 4+2 cabines" data-ar="🛏️ 4+2 كبائن">🛏️ 4+2 Kabin</li>
+                            <li data-tr="👥 8+2 Kişi" data-en="👥 8+2 Guests" data-fr="👥 8+2 personnes" data-ar="👥 8+2 أشخاص">👥 8+2 Kişi</li>
+                            <li data-tr="🚿 4 WC" data-en="🚿 4 Bathrooms" data-fr="🚿 4 salles de bain" data-ar="🚿 4 حمامات">🚿 4 WC</li>
+                            <li data-tr="📍 Ece Saray Marina, Fethiye" data-en="📍 Ece Saray Marina, Fethiye" data-fr="📍 Marina Ece Saray, Fethiye" data-ar="📍 مرسى إجه سراي، فتحية">📍 Ece Saray Marina, Fethiye</li>
+                            <li data-tr="💰 8.000 EUR / hafta" data-en="💰 EUR 8,000 / week" data-fr="💰 8 000 EUR / semaine" data-ar="💰 8,000 يورو / أسبوع">💰 8.000 EUR / hafta</li>
+                        </ul>
+
+                        <a href="https://wa.me/905304150729?text=Merhaba%20yat%20kiralama%20hakkında%20bilgi%20almak%20istiyorum."
+                    target="_blank"
+                    class="hidden md:flex items-center gap-2 border border-merci-gold text-merci-gold px-6 py-2 text-xs tracking-widest uppercase hover:bg-merci-gold hover:text-merci-dark transition-all duration-300">
+
+                        <i class="fab fa-whatsapp"></i>
+                        <span data-tr="WHATSAPP İLETİŞİM"
+                                  data-en="CONTACT VIA WHATSAPP"
+                                  data-fr="CONTACT WHATSAPP"
+                                  data-ar="تواصل عبر واتساب">WHATSAPP İLETİŞİM</span>
+                    </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bali Catsmart -->
+            <div class="service-card group overflow-hidden rounded-2xl bg-black/20 border border-white/10 fade-in">
+                <div class="relative h-[450px] overflow-hidden">
+                    <img src="images/bali-catsmart.jpg"
+                         alt="Bali Catsmart"
+                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+
+                    <div class="absolute bottom-0 left-0 w-full p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-serif text-2xl text-white">
+                                Bali Catsmart
+                            </h3>
+                            <span class="text-merci-gold text-sm">
+                                2024
+                            </span>
+                        </div>
+
+                        <ul class="text-white/80 text-sm space-y-1 mb-5">
+                            <li data-tr="📏 Uzunluk: 12.08 m" data-en="📏 Length: 12.08 m" data-fr="📏 Longueur : 12,08 m" data-ar="📏 الطول: 12.08 م">📏 Uzunluk: 12.08 m</li>
+                            <li data-tr="🛏️ 4 Kabin" data-en="🛏️ 4 Cabins" data-fr="🛏️ 4 cabines" data-ar="🛏️ 4 كبائن">🛏️ 4 Kabin</li>
+                            <li data-tr="👥 8 Kişi" data-en="👥 8 Guests" data-fr="👥 8 personnes" data-ar="👥 8 أشخاص">👥 8 Kişi</li>
+                            <li data-tr="🚿 2 WC" data-en="🚿 2 Bathrooms" data-fr="🚿 2 salles de bain" data-ar="🚿 2 حمام">🚿 2 WC</li>
+                            <li data-tr="📍 Ece Saray Marina, Fethiye" data-en="📍 Ece Saray Marina, Fethiye" data-fr="📍 Marina Ece Saray, Fethiye" data-ar="📍 مرسى إجه سراي، فتحية">📍 Ece Saray Marina, Fethiye</li>
+                            <li data-tr="💰 8.500 EUR / hafta" data-en="💰 EUR 8,500 / week" data-fr="💰 8 500 EUR / semaine" data-ar="💰 8,500 يورو / أسبوع">💰 8.500 EUR / hafta</li>
+                        </ul>
+
+                        <a href="https://wa.me/905304150729?text=Merhaba%20yat%20kiralama%20hakkında%20bilgi%20almak%20istiyorum."
+                        target="_blank"
+                        class="hidden md:flex items-center gap-2 border border-merci-gold text-merci-gold px-6 py-2 text-xs tracking-widest uppercase hover:bg-merci-gold hover:text-merci-dark transition-all duration-300">
+
+                            <i class="fab fa-whatsapp"></i>
+                            <span data-tr="WHATSAPP İLETİŞİM"
+                                  data-en="CONTACT VIA WHATSAPP"
+                                  data-fr="CONTACT WHATSAPP"
+                                  data-ar="تواصل عبر واتساب">WHATSAPP İLETİŞİM</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+    <!-- Why Us Section -->
+    <section id="sectors" class="py-20 lg:py-32 bg-merci-cream">
+        <div class="w-full px-6 lg:px-12">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <!-- Left Content -->
+                <div class="fade-in">
+                    <div class="text-merci-gold text-xs tracking-[0.3em] uppercase mb-4" data-tr="NEDEN MERCI CHEF.CO?" data-en="WHY MERCI CHEF.CO?">NEDEN MERCI CHEF.CO?</div>
+                    <h2 class="font-serif text-4xl lg:text-5xl text-merci-dark mb-6 leading-tight">
+                        <span data-tr="Fark Yaratan" data-en="Three Forces">Fark Yaratan</span><br>
+                        <span data-tr="Üç Güç" data-en="That Make a Difference">Üç Güç</span>
+                    </h2>
+                    <p class="text-merci-gray leading-relaxed mb-8" data-tr="Gastronomi uzmanlığımız, finansal zeka ve marka prestijini birleştirerek operasyonel kusursuzluk sunuyoruz." data-en="We combine gastronomy expertise, financial intelligence and brand prestige to deliver operational perfection.">
+                        Gastronomi uzmanlığımız, finansal zeka ve marka prestijini birleştirerek operasyonel kusursuzluk sunuyoruz.
+                    </p>
+                    <a href="sectors_article.html" class="inline-flex items-center gap-2 text-merci-dark text-sm tracking-widest uppercase border-b border-merci-gold pb-1 hover:text-merci-gold transition-colors">
+                        <span data-tr="YAKLAŞIMIMIZI KEŞFET" data-en="DISCOVER OUR APPROACH">YAKLAŞIMIMIZI KEŞFET</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Center Venn Diagram 
+                <div class="flex justify-center fade-in" style="transition-delay: 0.2s;">
+                    <div class="venn-container">
+                        <div class="venn-top">
+                            <div class="text-center">
+                                <i class="fas fa-hat-chef text-merci-gold text-2xl mb-2"></i>
+                                <div class="text-merci-dark text-xs font-semibold" data-tr="Gastronomi Uzmanlığı" data-en="Gastronomy Expertise">Gastronomi<br>Uzmanlığı</div>
+                            </div>
+                        </div>
+                        <div class="venn-left">
+                            <div class="text-center">
+                                <i class="fas fa-chart-bar text-merci-gold text-2xl mb-2"></i>
+                                <div class="text-merci-dark text-xs font-semibold" data-tr="Finansal Zeka" data-en="Financial Intelligence">Finansal<br>Zeka</div>
+                            </div>
+                        </div>
+                        <div class="venn-right">
+                            <div class="text-center">
+                                <i class="fas fa-crown text-merci-gold text-2xl mb-2"></i>
+                                <div class="text-merci-dark text-xs font-semibold" data-tr="Marka Prestiji" data-en="Brand Prestige">Marka<br>Prestiji</div>
+                            </div>
+                        </div>
+                        <div class="venn-center">
+                            <div class="text-center">
+                                <div class="text-merci-gold text-xs font-bold leading-tight" data-tr="Operasyonel Kusursuzluk" data-en="Operational Perfection">Operasyonel<br>Kusursuzluk</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                -->
+                <!-- Right List -->
+                <div class="lg:col-span-2 xl:col-span-1 fade-in" style="transition-delay: 0.3s;">
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="w-5 h-5 rounded-full border border-merci-gold flex items-center justify-center mt-0.5">
+                                <i class="fas fa-check text-merci-gold text-xs"></i>
+                            </div>
+                            <span class="text-merci-dark" data-tr="Küresel Standartlar" data-en="Global Standards">Küresel Standartlar</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-5 h-5 rounded-full border border-merci-gold flex items-center justify-center mt-0.5">
+                                <i class="fas fa-check text-merci-gold text-xs"></i>
+                            </div>
+                            <span class="text-merci-dark" data-tr="Operasyonel Disiplin" data-en="Operational Discipline">Operasyonel Disiplin</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-5 h-5 rounded-full border border-merci-gold flex items-center justify-center mt-0.5">
+                                <i class="fas fa-check text-merci-gold text-xs"></i>
+                            </div>
+                            <span class="text-merci-dark" data-tr="Kârlılık Odaklılık" data-en="Profitability Focus">Kârlılık Odaklılık</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-5 h-5 rounded-full border border-merci-gold flex items-center justify-center mt-0.5">
+                                <i class="fas fa-check text-merci-gold text-xs"></i>
+                            </div>
+                            <span class="text-merci-dark" data-tr="Misafir Deneyimi" data-en="Guest Experience">Misafir Deneyimi</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-5 h-5 rounded-full border border-merci-gold flex items-center justify-center mt-0.5">
+                                <i class="fas fa-check text-merci-gold text-xs"></i>
+                            </div>
+                            <span class="text-merci-dark" data-tr="Sürdürülebilir Başarı" data-en="Sustainable Success">Sürdürülebilir Başarı</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 lg:py-32 bg-merci-dark overflow-hidden">
+        <div class="w-full px-6 lg:px-12">
+            <div class="text-center mb-16 fade-in">
+                <div class="text-merci-gold text-xs tracking-[0.3em] uppercase mb-4" data-tr="ÖNE ÇIKAN PROJELER" data-en="FEATURED PROJECTS">ÖNE ÇIKAN PROJELER</div>
+                <h2 class="font-serif text-4xl lg:text-5xl text-white" data-tr="Gerçekleştirdiğimiz Bazı Projeler" data-en="Some Projects We Have Realized">Gerçekleştirdiğimiz Bazı Projeler</h2>
+            </div>
+
+            <!-- Projects Carousel -->
+            
+            <!-- Projects Carousel -->
+            <div class="relative fade-in" style="transition-delay: 0.2s;">
+                <div
+                    class="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide"
+                    id="projects-container"
+                    style="scrollbar-width: none; -ms-overflow-style: none;"
+                >
+
+                    <!-- Project 1 -->
+                    <div class="project-card min-w-[300px] sm:min-w-[350px] md:min-w-[400px] snap-start">
+                        <div class="relative h-[280px] overflow-hidden mb-5">
+                            <img
+                                src="assets/project1.jpg"
+                                alt="Süperyat Tedarik Optimizasyonu"
+                                class="w-full h-full object-cover"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <h3
+                            class="font-serif text-xl text-white mb-2"
+                            data-tr="Süperyat Tedarik Optimizasyonu"
+                            data-en="Superyacht Supply Optimization"
+                        >Süperyat Tedarik Optimizasyonu</h3>
+
+                        <p
+                            class="text-white/70 text-sm leading-relaxed mb-4"
+                            data-tr="Tedarik zinciri yeniden yapılandırılarak operasyonel verimlilik %30 artırıldı."
+                            data-en="The supply chain was restructured, increasing operational efficiency by 30%."
+                        >Tedarik zinciri yeniden yapılandırılarak operasyonel verimlilik %30 artırıldı.</p>
+
+                        <a
+                            href="superyat_projeler.html"
+                            class="inline-flex items-center gap-2 text-merci-gold text-xs tracking-widest uppercase hover:text-white transition-colors"
+                        >
+                            <span data-tr="PROJEYİ İNCELE" data-en="VIEW PROJECT">PROJEYİ İNCELE</span>
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card min-w-[300px] sm:min-w-[350px] md:min-w-[400px] snap-start">
+                        <div class="relative h-[280px] overflow-hidden mb-5">
+                            <img
+                                src="assets/project2.jpg"
+                                alt="Fine Dining Operasyon Dönüşümü"
+                                class="w-full h-full object-cover"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <h3
+                            class="font-serif text-xl text-white mb-2"
+                            data-tr="Fine Dining Operasyon Dönüşümü"
+                            data-en="Fine Dining Operations Transformation"
+                        >Fine Dining Operasyon Dönüşümü</h3>
+
+                        <p
+                            class="text-white/70 text-sm leading-relaxed mb-4"
+                            data-tr="Operasyonel sistemler yenilendi, kârlılık %25 yükseltildi."
+                            data-en="Operational systems were improved, increasing profitability by 25%."
+                        >Operasyonel sistemler yenilendi, kârlılık %25 yükseltildi.</p>
+
+                        <a
+                            href="fine_dining_proje.html"
+                            class="inline-flex items-center gap-2 text-merci-gold text-xs tracking-widest uppercase hover:text-white transition-colors"
+                        >
+                            <span data-tr="PROJEYİ İNCELE" data-en="VIEW PROJECT">PROJEYİ İNCELE</span>
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
+
+                    <!-- Project 3: URLA BAHÇE EVENT -->
+                    <div class="project-card min-w-[300px] sm:min-w-[350px] md:min-w-[400px] snap-start">
+                        <div class="relative h-[280px] overflow-hidden mb-5">
+                            <img
+                                src="assets/project3.jpg"
+                                alt="URLA BAHÇE EVENT"
+                                class="w-full h-full object-cover"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <h3
+                            class="font-serif text-xl text-white mb-2"
+                            data-tr="URLA BAHÇE EVENT"
+                            data-en="URLA GARDEN EVENT"
+                        >URLA BAHÇE EVENT</h3>
+
+                        <p
+                            class="text-white/70 text-sm leading-relaxed mb-4"
+                            data-tr="Özel davetler için uçtan uca gastronomi ve servis operasyonu."
+                            data-en="End-to-end gastronomy and service operations for private events."
+                        >Özel davetler için uçtan uca gastronomi ve servis operasyonu.</p>
+
+                        <a
+                            href="#"
+                            class="inline-flex items-center gap-2 text-merci-gold text-xs tracking-widest uppercase hover:text-white transition-colors"
+                        >
+                            <span data-tr="PROJEYİ İNCELE" data-en="VIEW PROJECT">PROJEYİ İNCELE</span>
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
+
+                    
+
+                </div>
+
+            <!-- Navigation Arrows -->
+            <button
+                type="button"
+                onclick="scrollProjects(-1)"
+                aria-label="Önceki projeler"
+                class="absolute left-0 top-1/3 -translate-y-1/2 w-12 h-12 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors z-10"
+            >
+                <i class="fas fa-chevron-left" aria-hidden="true"></i>
+            </button>
+
+            <button
+                type="button"
+                onclick="scrollProjects(1)"
+                aria-label="Sonraki projeler"
+                class="absolute right-0 top-1/3 -translate-y-1/2 w-12 h-12 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors z-10"
+            >
+                <i class="fas fa-chevron-right" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-merci-dark border-t border-white/10 pt-16 pb-8">
+        <div class="w-full px-6 lg:px-12">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Column 1 - Logo & About -->
+                <div>
+                
+                    <div class="flex gap-4">
+                        <a href="https://www.instagram.com/mercichef.co/" class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-merci-gold hover:border-merci-gold transition-colors">
+                            <i class="fab fa-instagram text-sm"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/mert-yoncacilar" class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-merci-gold hover:border-merci-gold transition-colors">
+                            <i class="fab fa-linkedin-in text-sm"></i>
+                        </a>
+                        <a
+                            href="mailto:chefcomerci@gmail.com"
+                            aria-label="E-posta gönder"
+                            class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-merci-gold hover:border-merci-gold transition-colors"
+                        >
+                            <i class="far fa-envelope text-sm" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2 - Contact & Newsletter -->
+                <div>
+                    <h4 class="text-white text-xs tracking-[0.2em] uppercase mb-6" data-tr="İLETİŞİM" data-en="CONTACT">İLETİŞİM</h4>
+                    <div class="space-y-3 mb-6">
+                        <div class="text-white/60 text-sm">chefcomerci@gmail.com</div>
+                        <div class="text-white/60 text-sm">+90 530 415 07 29</div>
+                    </div>
+                
+                </div>
+
+                
+                <!-- Column 3 - WhatsApp İletişim Butonu -->
+                <div>
+                    <h4
+                        class="text-white text-xs tracking-[0.2em] uppercase mb-6"
+                        data-tr="BİZE ULAŞIN"
+                        data-en="GET IN TOUCH"
+                        data-fr="CONTACTEZ-NOUS"
+                        data-ar="تواصل معنا">
+                        BİZE ULAŞIN
+                    </h4>
+
+                    <p
+                        class="text-white/60 text-sm leading-relaxed mb-6"
+                        data-tr="Özel organizasyonunuz için bizimle iletişime geçin."
+                        data-en="Contact us for your special event."
+                        data-fr="Contactez-nous pour votre événement spécial."
+                        data-ar="تواصل معنا لتنظيم مناسبتك الخاصة.">
+                        Özel organizasyonunuz için bizimle iletişime geçin.
+                    </p>
+
+                    <a
+                        href="https://wa.me/905304150729"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="WhatsApp ile iletişime geç"
+                        class="inline-flex items-center justify-center gap-3 border border-merci-gold text-merci-gold px-6 py-4 text-xs tracking-widest uppercase hover:bg-merci-gold hover:text-merci-dark transition-all duration-300 rounded-sm">
+
+                        <i class="fab fa-whatsapp text-xl" aria-hidden="true"></i>
+
+                        <span
+                            data-tr="WHATSAPP İLE İLETİŞİM"
+                            data-en="CONTACT VIA WHATSAPP"
+                            data-fr="CONTACTER VIA WHATSAPP"
+                            data-ar="تواصل عبر واتساب">
+                            WHATSAPP İLE İLETİŞİM
+                        </span>
+                    </a>
+                </div>
+
+                
+
+            </div>
+
+            <!-- Legal Information Links -->
+            <div class="border-t border-white/10 pt-8 mb-8">
+                <h4 class="text-white text-xs tracking-[0.2em] uppercase mb-5"
+                    data-tr="YASAL BİLGİLENDİRME"
+                    data-en="LEGAL INFORMATION"
+                    data-fr="INFORMATIONS LÉGALES"
+                    data-ar="المعلومات القانونية">YASAL BİLGİLENDİRME</h4>
+                <div class="flex flex-wrap gap-x-6 gap-y-3 text-white/60 text-xs">
+                    <a href="mesafeli-satis-sozlesmesi.html"
+                       class="hover:text-merci-gold transition-colors"
+                       data-tr="Mesafeli Satış Sözleşmesi"
+                       data-en="Distance Sales Agreement"
+                       data-fr="Contrat de vente à distance"
+                       data-ar="اتفاقية البيع عن بُعد">Mesafeli Satış Sözleşmesi</a>
+                    <a href="on-bilgilendirme-formu.html"
+                       class="hover:text-merci-gold transition-colors"
+                       data-tr="Ön Bilgilendirme Formu"
+                       data-en="Pre-Contractual Information Form"
+                       data-fr="Formulaire d’information précontractuelle"
+                       data-ar="نموذج المعلومات المسبقة">Ön Bilgilendirme Formu</a>
+                    <a href="iptal-iade-politikasi.html"
+                       class="hover:text-merci-gold transition-colors"
+                       data-tr="İptal ve İade Politikası"
+                       data-en="Cancellation and Refund Policy"
+                       data-fr="Politique d’annulation et de remboursement"
+                       data-ar="سياسة الإلغاء واسترداد الأموال">İptal ve İade Politikası</a>
+                    <a href="gizlilik-politikasi.html"
+                       class="hover:text-merci-gold transition-colors"
+                       data-tr="Gizlilik Politikası"
+                       data-en="Privacy Policy"
+                       data-fr="Politique de confidentialité"
+                       data-ar="سياسة الخصوصية">Gizlilik Politikası</a>
+                    <a href="kvkk-aydinlatma-metni.html"
+                       class="hover:text-merci-gold transition-colors"
+                       data-tr="KVKK Aydınlatma Metni"
+                       data-en="Personal Data Information Notice"
+                       data-fr="Notice d’information sur les données personnelles"
+                       data-ar="إشعار المعلومات بشأن البيانات الشخصية">KVKK Aydınlatma Metni</a>
+                
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="text-white/40 text-xs" data-tr="© 2026 Merci Chef.Co. Tüm hakları saklıdır." data-en="© 2026 Merci Chef.Co. All rights reserved." data-fr="© 2026 Merci Chef.Co. Tous droits réservés." data-ar="© 2026 Merci Chef.Co. جميع الحقوق محفوظة.">
+                    <p data-tr="© 2026 Merci Chef.Co. Tüm hakları saklıdır." data-en="© 2026 Merci Chef.Co. All rights reserved." data-fr="© 2026 Merci Chef.Co. Tous droits réservés." data-ar="© 2026 Merci Chef.Co. جميع الحقوق محفوظة.">© 2026 Merci Chef.Co. Tüm hakları saklıdır.</p>
+                </div>
+                
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language Management: TR / EN / FR / AR
+        let currentLang = 'tr';
+
+        // Missing data-fr / data-ar attributes are handled here.
+        // Add new translations to this dictionary as the site grows.
+        const languageDictionary = {
+            'ANA SAYFA': { en: 'HOME', fr: 'ACCUEIL', ar: 'الرئيسية' },
+            'HAKKIMIZDA': { en: 'ABOUT', fr: 'À PROPOS', ar: 'من نحن' },
+            'YAT KİRALAMA': { en: 'YACHT RENTAL', fr: 'LOCATION DE YACHT', ar: 'تأجير اليخوت' },
+            'HİZMETLER': { en: 'SERVICES', fr: 'SERVICES', ar: 'الخدمات' },
+            'ŞEF KİRALAMA': { en: 'HIRE A CHEF', fr: 'LOCATION DE CHEF', ar: 'استئجار شيف' },
+            'SEKTÖRLER': { en: 'SECTORS', fr: 'SECTEURS', ar: 'القطاعات' },
+            'PROJELER': { en: 'PROJECTS', fr: 'PROJETS', ar: 'المشاريع' },
+            'İLETİŞİM': { en: 'CONTACT', fr: 'CONTACT', ar: 'اتصل بنا' },
+            'JOURNAL': { en: 'JOURNAL', fr: 'JOURNAL', ar: 'المجلة' },
+            'ÖZEL GÖRÜŞME TALEP ET': { en: 'REQUEST A PRIVATE MEETING', fr: 'DEMANDER UN RENDEZ-VOUS PRIVÉ', ar: 'اطلب اجتماعًا خاصًا' },
+            'WHATSAPP İLETİŞİM': { en: 'CONTACT VIA WHATSAPP', fr: 'CONTACT WHATSAPP', ar: 'تواصل عبر واتساب' },
+            'Lüks Operasyonları': { en: 'We Make Luxury', fr: 'Nous sublimons le luxe', ar: 'نرتقي بالفخامة' },
+            'Kusursuz Hale Getiriyoruz.': { en: 'Operations Perfect.', fr: 'À la perfection.', ar: 'بعمليات متكاملة' },
+            'Süperyat Kumanya Yönetimi': { en: 'Superyacht Provisioning Management', fr: 'Gestion des approvisionnements de superyachts', ar: 'إدارة تموين اليخوت الفاخرة' },
+            'Lüks Gastronomi Operasyonları': { en: 'Luxury Gastronomy Operations', fr: 'Opérations gastronomiques de luxe', ar: 'عمليات فنون الطهي الفاخرة' },
+            'Hospitality Danışmanlığı': { en: 'Hospitality Consulting', fr: 'Conseil en hospitalité', ar: 'استشارات الضيافة' },
+            'DÜNYA STANDARTLARINDA LÜKS OPERASYON YÖNETİMİ': { en: 'WORLD-CLASS LUXURY OPERATIONS MANAGEMENT', fr: 'GESTION DES OPÉRATIONS DE LUXE DE CLASSE MONDIALE', ar: 'إدارة عمليات الفخامة وفق المعايير العالمية' },
+            'MERCI CHEF.CO': { en: 'MERCI CHEF.CO', fr: 'MERCI CHEF.CO', ar: 'MERCI CHEF.CO' },
+            'Lüks Ağırlamanın': { en: 'The Operational', fr: 'L’architecture opérationnelle', ar: 'الهيكل التشغيلي' },
+            'Operasyonel Mimarisi': { en: 'Architecture of Luxury', fr: 'du luxe', ar: 'للفخامة' },
+            "Merci Chef.Co; süperyatlar, premium restoranlar, beach club'lar ve lüks destinasyonlar için operasyonel mükemmellik sistemleri tasarlar.": { en: 'Merci Chef.Co designs operational excellence systems for superyachts, premium restaurants, beach clubs and luxury destinations.', fr: 'Merci Chef.Co conçoit des systèmes d’excellence opérationnelle pour les superyachts, les restaurants haut de gamme, les beach clubs et les destinations de luxe.', ar: 'تصمم Merci Chef.Co أنظمة للتميز التشغيلي لليخوت الفاخرة والمطاعم الراقية والنوادي الشاطئية والوجهات الفاخرة.' },
+            'Gastronomi, operasyon, finans ve marka yönetimini tek bir mükemmellik sisteminde birleştiriyoruz.': { en: 'We combine gastronomy, operations, finance and brand management in a single excellence system.', fr: 'Nous réunissons la gastronomie, les opérations, la finance et la gestion de marque dans un système d’excellence unique.', ar: 'نجمع فنون الطهي والعمليات والتمويل وإدارة العلامة التجارية في منظومة واحدة للتميز.' },
+            "Fethiye'de Lüks Katamaran ve Yat Kiralama": { en: 'Luxury Catamaran and Yacht Rental in Fethiye', fr: 'Location de catamarans et yachts de luxe à Fethiye', ar: 'تأجير القوارب واليخوت الفاخرة في فتحية' },
+            'NEDEN MERCI CHEF.CO?': { en: 'WHY MERCI CHEF.CO?', fr: 'POURQUOI MERCI CHEF.CO ?', ar: 'لماذا MERCI CHEF.CO؟' },
+            'Fark Yaratan': { en: 'Three Forces', fr: 'Trois forces', ar: 'ثلاث قوى' },
+            'Üç Güç': { en: 'That Make a Difference', fr: 'qui font la différence', ar: 'تصنع الفرق' },
+            'Gastronomi uzmanlığımız, finansal zeka ve marka prestijini birleştirerek operasyonel kusursuzluk sunuyoruz.': { en: 'We combine gastronomy expertise, financial intelligence and brand prestige to deliver operational perfection.', fr: 'Nous associons expertise gastronomique, intelligence financière et prestige de marque pour offrir une excellence opérationnelle.', ar: 'نجمع خبرة فنون الطهي والذكاء المالي ومكانة العلامة التجارية لتحقيق التميز التشغيلي.' },
+            'YAKLAŞIMIMIZI KEŞFET': { en: 'DISCOVER OUR APPROACH', fr: 'DÉCOUVREZ NOTRE APPROCHE', ar: 'اكتشف نهجنا' },
+            'Gastronomi Uzmanlığı': { en: 'Gastronomy Expertise', fr: 'Expertise gastronomique', ar: 'خبرة فنون الطهي' },
+            'Finansal Zeka': { en: 'Financial Intelligence', fr: 'Intelligence financière', ar: 'الذكاء المالي' },
+            'Marka Prestiji': { en: 'Brand Prestige', fr: 'Prestige de marque', ar: 'مكانة العلامة التجارية' },
+            'Operasyonel Kusursuzluk': { en: 'Operational Perfection', fr: 'Excellence opérationnelle', ar: 'التميز التشغيلي' },
+            'Küresel Standartlar': { en: 'Global Standards', fr: 'Normes mondiales', ar: 'المعايير العالمية' },
+            'Operasyonel Disiplin': { en: 'Operational Discipline', fr: 'Discipline opérationnelle', ar: 'الانضباط التشغيلي' },
+            'Kârlılık Odaklılık': { en: 'Profitability Focus', fr: 'Priorité à la rentabilité', ar: 'التركيز على الربحية' },
+            'Misafir Deneyimi': { en: 'Guest Experience', fr: 'Expérience client', ar: 'تجربة الضيوف' },
+            'Sürdürülebilir Başarı': { en: 'Sustainable Success', fr: 'Réussite durable', ar: 'النجاح المستدام' },
+            'ÖNE ÇIKAN PROJELER': { en: 'FEATURED PROJECTS', fr: 'PROJETS À LA UNE', ar: 'مشاريع مميزة' },
+            'Gerçekleştirdiğimiz Bazı Projeler': { en: 'Some Projects We Have Delivered', fr: 'Quelques projets réalisés', ar: 'بعض المشاريع التي أنجزناها' },
+            'Süperyat Tedarik Optimizasyonu': { en: 'Superyacht Supply Optimization', fr: 'Optimisation de l’approvisionnement des superyachts', ar: 'تحسين إمدادات اليخوت الفاخرة' },
+            'Tedarik zinciri yeniden yapılandırılarak operasyonel verimlilik %30 artırıldı.': { en: 'The supply chain was restructured, increasing operational efficiency by 30%.', fr: 'La chaîne d’approvisionnement a été restructurée, augmentant l’efficacité opérationnelle de 30 %.', ar: 'أُعيد تنظيم سلسلة التوريد مما زاد الكفاءة التشغيلية بنسبة 30٪.' },
+            'Fine Dining Operasyon Dönüşümü': { en: 'Fine Dining Operations Transformation', fr: 'Transformation des opérations de haute gastronomie', ar: 'تطوير عمليات المطاعم الفاخرة' },
+            'Operasyonel sistemler yenilendi, kârlılık %25 yükseltildi.': { en: 'Operational systems were renewed and profitability increased by 25%.', fr: 'Les systèmes opérationnels ont été renouvelés et la rentabilité a augmenté de 25 %.', ar: 'تم تحديث الأنظمة التشغيلية وزيادة الربحية بنسبة 25٪.' },
+            'Beach Club Operasyon Tasarımı': { en: 'Beach Club Operations Design', fr: 'Conception des opérations de beach club', ar: 'تصميم عمليات النوادي الشاطئية' },
+            'Yüksek hacimli lüks servis altyapısı sıfırdan oluşturuldu.': { en: 'A high-volume luxury service infrastructure was built from scratch.', fr: 'Une infrastructure de service de luxe à grande capacité a été créée de zéro.', ar: 'تم إنشاء بنية خدمة فاخرة عالية السعة من البداية.' },
+            'VIP Etkinlik Yönetimi': { en: 'VIP Event Management', fr: 'Gestion d’événements VIP', ar: 'إدارة فعاليات كبار الشخصيات' },
+            'Özel davetler için end-to-end gastronomi ve servis operasyonu.': { en: 'End-to-end gastronomy and service operations for private events.', fr: 'Opérations gastronomiques et de service de bout en bout pour des événements privés.', ar: 'عمليات متكاملة لفنون الطهي والخدمة في المناسبات الخاصة.' },
+            'PROJEYİ İNCELE': { en: 'VIEW PROJECT', fr: 'VOIR LE PROJET', ar: 'عرض المشروع' },
+            '© 2026 Merci Chef.Co. Tüm hakları saklıdır.': { en: '© 2026 Merci Chef.Co. All rights reserved.', fr: '© 2024 Merci Chef.Co. Tous droits réservés.', ar: '© 2024 Merci Chef.Co. جميع الحقوق محفوظة.' }
+        };
+
+        function changeLang(lang) {
+            const supportedLanguages = ['tr', 'en', 'fr', 'ar'];
+            if (!supportedLanguages.includes(lang)) return;
+            currentLang = lang;
+
+            supportedLanguages.forEach(code => {
+                const button = document.getElementById('btn-' + code);
+                if (button) {
+                    button.classList.toggle('active', code === lang);
+                    button.setAttribute('aria-pressed', String(code === lang));
+                }
+            });
+
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+            document.querySelectorAll('[data-tr]').forEach(element => {
+                const turkishText = element.getAttribute('data-tr');
+                const explicitTranslation = element.getAttribute('data-' + lang);
+                const dictionaryTranslation = languageDictionary[turkishText]?.[lang];
+                const translation = lang === 'tr'
+                    ? turkishText
+                    : (explicitTranslation || dictionaryTranslation || element.getAttribute('data-en') || turkishText);
+
+                if (element.matches('input, textarea') && element.hasAttribute('placeholder')) {
+                    element.placeholder = translation;
+                    return;
+                }
+
+                // Preserve nested icons and markup. Update text only for leaf elements.
+                if (element.children.length === 0) {
+                    element.textContent = translation;
+                }
+            });
+
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu) mobileMenu.classList.add('hidden');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => changeLang('tr'));
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-merci-dark/95', 'backdrop-blur-md', 'shadow-lg');
+                navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.remove('bg-merci-dark/95', 'backdrop-blur-md', 'shadow-lg');
+                navbar.classList.add('bg-transparent');
+            }
+        });
+
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Projects Carousel Scroll
+        function scrollProjects(direction) {
+            const container = document.getElementById('projects-container');
+            const scrollAmount = 420;
+            container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+        }
+
+        // Smooth Scroll for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+=======
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mercichefco</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'merci-gold': '#C9A962',
+                        'merci-gold-light': '#D4BC7E',
+                        'merci-dark': '#0F1729',
+                        'merci-navy': '#1A2744',
+                        'merci-cream': '#F5F1EB',
+                        'merci-gray': '#8A8F98'
+                    },
+                    fontFamily: {
+                        'serif': ['Cormorant Garamond', 'serif'],
+                        'sans': ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Montserrat', sans-serif; }
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .hero-overlay { background: linear-gradient(to right, rgba(15,23,41,0.95) 0%, rgba(15,23,41,0.7) 50%, rgba(15,23,41,0.3) 100%); }
+        .gold-gradient { background: linear-gradient(135deg, #C9A962 0%, #D4BC7E 50%, #C9A962 100%); }
+        .text-gold-gradient { background: linear-gradient(135deg, #C9A962 0%, #D4BC7E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .venn-circle { border: 2px solid rgba(201,169,98,0.3); }
+        .service-card:hover .service-overlay { opacity: 1; }
+        .service-card:hover img { transform: scale(1.05); }
+        .project-card { transition: all 0.4s ease; }
+        .project-card:hover { transform: translateY(-5px); }
+        .nav-link { position: relative; }
+        .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: #C9A962; transition: width 0.3s; }
+        .nav-link:hover::after { width: 100%; }
+        .lang-btn.active { color: #C9A962; border-bottom: 1px solid #C9A962; }
+        html[dir="rtl"] body { text-align: right; }
+        html[dir="rtl"] .hero-overlay { background: linear-gradient(to left, rgba(15,23,41,0.95) 0%, rgba(15,23,41,0.7) 50%, rgba(15,23,41,0.3) 100%); }
+        html[dir="rtl"] .nav-link::after { left: auto; right: 0; }
+        .smooth-scroll { scroll-behavior: smooth; }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0F1729; }
+        ::-webkit-scrollbar-thumb { background: #C9A962; border-radius: 4px; }
+        
+        /* Animation classes */
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        
+        .venn-container { position: relative; width: 320px; height: 280px; }
+        .venn-top { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 140px; height: 140px; border-radius: 50%; border: 2px solid rgba(201,169,98,0.4); display: flex; align-items: center; justify-content: center; background: rgba(201,169,98,0.05); }
+        .venn-left { position: absolute; bottom: 20px; left: 20px; width: 140px; height: 140px; border-radius: 50%; border: 2px solid rgba(201,169,98,0.4); display: flex; align-items: center; justify-content: center; background: rgba(201,169,98,0.05); }
+        .venn-right { position: absolute; bottom: 20px; right: 20px; width: 140px; height: 140px; border-radius: 50%; border: 2px solid rgba(201,169,98,0.4); display: flex; align-items: center; justify-content: center; background: rgba(201,169,98,0.05); }
+        .venn-center { position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); width: 100px; height: 100px; border-radius: 50%; background: #0F1729; border: 2px solid #C9A962; display: flex; align-items: center; justify-content: center; z-index: 10; }
+        
+        @media (max-width: 768px) {
+            .venn-container { transform: scale(0.8); }
+        }
+    </style>
+</head>
+<body class="bg-merci-cream text-merci-dark overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent">
+        <div class="w-full px-6 lg:px-12 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <img src="assets/logo_chefco.jpg" alt="Logo" style="width:100px; border-radius:50%;" class="flex">                    
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="#home" class="nav-link text-white text-xs tracking-widest uppercase hover:text-merci-gold transition-colors" data-tr="ANA SAYFA" data-en="HOME">ANA SAYFA</a>
+                    <a href="#about" class="nav-link text-white text-xs tracking-widest uppercase hover:text-merci-gold transition-colors" data-tr="HAKKIMIZDA" data-en="ABOUT">HAKKIMIZDA</a>
+                    <a href="#services" class="nav-link text-white text-xs tracking-widest uppercase hover:text-merci-gold transition-colors" data-tr="YAT KİRALAMA" data-en="SERVICES">YAT KİRALAMA</a>
+                    <a href="/index_hirechief.html" target="_blank" rel="noopener noreferrer" class="nav-link text-white text-xs tracking-widest uppercase hover:text-merci-gold transition-colors" data-tr="ŞEF KİRALAMA" data-en="HIRE A CHEF" data-fr="LOCATION DE CHEF" data-ar="استئجار شيف">ŞEF KİRALAMA</a>
+                    <a href="#sectors" class="nav-link text-white text-xs tracking-widest uppercase hover:text-merci-gold transition-colors" data-tr="SEKTÖRLER" data-en="SECTORS">SEKTÖRLER</a>
+                    <a href="#projects" class="nav-link text-white text-xs tracking-widest uppercase hover:text-merci-gold transition-colors" data-tr="PROJELER" data-en="PROJECTS">PROJELER</a>
+                    <a href="#contact" class="nav-link text-white text-xs tracking-widest uppercase hover:text-merci-gold transition-colors" data-tr="İLETİŞİM" data-en="CONTACT">İLETİŞİM</a>
+                </div>
+
+                <!-- Right Side -->
+                <div class="flex items-center gap-6">
+                   <a href="https://wa.me/905304150729?text=Merhaba%20yat%20kiralama%20hakkında%20bilgi%20almak%20istiyorum."
+                    target="_blank"
+                    class="hidden md:flex items-center gap-2 border border-merci-gold text-merci-gold px-6 py-2 text-xs tracking-widest uppercase hover:bg-merci-gold hover:text-merci-dark transition-all duration-300">
+
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WHATSAPP İLETİŞİM</span>
+                    </a>
+                    
+                    <!-- Language Switcher -->
+                   
+                    <div class="flex items-center gap-2 text-xs" aria-label="Language selector">
+                      <button type="button" onclick="changeLang('tr')" id="btn-tr" class="lang-btn active" aria-label="Türkçe" aria-pressed="true">TR</button>
+                      <button type="button" onclick="changeLang('en')" id="btn-en" class="lang-btn" aria-label="English" aria-pressed="false">EN</button>
+                      <button type="button" onclick="changeLang('fr')" id="btn-fr" class="lang-btn" aria-label="Français" aria-pressed="false">FR</button>
+                      <button type="button" onclick="changeLang('ar')" id="btn-ar" class="lang-btn" aria-label="العربية" aria-pressed="false">AR</button>
+                    </div>
+
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="lg:hidden text-white text-xl">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="lg:hidden hidden bg-merci-dark/95 backdrop-blur-md absolute w-full">
+            <div class="px-6 py-8 flex flex-col gap-4">
+                <a href="#home" class="text-white text-sm tracking-widest uppercase py-2 border-b border-white/10" data-tr="ANA SAYFA" data-en="HOME">ANA SAYFA</a>
+                <a href="#habout" class="text-white text-sm tracking-widest uppercase py-2 border-b border-white/10" data-tr="HAKKIMIZDA" data-en="ABOUT US">HAKKIMIZDA</a>
+                <a href="#services" class="text-white text-sm tracking-widest uppercase py-2 border-b border-white/10" data-tr="YAT KİRALAMA" data-en="HIRE A YATCH">YAT KİRALAMA</a>
+                <a href="/index_hirechief.html" class="text-white text-sm tracking-widest uppercase py-2 border-b border-white/10" data-tr="ŞEF KİRALAMA" data-en="HIRE A CHIEF">ŞEF KİRALAMA</a>
+                <a href="#sectors" class="text-white text-sm tracking-widest uppercase py-2 border-b border-white/10" data-tr="SEKTÖRLER" data-en="SECTORS">SEKTÖRLER</a>
+                <a href="#projects" class="text-white text-sm tracking-widest uppercase py-2 border-b border-white/10" data-tr="PROJELER" data-en="PROJECTS">PROJELER</a>
+                <a href="#contact" class="text-white text-sm tracking-widest uppercase py-2 border-b border-white/10" data-tr="İLETİŞİM" data-en="CONTACT">İLETİŞİM</a>
+                <a href="#contact" class="border border-merci-gold text-merci-gold px-6 py-3 text-xs tracking-widest uppercase text-center mt-4 hover:bg-merci-gold hover:text-merci-dark transition-all" data-tr="ÖZEL GÖRÜŞME TALEP ET" data-en="REQUEST PRIVATE MEETING">
+                    ÖZEL GÖRÜŞME TALEP ET
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen min-h-[700px] flex items-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="#" alt="Luxury Yacht Dining" class="w-full h-full object-cover">
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 w-full px-6 lg:px-12 pt-20">
+            <div class="max-w-3xl">
+                <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl text-white leading-tight mb-8 fade-in">
+                    <span data-tr="Lüks Operasyonları" data-en="We Make Luxury">Lüks Operasyonları</span><br>
+                    <span data-tr="Kusursuz Hale Getiriyoruz." data-en="Operations Perfect.">Kusursuz Hale Getiriyoruz.</span>
+                </h1>
+                
+                <div class="flex flex-col gap-3 mb-10 fade-in" style="transition-delay: 0.2s;">
+                    <div class="flex items-center gap-3 text-white/90">
+                        <i class="fas fa-ship text-merci-gold text-sm"></i>
+                        <span class="text-sm tracking-wide" data-tr="Süperyat Kumanya Yönetimi" data-en="Superyacht Provisioning Management">Süperyat Kumanya Yönetimi</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-white/90">
+                        <i class="fas fa-utensils text-merci-gold text-sm"></i>
+                        <span class="text-sm tracking-wide" data-tr="Lüks Gastronomi Operasyonları" data-en="Luxury Gastronomy Operations">Lüks Gastronomi Operasyonları</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-white/90">
+                        <i class="fas fa-concierge-bell text-merci-gold text-sm"></i>
+                        <span class="text-sm tracking-wide" data-tr="Hospitality Danışmanlığı" data-en="Hospitality Consulting">Hospitality Danışmanlığı</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-white/90">
+                        <i class="fas fa-utensils  text-merci-gold text-sm"></i>
+                        <span class="text-sm tracking-wide"
+                            data-tr="Şef Kiralama"
+                            data-en="Hire A Chef"
+                            data-fr="Location de chef"
+                            data-ar="استئجار شيف">
+                            Şef Kiralama
+                        </span>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-4 fade-in" style="transition-delay: 0.4s;">
+                    <a href="#contact" class="gold-gradient text-merci-dark px-8 py-3 text-xs tracking-widest uppercase font-semibold hover:shadow-lg hover:shadow-merci-gold/30 transition-all" data-tr="ÖZEL GÖRÜŞME TALEP ET" data-en="REQUEST PRIVATE MEETING">
+                        ÖZEL GÖRÜŞME TALEP ET
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Location Tags -->
+        <div class="absolute bottom-0 left-0 w-full z-10 border-t border-white/10 bg-gradient-to-t from-merci-dark/80 to-transparent">
+            <div class="px-6 lg:px-12 py-6 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex flex-wrap gap-6 text-xs tracking-[0.2em] text-white/70">
+                    <span>DUBAI</span>
+                    <span class="text-merci-gold">|</span>
+                    <span>ISTANBUL</span>
+                    <span class="text-merci-gold">|</span>
+                    <span>BODRUM</span>
+                    <span class="text-merci-gold">|</span>
+                    <span>URLA</span>
+                    <span class="text-merci-gold">|</span>
+                    <span>GOCEK</span>
+                    <span class="text-merci-gold">|</span>
+                    <span>MARMARIS</span>
+                    <span></span>
+                </div>
+                <div class="text-xs tracking-widest text-merci-gold uppercase hidden md:block" data-tr="DÜNYA STANDARTLARINDA LÜKS OPERASYON YÖNETİMİ" data-en="WORLD-CLASS LUXURY OPERATION MANAGEMENT">
+                    DÜNYA STANDARTLARINDA LÜKS OPERASYON YÖNETİMİ
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 lg:py-32 bg-merci-cream">
+        <div class="w-full px-6 lg:px-12">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <!-- Left Content -->
+                <div class="fade-in">
+                    <div class="text-merci-gold text-xs tracking-[0.3em] uppercase mb-4" data-tr="MERCI CHEF.CO" data-en="MERCI CHEF.CO">MERCI CHEF.CO</div>
+                    <h2 class="font-serif text-4xl lg:text-5xl text-merci-dark mb-6 leading-tight">
+                        <span data-tr="Lüks Ağırlamanın" data-en="The Operational">Lüks Ağırlamanın</span><br>
+                        <span data-tr="Operasyonel Mimarisi" data-en="Architecture of Luxury">Operasyonel Mimarisi</span>
+                    </h2>
+                    <p class="text-merci-gray leading-relaxed mb-8" data-tr="Merci Chef.Co; süperyatlar, premium restoranlar, beach club'lar ve lüks destinasyonlar için operasyonel mükemmellik sistemleri tasarlar." data-en="Merci Chef.Co designs operational excellence systems for superyachts, premium restaurants, beach clubs and luxury destinations.">
+                        Merci Chef.Co; süperyatlar, premium restoranlar, beach club'lar ve lüks destinasyonlar için operasyonel mükemmellik sistemleri tasarlar.
+                    </p>
+                    <a href="hak_index.html" class="inline-flex items-center gap-2 text-merci-dark text-sm tracking-widest uppercase border-b border-merci-gold pb-1 hover:text-merci-gold transition-colors">
+                        <span data-tr="YAKLAŞIMIMIZI KEŞFET" data-en="DISCOVER OUR APPROACH">YAKLAŞIMIMIZI KEŞFET</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+
+                
+                   
+                </div>
+
+                <!-- Right Content -->
+                <div class="relative fade-in" style="transition-delay: 0.2s;">
+                    <div class="grid grid-cols-5 gap-4">
+                        <div class="col-span-3">
+                            <img src="assets/fine-dining.jpg" alt="Fine Dining" class="w-full h-[400px] object-cover shadow-2xl">
+                        </div>
+                        <div class="col-span-2 bg-merci-dark p-6 flex flex-col justify-center">
+                            <div class="text-merci-gold text-4xl mb-4">
+                                <i class="fas fa-compass"></i>
+                            </div>
+                            <p class="text-white/90 text-sm leading-relaxed mb-4" data-tr="Gastronomi, operasyon, finans ve marka yönetimini tek bir mükemmellik sisteminde birleştiriyoruz." data-en="We combine gastronomy, operations, finance and brand management in a single excellence system.">
+                                Gastronomi, operasyon, finans ve marka yönetimini tek bir mükemmellik sisteminde birleştiriyoruz.
+                            </p>
+                            <div class="font-serif text-merci-gold text-lg italic" data-tr="Merci Chef.Co" data-en="Merci Chef.Co">Merci Chef.Co</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+<section id="services" class="py-20 lg:py-32 bg-merci-dark">
+    <div class="w-full px-6 lg:px-12">
+
+        <div class="text-center mb-16 fade-in">
+            
+            <h2 class="font-serif text-4xl lg:text-5xl text-white"
+                data-tr="Fethiye'de Lüks Katamaran ve Yat Kiralama"
+                data-en="Luxury Catamaran and Yacht Rental in Fethiye"
+                data-fr="Location de catamarans et yachts de luxe à Fethiye"
+                data-ar="تأجير القوارب واليخوت الفاخرة في فتحية">
+                Fethiye'de Lüks Katamaran ve Yat Kiralama
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Lagoon 410 S2 -->
+            <div class="service-card group overflow-hidden rounded-2xl bg-black/20 border border-white/10 fade-in">
+                <div class="relative h-[450px] overflow-hidden">
+                    <img src="images/lagoon410.jpg"
+                         alt="Lagoon 410 S2"
+                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+
+                    <div class="absolute bottom-0 left-0 w-full p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-serif text-2xl text-white">
+                                Lagoon 410 S2
+                            </h3>
+                            <span class="text-merci-gold text-sm">
+                                2005
+                            </span>
+                        </div>
+
+                        <ul class="text-white/80 text-sm space-y-1 mb-5">
+                            <li data-tr="📏 Uzunluk: 12.37 m" data-en="📏 Length: 12.37 m" data-fr="📏 Longueur : 12,37 m" data-ar="📏 الطول: 12.37 م">📏 Uzunluk: 12.37 m</li>
+                            <li data-tr="🛏️ 4 Kabin" data-en="🛏️ 4 Cabins" data-fr="🛏️ 4 cabines" data-ar="🛏️ 4 كبائن">🛏️ 4 Kabin</li>
+                            <li data-tr="👥 8 Kişi" data-en="👥 8 Guests" data-fr="👥 8 personnes" data-ar="👥 8 أشخاص">👥 8 Kişi</li>
+                            <li data-tr="🚿 4 WC" data-en="🚿 4 Bathrooms" data-fr="🚿 4 salles de bain" data-ar="🚿 4 حمامات">🚿 4 WC</li>
+                            <li data-tr="📍 Fethiye Yacht Club Marina" data-en="📍 Fethiye Yacht Club Marina" data-fr="📍 Marina Fethiye Yacht Club" data-ar="📍 مرسى نادي فتحية لليخوت">📍 Fethiye Yacht Club Marina</li>
+                            <li data-tr="💰 6.000 EUR / hafta" data-en="💰 EUR 6,000 / week" data-fr="💰 6 000 EUR / semaine" data-ar="💰 6,000 يورو / أسبوع">💰 6.000 EUR / hafta</li>
+                        </ul>
+
+                        <a href="https://wa.me/905304150729?text=Merhaba%20yat%20kiralama%20hakkında%20bilgi%20almak%20istiyorum."
+                        target="_blank"
+                        class="hidden md:flex items-center gap-2 border border-merci-gold text-merci-gold px-6 py-2 text-xs tracking-widest uppercase hover:bg-merci-gold hover:text-merci-dark transition-all duration-300">
+
+                            <i class="fab fa-whatsapp"></i>
+                            <span data-tr="WHATSAPP İLETİŞİM"
+                                  data-en="CONTACT VIA WHATSAPP"
+                                  data-fr="CONTACT WHATSAPP"
+                                  data-ar="تواصل عبر واتساب">WHATSAPP İLETİŞİM</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lagoon 40 -->
+            <div class="service-card group overflow-hidden rounded-2xl bg-black/20 border border-white/10 fade-in">
+                <div class="relative h-[450px] overflow-hidden">
+                    <img src="images/lagoon40.jpg"
+                         alt="Lagoon 40"
+                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+
+                    <div class="absolute bottom-0 left-0 w-full p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-serif text-2xl text-white">
+                                Lagoon 40
+                            </h3>
+                            <span class="text-merci-gold text-sm">
+                                2021
+                            </span>
+                        </div>
+
+                        <ul class="text-white/80 text-sm space-y-1 mb-5">
+                            <li data-tr="📏 Uzunluk: 11.74 m" data-en="📏 Length: 11.74 m" data-fr="📏 Longueur : 11,74 m" data-ar="📏 الطول: 11.74 م">📏 Uzunluk: 11.74 m</li>
+                            <li data-tr="🛏️ 4+2 Kabin" data-en="🛏️ 4+2 Cabins" data-fr="🛏️ 4+2 cabines" data-ar="🛏️ 4+2 كبائن">🛏️ 4+2 Kabin</li>
+                            <li data-tr="👥 8+2 Kişi" data-en="👥 8+2 Guests" data-fr="👥 8+2 personnes" data-ar="👥 8+2 أشخاص">👥 8+2 Kişi</li>
+                            <li data-tr="🚿 4 WC" data-en="🚿 4 Bathrooms" data-fr="🚿 4 salles de bain" data-ar="🚿 4 حمامات">🚿 4 WC</li>
+                            <li data-tr="📍 Ece Saray Marina, Fethiye" data-en="📍 Ece Saray Marina, Fethiye" data-fr="📍 Marina Ece Saray, Fethiye" data-ar="📍 مرسى إجه سراي، فتحية">📍 Ece Saray Marina, Fethiye</li>
+                            <li data-tr="💰 8.000 EUR / hafta" data-en="💰 EUR 8,000 / week" data-fr="💰 8 000 EUR / semaine" data-ar="💰 8,000 يورو / أسبوع">💰 8.000 EUR / hafta</li>
+                        </ul>
+
+                        <a href="https://wa.me/905304150729?text=Merhaba%20yat%20kiralama%20hakkında%20bilgi%20almak%20istiyorum."
+                    target="_blank"
+                    class="hidden md:flex items-center gap-2 border border-merci-gold text-merci-gold px-6 py-2 text-xs tracking-widest uppercase hover:bg-merci-gold hover:text-merci-dark transition-all duration-300">
+
+                        <i class="fab fa-whatsapp"></i>
+                        <span data-tr="WHATSAPP İLETİŞİM"
+                                  data-en="CONTACT VIA WHATSAPP"
+                                  data-fr="CONTACT WHATSAPP"
+                                  data-ar="تواصل عبر واتساب">WHATSAPP İLETİŞİM</span>
+                    </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bali Catsmart -->
+            <div class="service-card group overflow-hidden rounded-2xl bg-black/20 border border-white/10 fade-in">
+                <div class="relative h-[450px] overflow-hidden">
+                    <img src="images/bali-catsmart.jpg"
+                         alt="Bali Catsmart"
+                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+
+                    <div class="absolute bottom-0 left-0 w-full p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-serif text-2xl text-white">
+                                Bali Catsmart
+                            </h3>
+                            <span class="text-merci-gold text-sm">
+                                2024
+                            </span>
+                        </div>
+
+                        <ul class="text-white/80 text-sm space-y-1 mb-5">
+                            <li data-tr="📏 Uzunluk: 12.08 m" data-en="📏 Length: 12.08 m" data-fr="📏 Longueur : 12,08 m" data-ar="📏 الطول: 12.08 م">📏 Uzunluk: 12.08 m</li>
+                            <li data-tr="🛏️ 4 Kabin" data-en="🛏️ 4 Cabins" data-fr="🛏️ 4 cabines" data-ar="🛏️ 4 كبائن">🛏️ 4 Kabin</li>
+                            <li data-tr="👥 8 Kişi" data-en="👥 8 Guests" data-fr="👥 8 personnes" data-ar="👥 8 أشخاص">👥 8 Kişi</li>
+                            <li data-tr="🚿 2 WC" data-en="🚿 2 Bathrooms" data-fr="🚿 2 salles de bain" data-ar="🚿 2 حمام">🚿 2 WC</li>
+                            <li data-tr="📍 Ece Saray Marina, Fethiye" data-en="📍 Ece Saray Marina, Fethiye" data-fr="📍 Marina Ece Saray, Fethiye" data-ar="📍 مرسى إجه سراي، فتحية">📍 Ece Saray Marina, Fethiye</li>
+                            <li data-tr="💰 8.500 EUR / hafta" data-en="💰 EUR 8,500 / week" data-fr="💰 8 500 EUR / semaine" data-ar="💰 8,500 يورو / أسبوع">💰 8.500 EUR / hafta</li>
+                        </ul>
+
+                        <a href="https://wa.me/905304150729?text=Merhaba%20yat%20kiralama%20hakkında%20bilgi%20almak%20istiyorum."
+                        target="_blank"
+                        class="hidden md:flex items-center gap-2 border border-merci-gold text-merci-gold px-6 py-2 text-xs tracking-widest uppercase hover:bg-merci-gold hover:text-merci-dark transition-all duration-300">
+
+                            <i class="fab fa-whatsapp"></i>
+                            <span data-tr="WHATSAPP İLETİŞİM"
+                                  data-en="CONTACT VIA WHATSAPP"
+                                  data-fr="CONTACT WHATSAPP"
+                                  data-ar="تواصل عبر واتساب">WHATSAPP İLETİŞİM</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+    <!-- Why Us Section -->
+    <section id="sectors" class="py-20 lg:py-32 bg-merci-cream">
+        <div class="w-full px-6 lg:px-12">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <!-- Left Content -->
+                <div class="fade-in">
+                    <div class="text-merci-gold text-xs tracking-[0.3em] uppercase mb-4" data-tr="NEDEN MERCI CHEF.CO?" data-en="WHY MERCI CHEF.CO?">NEDEN MERCI CHEF.CO?</div>
+                    <h2 class="font-serif text-4xl lg:text-5xl text-merci-dark mb-6 leading-tight">
+                        <span data-tr="Fark Yaratan" data-en="Three Forces">Fark Yaratan</span><br>
+                        <span data-tr="Üç Güç" data-en="That Make a Difference">Üç Güç</span>
+                    </h2>
+                    <p class="text-merci-gray leading-relaxed mb-8" data-tr="Gastronomi uzmanlığımız, finansal zeka ve marka prestijini birleştirerek operasyonel kusursuzluk sunuyoruz." data-en="We combine gastronomy expertise, financial intelligence and brand prestige to deliver operational perfection.">
+                        Gastronomi uzmanlığımız, finansal zeka ve marka prestijini birleştirerek operasyonel kusursuzluk sunuyoruz.
+                    </p>
+                    <a href="sectors_article.html" class="inline-flex items-center gap-2 text-merci-dark text-sm tracking-widest uppercase border-b border-merci-gold pb-1 hover:text-merci-gold transition-colors">
+                        <span data-tr="YAKLAŞIMIMIZI KEŞFET" data-en="DISCOVER OUR APPROACH">YAKLAŞIMIMIZI KEŞFET</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Center Venn Diagram 
+                <div class="flex justify-center fade-in" style="transition-delay: 0.2s;">
+                    <div class="venn-container">
+                        <div class="venn-top">
+                            <div class="text-center">
+                                <i class="fas fa-hat-chef text-merci-gold text-2xl mb-2"></i>
+                                <div class="text-merci-dark text-xs font-semibold" data-tr="Gastronomi Uzmanlığı" data-en="Gastronomy Expertise">Gastronomi<br>Uzmanlığı</div>
+                            </div>
+                        </div>
+                        <div class="venn-left">
+                            <div class="text-center">
+                                <i class="fas fa-chart-bar text-merci-gold text-2xl mb-2"></i>
+                                <div class="text-merci-dark text-xs font-semibold" data-tr="Finansal Zeka" data-en="Financial Intelligence">Finansal<br>Zeka</div>
+                            </div>
+                        </div>
+                        <div class="venn-right">
+                            <div class="text-center">
+                                <i class="fas fa-crown text-merci-gold text-2xl mb-2"></i>
+                                <div class="text-merci-dark text-xs font-semibold" data-tr="Marka Prestiji" data-en="Brand Prestige">Marka<br>Prestiji</div>
+                            </div>
+                        </div>
+                        <div class="venn-center">
+                            <div class="text-center">
+                                <div class="text-merci-gold text-xs font-bold leading-tight" data-tr="Operasyonel Kusursuzluk" data-en="Operational Perfection">Operasyonel<br>Kusursuzluk</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                -->
+                <!-- Right List -->
+                <div class="lg:col-span-2 xl:col-span-1 fade-in" style="transition-delay: 0.3s;">
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="w-5 h-5 rounded-full border border-merci-gold flex items-center justify-center mt-0.5">
+                                <i class="fas fa-check text-merci-gold text-xs"></i>
+                            </div>
+                            <span class="text-merci-dark" data-tr="Küresel Standartlar" data-en="Global Standards">Küresel Standartlar</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-5 h-5 rounded-full border border-merci-gold flex items-center justify-center mt-0.5">
+                                <i class="fas fa-check text-merci-gold text-xs"></i>
+                            </div>
+                            <span class="text-merci-dark" data-tr="Operasyonel Disiplin" data-en="Operational Discipline">Operasyonel Disiplin</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-5 h-5 rounded-full border border-merci-gold flex items-center justify-center mt-0.5">
+                                <i class="fas fa-check text-merci-gold text-xs"></i>
+                            </div>
+                            <span class="text-merci-dark" data-tr="Kârlılık Odaklılık" data-en="Profitability Focus">Kârlılık Odaklılık</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-5 h-5 rounded-full border border-merci-gold flex items-center justify-center mt-0.5">
+                                <i class="fas fa-check text-merci-gold text-xs"></i>
+                            </div>
+                            <span class="text-merci-dark" data-tr="Misafir Deneyimi" data-en="Guest Experience">Misafir Deneyimi</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-5 h-5 rounded-full border border-merci-gold flex items-center justify-center mt-0.5">
+                                <i class="fas fa-check text-merci-gold text-xs"></i>
+                            </div>
+                            <span class="text-merci-dark" data-tr="Sürdürülebilir Başarı" data-en="Sustainable Success">Sürdürülebilir Başarı</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 lg:py-32 bg-merci-dark overflow-hidden">
+        <div class="w-full px-6 lg:px-12">
+            <div class="text-center mb-16 fade-in">
+                <div class="text-merci-gold text-xs tracking-[0.3em] uppercase mb-4" data-tr="ÖNE ÇIKAN PROJELER" data-en="FEATURED PROJECTS">ÖNE ÇIKAN PROJELER</div>
+                <h2 class="font-serif text-4xl lg:text-5xl text-white" data-tr="Gerçekleştirdiğimiz Bazı Projeler" data-en="Some Projects We Have Realized">Gerçekleştirdiğimiz Bazı Projeler</h2>
+            </div>
+
+            <!-- Projects Carousel -->
+            
+            <!-- Projects Carousel -->
+            <div class="relative fade-in" style="transition-delay: 0.2s;">
+                <div
+                    class="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide"
+                    id="projects-container"
+                    style="scrollbar-width: none; -ms-overflow-style: none;"
+                >
+
+                    <!-- Project 1 -->
+                    <div class="project-card min-w-[300px] sm:min-w-[350px] md:min-w-[400px] snap-start">
+                        <div class="relative h-[280px] overflow-hidden mb-5">
+                            <img
+                                src="assets/project1.jpg"
+                                alt="Süperyat Tedarik Optimizasyonu"
+                                class="w-full h-full object-cover"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <h3
+                            class="font-serif text-xl text-white mb-2"
+                            data-tr="Süperyat Tedarik Optimizasyonu"
+                            data-en="Superyacht Supply Optimization"
+                        >Süperyat Tedarik Optimizasyonu</h3>
+
+                        <p
+                            class="text-white/70 text-sm leading-relaxed mb-4"
+                            data-tr="Tedarik zinciri yeniden yapılandırılarak operasyonel verimlilik %30 artırıldı."
+                            data-en="The supply chain was restructured, increasing operational efficiency by 30%."
+                        >Tedarik zinciri yeniden yapılandırılarak operasyonel verimlilik %30 artırıldı.</p>
+
+                        <a
+                            href="superyat_projeler.html"
+                            class="inline-flex items-center gap-2 text-merci-gold text-xs tracking-widest uppercase hover:text-white transition-colors"
+                        >
+                            <span data-tr="PROJEYİ İNCELE" data-en="VIEW PROJECT">PROJEYİ İNCELE</span>
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card min-w-[300px] sm:min-w-[350px] md:min-w-[400px] snap-start">
+                        <div class="relative h-[280px] overflow-hidden mb-5">
+                            <img
+                                src="assets/project2.jpg"
+                                alt="Fine Dining Operasyon Dönüşümü"
+                                class="w-full h-full object-cover"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <h3
+                            class="font-serif text-xl text-white mb-2"
+                            data-tr="Fine Dining Operasyon Dönüşümü"
+                            data-en="Fine Dining Operations Transformation"
+                        >Fine Dining Operasyon Dönüşümü</h3>
+
+                        <p
+                            class="text-white/70 text-sm leading-relaxed mb-4"
+                            data-tr="Operasyonel sistemler yenilendi, kârlılık %25 yükseltildi."
+                            data-en="Operational systems were improved, increasing profitability by 25%."
+                        >Operasyonel sistemler yenilendi, kârlılık %25 yükseltildi.</p>
+
+                        <a
+                            href="fine_dining_proje.html"
+                            class="inline-flex items-center gap-2 text-merci-gold text-xs tracking-widest uppercase hover:text-white transition-colors"
+                        >
+                            <span data-tr="PROJEYİ İNCELE" data-en="VIEW PROJECT">PROJEYİ İNCELE</span>
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
+
+                    <!-- Project 3: URLA BAHÇE EVENT -->
+                    <div class="project-card min-w-[300px] sm:min-w-[350px] md:min-w-[400px] snap-start">
+                        <div class="relative h-[280px] overflow-hidden mb-5">
+                            <img
+                                src="assets/project3.jpg"
+                                alt="URLA BAHÇE EVENT"
+                                class="w-full h-full object-cover"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <h3
+                            class="font-serif text-xl text-white mb-2"
+                            data-tr="URLA BAHÇE EVENT"
+                            data-en="URLA GARDEN EVENT"
+                        >URLA BAHÇE EVENT</h3>
+
+                        <p
+                            class="text-white/70 text-sm leading-relaxed mb-4"
+                            data-tr="Özel davetler için uçtan uca gastronomi ve servis operasyonu."
+                            data-en="End-to-end gastronomy and service operations for private events."
+                        >Özel davetler için uçtan uca gastronomi ve servis operasyonu.</p>
+
+                        <a
+                            href="#"
+                            class="inline-flex items-center gap-2 text-merci-gold text-xs tracking-widest uppercase hover:text-white transition-colors"
+                        >
+                            <span data-tr="PROJEYİ İNCELE" data-en="VIEW PROJECT">PROJEYİ İNCELE</span>
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
+
+                    
+
+                </div>
+
+            <!-- Navigation Arrows -->
+            <button
+                type="button"
+                onclick="scrollProjects(-1)"
+                aria-label="Önceki projeler"
+                class="absolute left-0 top-1/3 -translate-y-1/2 w-12 h-12 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors z-10"
+            >
+                <i class="fas fa-chevron-left" aria-hidden="true"></i>
+            </button>
+
+            <button
+                type="button"
+                onclick="scrollProjects(1)"
+                aria-label="Sonraki projeler"
+                class="absolute right-0 top-1/3 -translate-y-1/2 w-12 h-12 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors z-10"
+            >
+                <i class="fas fa-chevron-right" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-merci-dark border-t border-white/10 pt-16 pb-8">
+        <div class="w-full px-6 lg:px-12">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Column 1 - Logo & About -->
+                <div>
+                
+                    <div class="flex gap-4">
+                        <a href="https://www.instagram.com/mercichef.co/" class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-merci-gold hover:border-merci-gold transition-colors">
+                            <i class="fab fa-instagram text-sm"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/mert-yoncacilar" class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-merci-gold hover:border-merci-gold transition-colors">
+                            <i class="fab fa-linkedin-in text-sm"></i>
+                        </a>
+                        <a
+                            href="mailto:chefcomerci@gmail.com"
+                            aria-label="E-posta gönder"
+                            class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-merci-gold hover:border-merci-gold transition-colors"
+                        >
+                            <i class="far fa-envelope text-sm" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2 - Contact & Newsletter -->
+                <div>
+                    <h4 class="text-white text-xs tracking-[0.2em] uppercase mb-6" data-tr="İLETİŞİM" data-en="CONTACT">İLETİŞİM</h4>
+                    <div class="space-y-3 mb-6">
+                        <div class="text-white/60 text-sm">chefcomerci@gmail.com</div>
+                        <div class="text-white/60 text-sm">+90 530 415 07 29</div>
+                    </div>
+                
+                </div>
+
+                
+                <!-- Column 3 - WhatsApp İletişim Butonu -->
+                <div>
+                    <h4
+                        class="text-white text-xs tracking-[0.2em] uppercase mb-6"
+                        data-tr="BİZE ULAŞIN"
+                        data-en="GET IN TOUCH"
+                        data-fr="CONTACTEZ-NOUS"
+                        data-ar="تواصل معنا">
+                        BİZE ULAŞIN
+                    </h4>
+
+                    <p
+                        class="text-white/60 text-sm leading-relaxed mb-6"
+                        data-tr="Özel organizasyonunuz için bizimle iletişime geçin."
+                        data-en="Contact us for your special event."
+                        data-fr="Contactez-nous pour votre événement spécial."
+                        data-ar="تواصل معنا لتنظيم مناسبتك الخاصة.">
+                        Özel organizasyonunuz için bizimle iletişime geçin.
+                    </p>
+
+                    <a
+                        href="https://wa.me/905304150729"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="WhatsApp ile iletişime geç"
+                        class="inline-flex items-center justify-center gap-3 border border-merci-gold text-merci-gold px-6 py-4 text-xs tracking-widest uppercase hover:bg-merci-gold hover:text-merci-dark transition-all duration-300 rounded-sm">
+
+                        <i class="fab fa-whatsapp text-xl" aria-hidden="true"></i>
+
+                        <span
+                            data-tr="WHATSAPP İLE İLETİŞİM"
+                            data-en="CONTACT VIA WHATSAPP"
+                            data-fr="CONTACTER VIA WHATSAPP"
+                            data-ar="تواصل عبر واتساب">
+                            WHATSAPP İLE İLETİŞİM
+                        </span>
+                    </a>
+                </div>
+
+                
+
+            </div>
+
+            <!-- Legal Information Links -->
+            <div class="border-t border-white/10 pt-8 mb-8">
+                <h4 class="text-white text-xs tracking-[0.2em] uppercase mb-5"
+                    data-tr="YASAL BİLGİLENDİRME"
+                    data-en="LEGAL INFORMATION"
+                    data-fr="INFORMATIONS LÉGALES"
+                    data-ar="المعلومات القانونية">YASAL BİLGİLENDİRME</h4>
+                <div class="flex flex-wrap gap-x-6 gap-y-3 text-white/60 text-xs">
+                    <a href="mesafeli-satis-sozlesmesi.html"
+                       class="hover:text-merci-gold transition-colors"
+                       data-tr="Mesafeli Satış Sözleşmesi"
+                       data-en="Distance Sales Agreement"
+                       data-fr="Contrat de vente à distance"
+                       data-ar="اتفاقية البيع عن بُعد">Mesafeli Satış Sözleşmesi</a>
+                    <a href="on-bilgilendirme-formu.html"
+                       class="hover:text-merci-gold transition-colors"
+                       data-tr="Ön Bilgilendirme Formu"
+                       data-en="Pre-Contractual Information Form"
+                       data-fr="Formulaire d’information précontractuelle"
+                       data-ar="نموذج المعلومات المسبقة">Ön Bilgilendirme Formu</a>
+                    <a href="iptal-iade-politikasi.html"
+                       class="hover:text-merci-gold transition-colors"
+                       data-tr="İptal ve İade Politikası"
+                       data-en="Cancellation and Refund Policy"
+                       data-fr="Politique d’annulation et de remboursement"
+                       data-ar="سياسة الإلغاء واسترداد الأموال">İptal ve İade Politikası</a>
+                    <a href="gizlilik-politikasi.html"
+                       class="hover:text-merci-gold transition-colors"
+                       data-tr="Gizlilik Politikası"
+                       data-en="Privacy Policy"
+                       data-fr="Politique de confidentialité"
+                       data-ar="سياسة الخصوصية">Gizlilik Politikası</a>
+                    <a href="kvkk-aydinlatma-metni.html"
+                       class="hover:text-merci-gold transition-colors"
+                       data-tr="KVKK Aydınlatma Metni"
+                       data-en="Personal Data Information Notice"
+                       data-fr="Notice d’information sur les données personnelles"
+                       data-ar="إشعار المعلومات بشأن البيانات الشخصية">KVKK Aydınlatma Metni</a>
+                
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="text-white/40 text-xs" data-tr="© 2026 Merci Chef.Co. Tüm hakları saklıdır." data-en="© 2026 Merci Chef.Co. All rights reserved." data-fr="© 2026 Merci Chef.Co. Tous droits réservés." data-ar="© 2026 Merci Chef.Co. جميع الحقوق محفوظة.">
+                    <p data-tr="© 2026 Merci Chef.Co. Tüm hakları saklıdır." data-en="© 2026 Merci Chef.Co. All rights reserved." data-fr="© 2026 Merci Chef.Co. Tous droits réservés." data-ar="© 2026 Merci Chef.Co. جميع الحقوق محفوظة.">© 2026 Merci Chef.Co. Tüm hakları saklıdır.</p>
+                </div>
+                
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language Management: TR / EN / FR / AR
+        let currentLang = 'tr';
+
+        // Missing data-fr / data-ar attributes are handled here.
+        // Add new translations to this dictionary as the site grows.
+        const languageDictionary = {
+            'ANA SAYFA': { en: 'HOME', fr: 'ACCUEIL', ar: 'الرئيسية' },
+            'HAKKIMIZDA': { en: 'ABOUT', fr: 'À PROPOS', ar: 'من نحن' },
+            'YAT KİRALAMA': { en: 'YACHT RENTAL', fr: 'LOCATION DE YACHT', ar: 'تأجير اليخوت' },
+            'HİZMETLER': { en: 'SERVICES', fr: 'SERVICES', ar: 'الخدمات' },
+            'ŞEF KİRALAMA': { en: 'HIRE A CHEF', fr: 'LOCATION DE CHEF', ar: 'استئجار شيف' },
+            'SEKTÖRLER': { en: 'SECTORS', fr: 'SECTEURS', ar: 'القطاعات' },
+            'PROJELER': { en: 'PROJECTS', fr: 'PROJETS', ar: 'المشاريع' },
+            'İLETİŞİM': { en: 'CONTACT', fr: 'CONTACT', ar: 'اتصل بنا' },
+            'JOURNAL': { en: 'JOURNAL', fr: 'JOURNAL', ar: 'المجلة' },
+            'ÖZEL GÖRÜŞME TALEP ET': { en: 'REQUEST A PRIVATE MEETING', fr: 'DEMANDER UN RENDEZ-VOUS PRIVÉ', ar: 'اطلب اجتماعًا خاصًا' },
+            'WHATSAPP İLETİŞİM': { en: 'CONTACT VIA WHATSAPP', fr: 'CONTACT WHATSAPP', ar: 'تواصل عبر واتساب' },
+            'Lüks Operasyonları': { en: 'We Make Luxury', fr: 'Nous sublimons le luxe', ar: 'نرتقي بالفخامة' },
+            'Kusursuz Hale Getiriyoruz.': { en: 'Operations Perfect.', fr: 'À la perfection.', ar: 'بعمليات متكاملة' },
+            'Süperyat Kumanya Yönetimi': { en: 'Superyacht Provisioning Management', fr: 'Gestion des approvisionnements de superyachts', ar: 'إدارة تموين اليخوت الفاخرة' },
+            'Lüks Gastronomi Operasyonları': { en: 'Luxury Gastronomy Operations', fr: 'Opérations gastronomiques de luxe', ar: 'عمليات فنون الطهي الفاخرة' },
+            'Hospitality Danışmanlığı': { en: 'Hospitality Consulting', fr: 'Conseil en hospitalité', ar: 'استشارات الضيافة' },
+            'DÜNYA STANDARTLARINDA LÜKS OPERASYON YÖNETİMİ': { en: 'WORLD-CLASS LUXURY OPERATIONS MANAGEMENT', fr: 'GESTION DES OPÉRATIONS DE LUXE DE CLASSE MONDIALE', ar: 'إدارة عمليات الفخامة وفق المعايير العالمية' },
+            'MERCI CHEF.CO': { en: 'MERCI CHEF.CO', fr: 'MERCI CHEF.CO', ar: 'MERCI CHEF.CO' },
+            'Lüks Ağırlamanın': { en: 'The Operational', fr: 'L’architecture opérationnelle', ar: 'الهيكل التشغيلي' },
+            'Operasyonel Mimarisi': { en: 'Architecture of Luxury', fr: 'du luxe', ar: 'للفخامة' },
+            "Merci Chef.Co; süperyatlar, premium restoranlar, beach club'lar ve lüks destinasyonlar için operasyonel mükemmellik sistemleri tasarlar.": { en: 'Merci Chef.Co designs operational excellence systems for superyachts, premium restaurants, beach clubs and luxury destinations.', fr: 'Merci Chef.Co conçoit des systèmes d’excellence opérationnelle pour les superyachts, les restaurants haut de gamme, les beach clubs et les destinations de luxe.', ar: 'تصمم Merci Chef.Co أنظمة للتميز التشغيلي لليخوت الفاخرة والمطاعم الراقية والنوادي الشاطئية والوجهات الفاخرة.' },
+            'Gastronomi, operasyon, finans ve marka yönetimini tek bir mükemmellik sisteminde birleştiriyoruz.': { en: 'We combine gastronomy, operations, finance and brand management in a single excellence system.', fr: 'Nous réunissons la gastronomie, les opérations, la finance et la gestion de marque dans un système d’excellence unique.', ar: 'نجمع فنون الطهي والعمليات والتمويل وإدارة العلامة التجارية في منظومة واحدة للتميز.' },
+            "Fethiye'de Lüks Katamaran ve Yat Kiralama": { en: 'Luxury Catamaran and Yacht Rental in Fethiye', fr: 'Location de catamarans et yachts de luxe à Fethiye', ar: 'تأجير القوارب واليخوت الفاخرة في فتحية' },
+            'NEDEN MERCI CHEF.CO?': { en: 'WHY MERCI CHEF.CO?', fr: 'POURQUOI MERCI CHEF.CO ?', ar: 'لماذا MERCI CHEF.CO؟' },
+            'Fark Yaratan': { en: 'Three Forces', fr: 'Trois forces', ar: 'ثلاث قوى' },
+            'Üç Güç': { en: 'That Make a Difference', fr: 'qui font la différence', ar: 'تصنع الفرق' },
+            'Gastronomi uzmanlığımız, finansal zeka ve marka prestijini birleştirerek operasyonel kusursuzluk sunuyoruz.': { en: 'We combine gastronomy expertise, financial intelligence and brand prestige to deliver operational perfection.', fr: 'Nous associons expertise gastronomique, intelligence financière et prestige de marque pour offrir une excellence opérationnelle.', ar: 'نجمع خبرة فنون الطهي والذكاء المالي ومكانة العلامة التجارية لتحقيق التميز التشغيلي.' },
+            'YAKLAŞIMIMIZI KEŞFET': { en: 'DISCOVER OUR APPROACH', fr: 'DÉCOUVREZ NOTRE APPROCHE', ar: 'اكتشف نهجنا' },
+            'Gastronomi Uzmanlığı': { en: 'Gastronomy Expertise', fr: 'Expertise gastronomique', ar: 'خبرة فنون الطهي' },
+            'Finansal Zeka': { en: 'Financial Intelligence', fr: 'Intelligence financière', ar: 'الذكاء المالي' },
+            'Marka Prestiji': { en: 'Brand Prestige', fr: 'Prestige de marque', ar: 'مكانة العلامة التجارية' },
+            'Operasyonel Kusursuzluk': { en: 'Operational Perfection', fr: 'Excellence opérationnelle', ar: 'التميز التشغيلي' },
+            'Küresel Standartlar': { en: 'Global Standards', fr: 'Normes mondiales', ar: 'المعايير العالمية' },
+            'Operasyonel Disiplin': { en: 'Operational Discipline', fr: 'Discipline opérationnelle', ar: 'الانضباط التشغيلي' },
+            'Kârlılık Odaklılık': { en: 'Profitability Focus', fr: 'Priorité à la rentabilité', ar: 'التركيز على الربحية' },
+            'Misafir Deneyimi': { en: 'Guest Experience', fr: 'Expérience client', ar: 'تجربة الضيوف' },
+            'Sürdürülebilir Başarı': { en: 'Sustainable Success', fr: 'Réussite durable', ar: 'النجاح المستدام' },
+            'ÖNE ÇIKAN PROJELER': { en: 'FEATURED PROJECTS', fr: 'PROJETS À LA UNE', ar: 'مشاريع مميزة' },
+            'Gerçekleştirdiğimiz Bazı Projeler': { en: 'Some Projects We Have Delivered', fr: 'Quelques projets réalisés', ar: 'بعض المشاريع التي أنجزناها' },
+            'Süperyat Tedarik Optimizasyonu': { en: 'Superyacht Supply Optimization', fr: 'Optimisation de l’approvisionnement des superyachts', ar: 'تحسين إمدادات اليخوت الفاخرة' },
+            'Tedarik zinciri yeniden yapılandırılarak operasyonel verimlilik %30 artırıldı.': { en: 'The supply chain was restructured, increasing operational efficiency by 30%.', fr: 'La chaîne d’approvisionnement a été restructurée, augmentant l’efficacité opérationnelle de 30 %.', ar: 'أُعيد تنظيم سلسلة التوريد مما زاد الكفاءة التشغيلية بنسبة 30٪.' },
+            'Fine Dining Operasyon Dönüşümü': { en: 'Fine Dining Operations Transformation', fr: 'Transformation des opérations de haute gastronomie', ar: 'تطوير عمليات المطاعم الفاخرة' },
+            'Operasyonel sistemler yenilendi, kârlılık %25 yükseltildi.': { en: 'Operational systems were renewed and profitability increased by 25%.', fr: 'Les systèmes opérationnels ont été renouvelés et la rentabilité a augmenté de 25 %.', ar: 'تم تحديث الأنظمة التشغيلية وزيادة الربحية بنسبة 25٪.' },
+            'Beach Club Operasyon Tasarımı': { en: 'Beach Club Operations Design', fr: 'Conception des opérations de beach club', ar: 'تصميم عمليات النوادي الشاطئية' },
+            'Yüksek hacimli lüks servis altyapısı sıfırdan oluşturuldu.': { en: 'A high-volume luxury service infrastructure was built from scratch.', fr: 'Une infrastructure de service de luxe à grande capacité a été créée de zéro.', ar: 'تم إنشاء بنية خدمة فاخرة عالية السعة من البداية.' },
+            'VIP Etkinlik Yönetimi': { en: 'VIP Event Management', fr: 'Gestion d’événements VIP', ar: 'إدارة فعاليات كبار الشخصيات' },
+            'Özel davetler için end-to-end gastronomi ve servis operasyonu.': { en: 'End-to-end gastronomy and service operations for private events.', fr: 'Opérations gastronomiques et de service de bout en bout pour des événements privés.', ar: 'عمليات متكاملة لفنون الطهي والخدمة في المناسبات الخاصة.' },
+            'PROJEYİ İNCELE': { en: 'VIEW PROJECT', fr: 'VOIR LE PROJET', ar: 'عرض المشروع' },
+            '© 2026 Merci Chef.Co. Tüm hakları saklıdır.': { en: '© 2026 Merci Chef.Co. All rights reserved.', fr: '© 2024 Merci Chef.Co. Tous droits réservés.', ar: '© 2024 Merci Chef.Co. جميع الحقوق محفوظة.' }
+        };
+
+        function changeLang(lang) {
+            const supportedLanguages = ['tr', 'en', 'fr', 'ar'];
+            if (!supportedLanguages.includes(lang)) return;
+            currentLang = lang;
+
+            supportedLanguages.forEach(code => {
+                const button = document.getElementById('btn-' + code);
+                if (button) {
+                    button.classList.toggle('active', code === lang);
+                    button.setAttribute('aria-pressed', String(code === lang));
+                }
+            });
+
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+            document.querySelectorAll('[data-tr]').forEach(element => {
+                const turkishText = element.getAttribute('data-tr');
+                const explicitTranslation = element.getAttribute('data-' + lang);
+                const dictionaryTranslation = languageDictionary[turkishText]?.[lang];
+                const translation = lang === 'tr'
+                    ? turkishText
+                    : (explicitTranslation || dictionaryTranslation || element.getAttribute('data-en') || turkishText);
+
+                if (element.matches('input, textarea') && element.hasAttribute('placeholder')) {
+                    element.placeholder = translation;
+                    return;
+                }
+
+                // Preserve nested icons and markup. Update text only for leaf elements.
+                if (element.children.length === 0) {
+                    element.textContent = translation;
+                }
+            });
+
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu) mobileMenu.classList.add('hidden');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => changeLang('tr'));
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-merci-dark/95', 'backdrop-blur-md', 'shadow-lg');
+                navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.remove('bg-merci-dark/95', 'backdrop-blur-md', 'shadow-lg');
+                navbar.classList.add('bg-transparent');
+            }
+        });
+
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Projects Carousel Scroll
+        function scrollProjects(direction) {
+            const container = document.getElementById('projects-container');
+            const scrollAmount = 420;
+            container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+        }
+
+        // Smooth Scroll for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+>>>>>>> 9f9d294 (Update Merci Chef project gallery and preserve header)
