@@ -139,6 +139,28 @@
         @media (max-width: 768px) {
             .venn-container { transform: scale(0.8); }
         }
+
+        /* Project media matches the vertical video frames used in Home */
+        #home iframe,
+        #projects .project-media-frame iframe {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
+            border: 0;
+        }
+        #projects .project-media-frame img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        #projects .project-card {
+            min-width: 250px;
+        }
+        @media (max-width: 639px) {
+            #projects-container > .project-card { min-width: min(82vw, 320px); }
+            #projects .project-media-frame { max-width: 190px; }
+        }
     </style>
 </head>
 <body class="bg-merci-cream text-merci-dark overflow-x-hidden">
@@ -503,8 +525,8 @@
 
                     <!-- Project 1 -->
                     <div class="project-card min-w-[82vw] sm:min-w-[350px] md:min-w-[400px] snap-start">
-                        <div class="relative h-[280px] mb-5 flex items-center justify-center overflow-hidden rounded-2xl border border-merci-gold/50 bg-black shadow-xl shadow-black/30">
-                            <div class="h-full max-h-[280px] aspect-[9/16] max-w-full overflow-hidden">
+                        <div class="project-media-frame relative w-full max-w-[190px] mx-auto aspect-[9/16] mb-5 flex items-center justify-center overflow-hidden rounded-xl border border-merci-gold/50 bg-black shadow-xl shadow-black/30">
+                            <div class="w-full h-full overflow-hidden">
                                 <iframe width="344" height="602" src="https://www.youtube.com/embed/FA8KTOe2xvg" title="MerciChefCo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
                         </div>
@@ -532,8 +554,8 @@
 
                     <!-- Project 2 -->
                     <div class="project-card min-w-[82vw] sm:min-w-[350px] md:min-w-[400px] snap-start">
-                        <div class="relative h-[280px] mb-5 flex items-center justify-center overflow-hidden rounded-2xl border border-merci-gold/50 bg-black shadow-xl shadow-black/30">
-                            <div class="h-full max-h-[280px] aspect-[9/16] max-w-full overflow-hidden">
+                        <div class="project-media-frame relative w-full max-w-[190px] mx-auto aspect-[9/16] mb-5 flex items-center justify-center overflow-hidden rounded-xl border border-merci-gold/50 bg-black shadow-xl shadow-black/30">
+                            <div class="w-full h-full overflow-hidden">
                                <iframe width="344" height="602" src="https://www.youtube.com/embed/SbpuG93p4tI" title="Merci Chef Co Dinner Table" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
                         </div>
@@ -561,7 +583,7 @@
 
                     <!-- Project 3: URLA BAHÇE EVENT -->
                     <div class="project-card min-w-[82vw] sm:min-w-[350px] md:min-w-[400px] snap-start">
-                        <div class="relative h-[280px] mb-5 flex items-center justify-center overflow-hidden rounded-2xl border border-merci-gold/50 bg-black shadow-xl shadow-black/30">
+                        <div class="project-media-frame relative w-full max-w-[190px] mx-auto aspect-[9/16] mb-5 flex items-center justify-center overflow-hidden rounded-xl border border-merci-gold/50 bg-black shadow-xl shadow-black/30">
                             <img
                                 src="assets/project3.jpg"
                                 alt="Urla Bahçe Event"
