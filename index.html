@@ -48,6 +48,78 @@
         html[dir="rtl"] .hero-overlay { background: linear-gradient(to left, rgba(15,23,41,0.95) 0%, rgba(15,23,41,0.7) 50%, rgba(15,23,41,0.3) 100%); }
         html[dir="rtl"] .nav-link::after { left: auto; right: 0; }
         .smooth-scroll { scroll-behavior: smooth; }
+
+        /* Responsive refinements: phones, tablets and compact laptops */
+        *, *::before, *::after { box-sizing: border-box; }
+        img, iframe { max-width: 100%; }
+        body { min-width: 320px; }
+        section, footer { scroll-margin-top: 84px; }
+
+        @media (max-width: 1023px) {
+            #navbar > div { padding-left: 1rem; padding-right: 1rem; }
+            #navbar img[alt="Logo"] { width: 76px !important; }
+            #mobile-menu { max-height: calc(100dvh - 76px); overflow-y: auto; }
+            #home { min-height: auto; }
+            #home > div:nth-of-type(2) { padding-top: 7.5rem; padding-bottom: 2rem; }
+            #home .hero-overlay { background: linear-gradient(180deg, rgba(15,23,41,.92), rgba(15,23,41,.72)); }
+            #home > div:last-of-type {
+                position: relative;
+                left: auto;
+                bottom: auto;
+                margin-top: 1rem;
+            }
+            #home > div:last-of-type > div { padding-top: 1rem; padding-bottom: 1rem; }
+            #home > div:last-of-type > div > div:first-child { gap: .75rem 1rem; }
+        }
+
+        @media (max-width: 639px) {
+            #home > div:nth-of-type(2) { padding-left: 1.25rem; padding-right: 1.25rem; }
+            #home h1 { font-size: clamp(2.35rem, 10vw, 3.25rem); line-height: 1.08; margin-bottom: 1.5rem; }
+            #home .grid { gap: 2rem; }
+            #home .grid > div:first-child { max-width: 100%; }
+            #home .grid > div:first-child .flex.flex-wrap { flex-direction: column; align-items: stretch; }
+            #home .grid > div:first-child .flex.flex-wrap a { text-align: center; }
+            #home .grid > div:last-child > div { max-width: min(76vw, 300px); }
+            #home > div:last-of-type > div { padding-left: 1.25rem; padding-right: 1.25rem; }
+            #home > div:last-of-type > div > div:first-child { font-size: .65rem; letter-spacing: .12em; }
+            #about, #services, #sectors, #projects { padding-top: 4rem; padding-bottom: 4rem; }
+            #about .grid.grid-cols-5 { grid-template-columns: minmax(0, 1fr); }
+            #about .grid.grid-cols-5 > div:first-child { grid-column: span 1; }
+            #about .grid.grid-cols-5 img { height: 260px; }
+            #about .grid.grid-cols-5 > div:last-child { padding: 1.5rem; }
+            #services .grid.grid-cols-3 { grid-template-columns: minmax(0, 1fr); }
+            #services .service-card { max-width: 440px; width: 100%; margin-inline: auto; }
+            #services .service-card .aspect-\[4\/5\] { aspect-ratio: 5 / 4; }
+            #projects-container { gap: 1rem; }
+            #projects-container > .project-card { min-width: min(82vw, 320px); }
+            #projects-container .relative.h-\[280px\] { height: 220px; }
+            #projects button[aria-label="Önceki projeler"],
+            #projects button[aria-label="Sonraki projeler"] { width: 2.25rem; height: 2.25rem; }
+            footer .grid { gap: 2rem; }
+            footer a.inline-flex { width: 100%; max-width: 100%; padding-left: 1rem; padding-right: 1rem; }
+        }
+
+        @media (min-width: 640px) and (max-width: 1023px) {
+            #home h1 { font-size: clamp(3.1rem, 6vw, 4.5rem); }
+            #services .grid.grid-cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            #services .service-card:last-child { grid-column: 1 / -1; width: min(100%, 520px); justify-self: center; }
+            #about .grid.grid-cols-5 img { height: 340px; }
+            #projects-container > .project-card { min-width: min(42vw, 360px); }
+        }
+
+        @media (min-width: 1024px) and (max-width: 1279px) {
+            #home { min-height: 100svh; }
+            #home > div:nth-of-type(2) { padding-top: 8rem; padding-bottom: 5rem; }
+            #home h1 { font-size: clamp(3.2rem, 5vw, 4.5rem); }
+            #home .grid { gap: 2rem; }
+            #home .grid > div:last-child > div { max-width: 290px; }
+            #navbar > div { padding-left: 1.5rem; padding-right: 1.5rem; }
+            #navbar .flex.items-center.gap-8 { gap: 1rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+        }
         
         /* Custom scrollbar */
         ::-webkit-scrollbar { width: 8px; }
@@ -66,6 +138,28 @@
         
         @media (max-width: 768px) {
             .venn-container { transform: scale(0.8); }
+        }
+
+        /* Project media matches the vertical video frames used in Home */
+        #home iframe,
+        #projects .project-media-frame iframe {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
+            border: 0;
+        }
+        #projects .project-media-frame img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        #projects .project-card {
+            min-width: 250px;
+        }
+        @media (max-width: 639px) {
+            #projects-container > .project-card { min-width: min(82vw, 320px); }
+            #projects .project-media-frame { max-width: 190px; }
         }
     </style>
 </head>
@@ -121,7 +215,7 @@
         <div id="mobile-menu" class="lg:hidden hidden bg-merci-dark/95 backdrop-blur-md absolute w-full">
             <div class="px-6 py-8 flex flex-col gap-4">
                 <a href="#home" class="text-white text-sm tracking-widest uppercase py-2 border-b border-white/10" data-tr="ANA SAYFA" data-en="HOME">ANA SAYFA</a>
-                <a href="#habout" class="text-white text-sm tracking-widest uppercase py-2 border-b border-white/10" data-tr="HAKKIMIZDA" data-en="ABOUT US">HAKKIMIZDA</a>
+                <a href="#about" class="text-white text-sm tracking-widest uppercase py-2 border-b border-white/10" data-tr="HAKKIMIZDA" data-en="ABOUT US">HAKKIMIZDA</a>
                 <a href="#services" class="text-white text-sm tracking-widest uppercase py-2 border-b border-white/10" data-tr="YAT KİRALAMA" data-en="HIRE A YATCH">YAT KİRALAMA</a>
                 <a href="/index_hirechief.html" class="text-white text-sm tracking-widest uppercase py-2 border-b border-white/10" data-tr="ŞEF KİRALAMA" data-en="HIRE A CHIEF">ŞEF KİRALAMA</a>
                 <a href="#sectors" class="text-white text-sm tracking-widest uppercase py-2 border-b border-white/10" data-tr="SEKTÖRLER" data-en="SECTORS">SEKTÖRLER</a>
@@ -135,50 +229,70 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative h-screen min-h-[700px] flex items-center overflow-hidden">
+    <section id="home" class="relative min-h-[100svh] xl:min-h-[700px] xl:h-screen flex flex-col justify-center overflow-hidden">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
             <img src="#" alt="Luxury Yacht Dining" class="w-full h-full object-cover">
             <div class="hero-overlay absolute inset-0"></div>
         </div>
 
-        <!-- Content -->
-        <div class="relative z-10 w-full px-6 lg:px-12 pt-20">
-            <div class="max-w-3xl">
-                <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl text-white leading-tight mb-8 fade-in">
-                    <span data-tr="Lüks Operasyonları" data-en="We Make Luxury">Lüks Operasyonları</span><br>
-                    <span data-tr="Kusursuz Hale Getiriyoruz." data-en="Operations Perfect.">Kusursuz Hale Getiriyoruz.</span>
-                </h1>
-                
-                <div class="flex flex-col gap-3 mb-10 fade-in" style="transition-delay: 0.2s;">
-                    <div class="flex items-center gap-3 text-white/90">
-                        <i class="fas fa-ship text-merci-gold text-sm"></i>
-                        <span class="text-sm tracking-wide" data-tr="Süperyat Kumanya Yönetimi" data-en="Superyacht Provisioning Management">Süperyat Kumanya Yönetimi</span>
+        <!-- Hero Content: Text + YouTube Video -->
+        <div class="relative z-10 w-full px-6 lg:px-12 pt-28 pb-28 lg:pt-20 lg:pb-24">
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 xl:gap-12 items-center">
+
+                <!-- Left Content -->
+                <div class="max-w-3xl">
+                    <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl xl:text-7xl text-white leading-tight mb-8 fade-in">
+                        <span data-tr="Lüks Operasyonları" data-en="We Make Luxury">Lüks Operasyonları</span><br>
+                        <span data-tr="Kusursuz Hale Getiriyoruz." data-en="Operations Perfect.">Kusursuz Hale Getiriyoruz.</span>
+                    </h1>
+
+                    <div class="flex flex-col gap-3 mb-10 fade-in" style="transition-delay: 0.2s;">
+                        <div class="flex items-center gap-3 text-white/90">
+                            <i class="fas fa-ship text-merci-gold text-sm"></i>
+                            <span class="text-sm tracking-wide" data-tr="Süperyat Kumanya Yönetimi" data-en="Superyacht Provisioning Management">Süperyat Kumanya Yönetimi</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-white/90">
+                            <i class="fas fa-utensils text-merci-gold text-sm"></i>
+                            <span class="text-sm tracking-wide" data-tr="Lüks Gastronomi Operasyonları" data-en="Luxury Gastronomy Operations">Lüks Gastronomi Operasyonları</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-white/90">
+                            <i class="fas fa-concierge-bell text-merci-gold text-sm"></i>
+                            <span class="text-sm tracking-wide" data-tr="Hospitality Danışmanlığı" data-en="Hospitality Consulting">Hospitality Danışmanlığı</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-white/90">
+                            <i class="fas fa-utensils text-merci-gold text-sm"></i>
+                            <span class="text-sm tracking-wide"
+                                  data-tr="Şef Kiralama"
+                                  data-en="Hire A Chef"
+                                  data-fr="Location de chef"
+                                  data-ar="استئجار شيف">Şef Kiralama</span>
+                        </div>
                     </div>
-                    <div class="flex items-center gap-3 text-white/90">
-                        <i class="fas fa-utensils text-merci-gold text-sm"></i>
-                        <span class="text-sm tracking-wide" data-tr="Lüks Gastronomi Operasyonları" data-en="Luxury Gastronomy Operations">Lüks Gastronomi Operasyonları</span>
-                    </div>
-                    <div class="flex items-center gap-3 text-white/90">
-                        <i class="fas fa-concierge-bell text-merci-gold text-sm"></i>
-                        <span class="text-sm tracking-wide" data-tr="Hospitality Danışmanlığı" data-en="Hospitality Consulting">Hospitality Danışmanlığı</span>
-                    </div>
-                    <div class="flex items-center gap-3 text-white/90">
-                        <i class="fas fa-utensils  text-merci-gold text-sm"></i>
-                        <span class="text-sm tracking-wide"
-                            data-tr="Şef Kiralama"
-                            data-en="Hire A Chef"
-                            data-fr="Location de chef"
-                            data-ar="استئجار شيف">
-                            Şef Kiralama
-                        </span>
+
+                    <div class="flex flex-wrap gap-4 fade-in" style="transition-delay: 0.4s;">
+                        <a href="#contact"
+                           class="gold-gradient text-merci-dark px-8 py-3 text-xs tracking-widest uppercase font-semibold hover:shadow-lg hover:shadow-merci-gold/30 transition-all"
+                           data-tr="ÖZEL GÖRÜŞME TALEP ET"
+                           data-en="REQUEST PRIVATE MEETING">
+                            ÖZEL GÖRÜŞME TALEP ET
+                        </a>
                     </div>
                 </div>
 
-                <div class="flex flex-wrap gap-4 fade-in" style="transition-delay: 0.4s;">
-                    <a href="#contact" class="gold-gradient text-merci-dark px-8 py-3 text-xs tracking-widest uppercase font-semibold hover:shadow-lg hover:shadow-merci-gold/30 transition-all" data-tr="ÖZEL GÖRÜŞME TALEP ET" data-en="REQUEST PRIVATE MEETING">
-                        ÖZEL GÖRÜŞME TALEP ET
-                    </a>
+                <!-- Right Content: Two aligned YouTube Shorts videos -->
+                <div class="grid grid-cols-2 items-center justify-center gap-3 sm:gap-4 w-full max-w-[430px] mx-auto xl:ml-auto xl:mr-0 fade-in"
+                     style="transition-delay: 0.3s;">
+
+                    <!-- Video 1 -->
+                    <div class="w-full max-w-[190px] mx-auto aspect-[9/16] overflow-hidden rounded-xl border border-merci-gold/50 shadow-xl shadow-black/40 bg-black">
+                        <iframe width="336" height="602" src="https://www.youtube.com/embed/9vZJSJxXyFI" title="MerciChefCo  Retro Chef&#39;s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+
+                    <!-- Video 2 -->
+                    <div class="w-full max-w-[190px] mx-auto aspect-[9/16] overflow-hidden rounded-xl border border-merci-gold/50 shadow-xl shadow-black/40 bg-black">
+                        <iframe width="336" height="602" src="https://www.youtube.com/embed/wtpWpmraSSY" title="WhatsApp Video 2026 10 27 at 00 16 46 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
 
                 </div>
             </div>
@@ -222,7 +336,7 @@
                     <p class="text-merci-gray leading-relaxed mb-8" data-tr="Merci Chef.Co; süperyatlar, premium restoranlar, beach club'lar ve lüks destinasyonlar için operasyonel mükemmellik sistemleri tasarlar." data-en="Merci Chef.Co designs operational excellence systems for superyachts, premium restaurants, beach clubs and luxury destinations.">
                         Merci Chef.Co; süperyatlar, premium restoranlar, beach club'lar ve lüks destinasyonlar için operasyonel mükemmellik sistemleri tasarlar.
                     </p>
-                    <a href="hak_index.html" class="inline-flex items-center gap-2 text-merci-dark text-sm tracking-widest uppercase border-b border-merci-gold pb-1 hover:text-merci-gold transition-colors">
+                    <a href="table_design.html" class="inline-flex items-center gap-2 text-merci-dark text-sm tracking-widest uppercase border-b border-merci-gold pb-1 hover:text-merci-gold transition-colors">
                         <span data-tr="YAKLAŞIMIMIZI KEŞFET" data-en="DISCOVER OUR APPROACH">YAKLAŞIMIMIZI KEŞFET</span>
                         <i class="fas fa-arrow-right text-xs"></i>
                     </a>
@@ -267,135 +381,38 @@
             </h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-            <!-- Lagoon 410 S2 -->
-            <div class="service-card group overflow-hidden rounded-2xl bg-black/20 border border-white/10 fade-in">
-                <div class="relative h-[450px] overflow-hidden">
-                    <img src="images/lagoon410.jpg"
-                         alt="Lagoon 410 S2"
-                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
 
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-
-                    <div class="absolute bottom-0 left-0 w-full p-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="font-serif text-2xl text-white">
-                                Lagoon 410 S2
-                            </h3>
-                            <span class="text-merci-gold text-sm">
-                                2005
-                            </span>
-                        </div>
-
-                        <ul class="text-white/80 text-sm space-y-1 mb-5">
-                            <li data-tr="📏 Uzunluk: 12.37 m" data-en="📏 Length: 12.37 m" data-fr="📏 Longueur : 12,37 m" data-ar="📏 الطول: 12.37 م">📏 Uzunluk: 12.37 m</li>
-                            <li data-tr="🛏️ 4 Kabin" data-en="🛏️ 4 Cabins" data-fr="🛏️ 4 cabines" data-ar="🛏️ 4 كبائن">🛏️ 4 Kabin</li>
-                            <li data-tr="👥 8 Kişi" data-en="👥 8 Guests" data-fr="👥 8 personnes" data-ar="👥 8 أشخاص">👥 8 Kişi</li>
-                            <li data-tr="🚿 4 WC" data-en="🚿 4 Bathrooms" data-fr="🚿 4 salles de bain" data-ar="🚿 4 حمامات">🚿 4 WC</li>
-                            <li data-tr="📍 Fethiye Yacht Club Marina" data-en="📍 Fethiye Yacht Club Marina" data-fr="📍 Marina Fethiye Yacht Club" data-ar="📍 مرسى نادي فتحية لليخوت">📍 Fethiye Yacht Club Marina</li>
-                            <li data-tr="💰 6.000 EUR / hafta" data-en="💰 EUR 6,000 / week" data-fr="💰 6 000 EUR / semaine" data-ar="💰 6,000 يورو / أسبوع">💰 6.000 EUR / hafta</li>
-                        </ul>
-
-                        <a href="https://wa.me/905304150729?text=Merhaba%20yat%20kiralama%20hakkında%20bilgi%20almak%20istiyorum."
-                        target="_blank"
-                        class="hidden md:flex items-center gap-2 border border-merci-gold text-merci-gold px-6 py-2 text-xs tracking-widest uppercase hover:bg-merci-gold hover:text-merci-dark transition-all duration-300">
-
-                            <i class="fab fa-whatsapp"></i>
-                            <span data-tr="WHATSAPP İLETİŞİM"
-                                  data-en="CONTACT VIA WHATSAPP"
-                                  data-fr="CONTACT WHATSAPP"
-                                  data-ar="تواصل عبر واتساب">WHATSAPP İLETİŞİM</span>
-                        </a>
+                <!-- Lagoon 410 S2 -->
+                <div class="service-card group overflow-hidden rounded-xl border border-white/10">
+                    <div class="relative aspect-[4/5] overflow-hidden">
+                        <img src="assets/lagoon410.jpg"
+                            alt="Lagoon 410 S2"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                     </div>
                 </div>
-            </div>
 
-            <!-- Lagoon 40 -->
-            <div class="service-card group overflow-hidden rounded-2xl bg-black/20 border border-white/10 fade-in">
-                <div class="relative h-[450px] overflow-hidden">
-                    <img src="images/lagoon40.jpg"
-                         alt="Lagoon 40"
-                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-
-                    <div class="absolute bottom-0 left-0 w-full p-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="font-serif text-2xl text-white">
-                                Lagoon 40
-                            </h3>
-                            <span class="text-merci-gold text-sm">
-                                2021
-                            </span>
-                        </div>
-
-                        <ul class="text-white/80 text-sm space-y-1 mb-5">
-                            <li data-tr="📏 Uzunluk: 11.74 m" data-en="📏 Length: 11.74 m" data-fr="📏 Longueur : 11,74 m" data-ar="📏 الطول: 11.74 م">📏 Uzunluk: 11.74 m</li>
-                            <li data-tr="🛏️ 4+2 Kabin" data-en="🛏️ 4+2 Cabins" data-fr="🛏️ 4+2 cabines" data-ar="🛏️ 4+2 كبائن">🛏️ 4+2 Kabin</li>
-                            <li data-tr="👥 8+2 Kişi" data-en="👥 8+2 Guests" data-fr="👥 8+2 personnes" data-ar="👥 8+2 أشخاص">👥 8+2 Kişi</li>
-                            <li data-tr="🚿 4 WC" data-en="🚿 4 Bathrooms" data-fr="🚿 4 salles de bain" data-ar="🚿 4 حمامات">🚿 4 WC</li>
-                            <li data-tr="📍 Ece Saray Marina, Fethiye" data-en="📍 Ece Saray Marina, Fethiye" data-fr="📍 Marina Ece Saray, Fethiye" data-ar="📍 مرسى إجه سراي، فتحية">📍 Ece Saray Marina, Fethiye</li>
-                            <li data-tr="💰 8.000 EUR / hafta" data-en="💰 EUR 8,000 / week" data-fr="💰 8 000 EUR / semaine" data-ar="💰 8,000 يورو / أسبوع">💰 8.000 EUR / hafta</li>
-                        </ul>
-
-                        <a href="https://wa.me/905304150729?text=Merhaba%20yat%20kiralama%20hakkında%20bilgi%20almak%20istiyorum."
-                    target="_blank"
-                    class="hidden md:flex items-center gap-2 border border-merci-gold text-merci-gold px-6 py-2 text-xs tracking-widest uppercase hover:bg-merci-gold hover:text-merci-dark transition-all duration-300">
-
-                        <i class="fab fa-whatsapp"></i>
-                        <span data-tr="WHATSAPP İLETİŞİM"
-                                  data-en="CONTACT VIA WHATSAPP"
-                                  data-fr="CONTACT WHATSAPP"
-                                  data-ar="تواصل عبر واتساب">WHATSAPP İLETİŞİM</span>
-                    </a>
+                <!-- Lagoon 40 -->
+                <div class="service-card group overflow-hidden rounded-xl border border-white/10">
+                    <div class="relative aspect-[4/5] overflow-hidden">
+                        <img src="assets/lagoon40.jpg"
+                            alt="Lagoon 40"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                     </div>
                 </div>
-            </div>
 
-            <!-- Bali Catsmart -->
-            <div class="service-card group overflow-hidden rounded-2xl bg-black/20 border border-white/10 fade-in">
-                <div class="relative h-[450px] overflow-hidden">
-                    <img src="images/bali-catsmart.jpg"
-                         alt="Bali Catsmart"
-                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-
-                    <div class="absolute bottom-0 left-0 w-full p-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="font-serif text-2xl text-white">
-                                Bali Catsmart
-                            </h3>
-                            <span class="text-merci-gold text-sm">
-                                2024
-                            </span>
-                        </div>
-
-                        <ul class="text-white/80 text-sm space-y-1 mb-5">
-                            <li data-tr="📏 Uzunluk: 12.08 m" data-en="📏 Length: 12.08 m" data-fr="📏 Longueur : 12,08 m" data-ar="📏 الطول: 12.08 م">📏 Uzunluk: 12.08 m</li>
-                            <li data-tr="🛏️ 4 Kabin" data-en="🛏️ 4 Cabins" data-fr="🛏️ 4 cabines" data-ar="🛏️ 4 كبائن">🛏️ 4 Kabin</li>
-                            <li data-tr="👥 8 Kişi" data-en="👥 8 Guests" data-fr="👥 8 personnes" data-ar="👥 8 أشخاص">👥 8 Kişi</li>
-                            <li data-tr="🚿 2 WC" data-en="🚿 2 Bathrooms" data-fr="🚿 2 salles de bain" data-ar="🚿 2 حمام">🚿 2 WC</li>
-                            <li data-tr="📍 Ece Saray Marina, Fethiye" data-en="📍 Ece Saray Marina, Fethiye" data-fr="📍 Marina Ece Saray, Fethiye" data-ar="📍 مرسى إجه سراي، فتحية">📍 Ece Saray Marina, Fethiye</li>
-                            <li data-tr="💰 8.500 EUR / hafta" data-en="💰 EUR 8,500 / week" data-fr="💰 8 500 EUR / semaine" data-ar="💰 8,500 يورو / أسبوع">💰 8.500 EUR / hafta</li>
-                        </ul>
-
-                        <a href="https://wa.me/905304150729?text=Merhaba%20yat%20kiralama%20hakkında%20bilgi%20almak%20istiyorum."
-                        target="_blank"
-                        class="hidden md:flex items-center gap-2 border border-merci-gold text-merci-gold px-6 py-2 text-xs tracking-widest uppercase hover:bg-merci-gold hover:text-merci-dark transition-all duration-300">
-
-                            <i class="fab fa-whatsapp"></i>
-                            <span data-tr="WHATSAPP İLETİŞİM"
-                                  data-en="CONTACT VIA WHATSAPP"
-                                  data-fr="CONTACT WHATSAPP"
-                                  data-ar="تواصل عبر واتساب">WHATSAPP İLETİŞİM</span>
-                        </a>
+                <!-- Bali Catsmart -->
+                <div class="service-card group overflow-hidden rounded-xl border border-white/10">
+                    <div class="relative aspect-[4/5] overflow-hidden">
+                        <img src="assets/bali-catsmart.jpg"
+                            alt="Bali Catsmart"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                     </div>
                 </div>
+
             </div>
 
-        </div>
 
     </div>
 </section>
@@ -507,14 +524,11 @@
                 >
 
                     <!-- Project 1 -->
-                    <div class="project-card min-w-[300px] sm:min-w-[350px] md:min-w-[400px] snap-start">
-                        <div class="relative h-[280px] overflow-hidden mb-5">
-                            <img
-                                src="assets/project1.jpg"
-                                alt="Süperyat Tedarik Optimizasyonu"
-                                class="w-full h-full object-cover"
-                                loading="lazy"
-                            >
+                    <div class="project-card min-w-[82vw] sm:min-w-[350px] md:min-w-[400px] snap-start">
+                        <div class="project-media-frame relative w-full max-w-[190px] mx-auto aspect-[9/16] mb-5 flex items-center justify-center overflow-hidden rounded-xl border border-merci-gold/50 bg-black shadow-xl shadow-black/30">
+                            <div class="w-full h-full overflow-hidden">
+                                <iframe width="344" height="602" src="https://www.youtube.com/embed/FA8KTOe2xvg" title="MerciChefCo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
                         </div>
 
                         <h3
@@ -539,14 +553,11 @@
                     </div>
 
                     <!-- Project 2 -->
-                    <div class="project-card min-w-[300px] sm:min-w-[350px] md:min-w-[400px] snap-start">
-                        <div class="relative h-[280px] overflow-hidden mb-5">
-                            <img
-                                src="assets/project2.jpg"
-                                alt="Fine Dining Operasyon Dönüşümü"
-                                class="w-full h-full object-cover"
-                                loading="lazy"
-                            >
+                    <div class="project-card min-w-[82vw] sm:min-w-[350px] md:min-w-[400px] snap-start">
+                        <div class="project-media-frame relative w-full max-w-[190px] mx-auto aspect-[9/16] mb-5 flex items-center justify-center overflow-hidden rounded-xl border border-merci-gold/50 bg-black shadow-xl shadow-black/30">
+                            <div class="w-full h-full overflow-hidden">
+                               <iframe width="344" height="602" src="https://www.youtube.com/embed/SbpuG93p4tI" title="Merci Chef Co Dinner Table" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
                         </div>
 
                         <h3
@@ -570,22 +581,22 @@
                         </a>
                     </div>
 
-                    <!-- Project 3: URLA BAHÇE EVENT -->
-                    <div class="project-card min-w-[300px] sm:min-w-[350px] md:min-w-[400px] snap-start">
-                        <div class="relative h-[280px] overflow-hidden mb-5">
+                    <!-- Project 3: Urla Bahçe Event -->
+                    <div class="project-card min-w-[82vw] sm:min-w-[350px] md:min-w-[400px] snap-start">
+                        <div class="project-media-frame relative w-full max-w-[190px] mx-auto aspect-[9/16] mb-5 flex items-center justify-center overflow-hidden rounded-xl border border-merci-gold/50 bg-black shadow-xl shadow-black/30">
                             <img
                                 src="assets/project3.jpg"
-                                alt="URLA BAHÇE EVENT"
-                                class="w-full h-full object-cover"
+                                alt="Urla Bahçe Event"
+                                class="w-full h-full object-contain"
                                 loading="lazy"
                             >
                         </div>
 
                         <h3
                             class="font-serif text-xl text-white mb-2"
-                            data-tr="URLA BAHÇE EVENT"
-                            data-en="URLA GARDEN EVENT"
-                        >URLA BAHÇE EVENT</h3>
+                            data-tr="Urla Bahçe Event"
+                            data-en="Urla Garden Event"
+                        >Urla Bahçe Event</h3>
 
                         <p
                             class="text-white/70 text-sm leading-relaxed mb-4"
@@ -914,3 +925,4 @@
     </script>
 </body>
 </html>
+                
