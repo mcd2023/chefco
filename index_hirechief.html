@@ -106,7 +106,9 @@ async function loadChefsFromApi() {
         return {
           id: String(c.id),
           name: c.name.trim(),
-          base: Number(c.base),
+          // Backend fiyat alanı price_per_person olarak döndürür.
+          // Eski kayıt/yanıt uyumluluğu için base alanı da desteklenir.
+          base: Number(c.price_per_person ?? c.base ?? 0),
           bio,
           role: { tr: bio, en: bio, fr: bio, ar: bio },
           img: typeof c.photo_url === "string" && c.photo_url.trim()
