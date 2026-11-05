@@ -22,7 +22,7 @@
 <body>
 <main>
 <h1>MERCI CHEF.CO</h1>
-<p class="muted">Yönetici paneli · Şefler ve günlük müsaitlik</p>
+<p class="muted">Yönetici paneli · Şefler, ücretler, mutfaklar, organizasyonlar ve müsaitlik</p>
 
 <section id="loginPanel">
 <h2>Yönetici girişi</h2>
@@ -43,6 +43,8 @@
 <input type="hidden" id="chefId">
 <label for="chefName">Şef adı</label><input id="chefName" maxlength="150" required>
 <label for="chefBio">Biyografi</label><textarea id="chefBio" rows="3" style="width:100%;padding:13px;background:var(--bg);color:white;border:1px solid #655a40;border-radius:8px"></textarea>
+<label for="chefPrice">Kişi başı ücret</label><input id="chefPrice" type="number" min="0" step="0.01" value="0" required>
+<label for="chefCurrency">Para birimi</label><select id="chefCurrency"><option value="EUR">EUR (€)</option><option value="USD">USD ($)</option><option value="TRY">TRY (₺)</option><option value="GBP">GBP (£)</option></select>
 <label for="chefPhotoFile">Şef fotoğrafı</label>
 <div class="photo-picker">
   <img id="chefPhotoPreview" class="photo-preview" alt="Şef fotoğrafı önizlemesi" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='104' height='104' viewBox='0 0 104 104'%3E%3Crect width='104' height='104' fill='%23343027'/%3E%3Ccircle cx='52' cy='37' r='18' fill='%23756b58'/%3E%3Cpath d='M18 100c3-23 16-34 34-34s31 11 34 34' fill='%23756b58'/%3E%3C/svg%3E">
@@ -59,6 +61,25 @@
 <p id="seedStatus" class="status" aria-live="polite"></p>
 <div class="row"><h3>Tüm şefler</h3><button id="refreshChefsBtn" class="secondary">Listeyi yenile</button></div>
 <div id="chefCatalog" class="chef-grid"></div>
+</section>
+
+<section id="optionsSection">
+<h2>Mutfak ve organizasyon seçenekleri</h2>
+<p class="notice">Burada eklediğin veya güncellediğin seçenekler veritabanına kaydedilir. Pasife alınan seçenekler müşteri sayfasında gösterilmez.</p>
+<form id="optionForm">
+<input type="hidden" id="optionId">
+<label for="optionType">Seçenek grubu</label><select id="optionType"><option value="cuisine">Mutfak</option><option value="event">Organizasyon</option></select>
+<label for="optionKey">Sistem anahtarı (ör. seafood)</label><input id="optionKey" maxlength="80" placeholder="Örn. seafood">
+<label for="optionTr">Türkçe adı</label><input id="optionTr" maxlength="160" required>
+<label for="optionEn">İngilizce adı</label><input id="optionEn" maxlength="160">
+<label for="optionFr">Fransızca adı</label><input id="optionFr" maxlength="160">
+<label for="optionAr">Arapça adı</label><input id="optionAr" maxlength="160">
+<label for="optionOrder">Sıralama</label><input id="optionOrder" type="number" step="1" value="0">
+<button type="submit" id="optionSubmitBtn">Seçeneği kaydet</button><button type="button" id="optionCancelBtn" class="secondary hidden">Düzenlemeyi iptal et</button>
+</form>
+<p id="optionStatus" class="status" aria-live="polite"></p>
+<div class="row"><h3>Kayıtlı seçenekler</h3><button type="button" id="refreshOptionsBtn" class="secondary">Listeyi yenile</button></div>
+<div id="optionsList"></div>
 </section>
 
 <section>
@@ -97,6 +118,7 @@ $("loginForm").addEventListener("submit", async e => {
     token = result.token; $("password").value = "";
     $("loginPanel").classList.add("hidden"); $("dashboard").classList.remove("hidden");
     await loadChefs();
+    await loadOptions();
   } catch (error) { $("loginStatus").textContent = error.message; }
   finally { $("loginBtn").disabled = false; }
 });
@@ -108,12 +130,15 @@ function renderChefCatalog() {
     const card = document.createElement("article"); card.className = "chef-card";
     const title = document.createElement("h3"); title.textContent = chef.name;
     const bio = document.createElement("p"); bio.textContent = chef.bio || "Biyografi eklenmemiş.";
+    const price = document.createElement("p");
+    const currencySymbols = { EUR:"€", USD:"$", TRY:"₺", GBP:"£" };
+    price.textContent = "Kişi başı ücret: " + Number(chef.price_per_person || 0).toLocaleString("tr-TR", {minimumFractionDigits:2, maximumFractionDigits:2}) + " " + (currencySymbols[chef.price_currency] || chef.price_currency || "EUR");
     const state = document.createElement("p"); state.className = "state " + (chef.is_active ? "ok" : "pending");
     state.textContent = chef.is_active ? "Aktif · Ana sayfada görünür" : "Pasif · Ana sayfada görünmez";
     const edit = document.createElement("button"); edit.textContent = "Düzenle"; edit.className = "secondary";
     edit.addEventListener("click", () => {
       $("chefId").value = chef.id; $("chefName").value = chef.name;
-      $("chefBio").value = chef.bio || ""; $("chefPhoto").value = chef.photo_url || "";
+      $("chefBio").value = chef.bio || ""; $("chefPrice").value = chef.price_per_person ?? 0; $("chefCurrency").value = chef.price_currency || "EUR"; $("chefPhoto").value = chef.photo_url || "";
       $("chefPhotoFile").value = "";
       setPhotoPreview(chef.photo_url || "");
       $("formTitle").textContent = "Şefi düzenle"; $("chefSubmitBtn").textContent = "Değişiklikleri kaydet";
@@ -130,7 +155,7 @@ function renderChefCatalog() {
         await loadChefs();
       } catch(error) { $("seedStatus").textContent = error.message; toggle.disabled = false; }
     });
-    card.append(title, bio, state, edit, toggle); grid.append(card);
+    card.append(title, bio, price, state, edit, toggle); grid.append(card);
   });
 }
 
@@ -202,7 +227,7 @@ async function uploadChefPhoto(file) {
 }
 
 function resetChefForm() {
-  $("chefForm").reset(); $("chefId").value = ""; $("chefPhoto").value = "";
+  $("chefForm").reset(); $("chefId").value = ""; $("chefPhoto").value = ""; $("chefPrice").value = "0"; $("chefCurrency").value = "EUR";
   setPhotoPreview(""); $("formTitle").textContent = "Yeni şef ekle";
   $("chefSubmitBtn").textContent = "Şefi kaydet"; $("cancelEditBtn").classList.add("hidden");
 }
@@ -216,7 +241,9 @@ $("chefForm").addEventListener("submit", async e => {
   const body = {
     name: $("chefName").value.trim(),
     bio: $("chefBio").value.trim(),
-    photo_url: $("chefPhoto").value.trim()
+    photo_url: $("chefPhoto").value.trim(),
+    price_per_person: Number($("chefPrice").value),
+    price_currency: $("chefCurrency").value
   };
   try {
     if (selectedFile) {
@@ -353,6 +380,76 @@ async function deleteAvailabilityRow(date, deleteBtn) {
     deleteBtn.disabled = false;
   }
 }
+
+
+function resetOptionForm() {
+  $("optionForm").reset(); $("optionId").value = ""; $("optionKey").disabled = false;
+  $("optionOrder").value = "0"; $("optionSubmitBtn").textContent = "Seçeneği kaydet";
+  $("optionCancelBtn").classList.add("hidden");
+}
+
+async function loadOptions() {
+  $("optionStatus").textContent = "Seçenekler yükleniyor...";
+  const result = await api("/api/admin/options");
+  const list = $("optionsList"); list.replaceChildren();
+  const options = Array.isArray(result.options) ? result.options : [];
+  if (!options.length) list.textContent = "Henüz mutfak veya organizasyon seçeneği bulunmuyor.";
+  options.forEach(option => {
+    const row = document.createElement("div"); row.className = "availability-row";
+    const info = document.createElement("div"); info.style.flex = "1";
+    const title = document.createElement("strong");
+    title.textContent = (option.option_type === "cuisine" ? "Mutfak · " : "Organizasyon · ") + option.label_tr;
+    const sub = document.createElement("div"); sub.className = "muted"; sub.textContent = option.label_en || option.option_key;
+    const state = document.createElement("small"); state.textContent = option.is_active ? "Aktif" : "Pasif";
+    info.append(title, sub, state);
+    const actions = document.createElement("div"); actions.className = "availability-actions";
+    const edit = document.createElement("button"); edit.type = "button"; edit.className = "secondary"; edit.textContent = "Düzenle";
+    edit.addEventListener("click", () => {
+      $("optionId").value = option.id; $("optionType").value = option.option_type;
+      $("optionKey").value = option.option_key; $("optionKey").disabled = true;
+      $("optionTr").value = option.label_tr || ""; $("optionEn").value = option.label_en || "";
+      $("optionFr").value = option.label_fr || ""; $("optionAr").value = option.label_ar || "";
+      $("optionOrder").value = option.sort_order ?? 0;
+      $("optionSubmitBtn").textContent = "Değişiklikleri kaydet";
+      $("optionCancelBtn").classList.remove("hidden");
+      $("optionForm").scrollIntoView({behavior:"smooth", block:"start"});
+    });
+    const toggle = document.createElement("button"); toggle.type = "button";
+    toggle.className = option.is_active ? "secondary" : "";
+    toggle.textContent = option.is_active ? "Pasife al" : "Aktifleştir";
+    toggle.addEventListener("click", async () => {
+      toggle.disabled = true;
+      try {
+        await api("/api/admin/options/" + encodeURIComponent(option.id) + "/status", {method:"PATCH", body:JSON.stringify({is_active:!option.is_active})});
+        await loadOptions();
+      } catch (error) { $("optionStatus").textContent = error.message; toggle.disabled = false; }
+    });
+    actions.append(edit, toggle); row.append(info, actions); list.append(row);
+  });
+  $("optionStatus").textContent = options.length + " seçenek listelendi.";
+}
+
+$("optionForm").addEventListener("submit", async event => {
+  event.preventDefault();
+  const id = $("optionId").value;
+  const payload = {
+    option_type: $("optionType").value, option_key: $("optionKey").value.trim(),
+    label_tr: $("optionTr").value.trim(), label_en: $("optionEn").value.trim(),
+    label_fr: $("optionFr").value.trim(), label_ar: $("optionAr").value.trim(),
+    sort_order: Number($("optionOrder").value || 0)
+  };
+  $("optionSubmitBtn").disabled = true;
+  try {
+    if (id) await api("/api/admin/options/" + encodeURIComponent(id), {method:"PUT", body:JSON.stringify(payload)});
+    else await api("/api/admin/options", {method:"POST", body:JSON.stringify(payload)});
+    resetOptionForm(); await loadOptions(); $("optionStatus").textContent = "Seçenek başarıyla kaydedildi.";
+  } catch (error) { $("optionStatus").textContent = error.message; }
+  finally { $("optionSubmitBtn").disabled = false; }
+});
+$("optionCancelBtn").addEventListener("click", resetOptionForm);
+$("refreshOptionsBtn").addEventListener("click", async () => {
+  try { await loadOptions(); } catch (error) { $("optionStatus").textContent = error.message; }
+});
 
 $("chef").addEventListener("change", loadAvailability);
 $("refreshBtn").addEventListener("click", loadAvailability);
