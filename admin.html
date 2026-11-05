@@ -7,7 +7,16 @@
 <title>Merci Chef.Co | Yönetim</title>
 <style>
 :root{color-scheme:dark;--bg:#151410;--panel:#24221c;--line:#514832;--gold:#d7b66b;--text:#f8f4eb;--muted:#c9c1b1;--ok:#9bd2a4;--warn:#f0c878;--bad:#f0a29a}
-*{box-sizing:border-box}body{margin:0;padding:24px;background:var(--bg);color:var(--text);font:15px Arial,sans-serif}main{max-width:900px;margin:24px auto}section{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px;margin:0 0 20px}h1,h2,h3{color:var(--gold)}h1{margin-bottom:8px}h2{margin-top:0}p{line-height:1.55}label{display:block;margin:15px 0 7px;color:var(--muted)}input,select{box-sizing:border-box;width:100%;padding:13px;background:var(--bg);color:white;border:1px solid #655a40;border-radius:8px}button{padding:12px 16px;margin:10px 8px 0 0;border:0;border-radius:8px;background:var(--gold);color:#17140d;font-weight:bold;cursor:pointer}button:disabled{opacity:.55;cursor:wait}.secondary{background:transparent;color:var(--gold);border:1px solid var(--gold)}.status{white-space:pre-wrap;line-height:1.6}.hidden{display:none}.muted,small{color:var(--muted)}.item{padding:12px;border-bottom:1px solid var(--line)}.chef-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}.chef-card{border:1px solid var(--line);border-radius:10px;padding:15px;min-width:0}.chef-card h3{margin:0 0 6px;font-size:19px}.chef-card p{margin:6px 0}.state{font-size:12px;font-weight:bold}.state.ok{color:var(--ok)}.state.pending{color:var(--warn)}.notice{border-left:3px solid var(--gold);padding:10px 14px;background:#1d1b16;color:var(--muted)}.photo-picker{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px;border:1px dashed #8c7950;border-radius:10px;background:#1d1b16}.photo-preview{width:104px;height:104px;object-fit:cover;border-radius:8px;background:#343027;border:1px solid var(--line)}.photo-help{font-size:12px;color:var(--muted);line-height:1.5}.photo-controls{flex:1;min-width:190px}.photo-controls input[type=file]{padding:9px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.row button{margin-top:0}@media(max-width:560px){body{padding:12px}section{padding:18px}main{margin:8px auto}}
+*{box-sizing:border-box}body{margin:0;padding:24px;background:var(--bg);color:var(--text);font:15px Arial,sans-serif}main{max-width:900px;margin:24px auto}section{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px;margin:0 0 20px}h1,h2,h3{color:var(--gold)}h1{margin-bottom:8px}h2{margin-top:0}p{line-height:1.55}label{display:block;margin:15px 0 7px;color:var(--muted)}input,select{box-sizing:border-box;width:100%;padding:13px;background:var(--bg);color:white;border:1px solid #655a40;border-radius:8px}button{padding:12px 16px;margin:10px 8px 0 0;border:0;border-radius:8px;background:var(--gold);color:#17140d;font-weight:bold;cursor:pointer}button:disabled{opacity:.55;cursor:wait}.secondary{background:transparent;color:var(--gold);border:1px solid var(--gold)}.status{white-space:pre-wrap;line-height:1.6}.hidden{display:none}.muted,small{color:var(--muted)}.item{padding:12px;border-bottom:1px solid var(--line)}
+.availability-row{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:13px 0;border-bottom:1px solid var(--line)}
+.availability-date{font-weight:700;min-width:110px}
+.availability-status{font-size:13px;font-weight:700;padding:6px 9px;border-radius:999px}
+.availability-status.available{color:var(--ok);background:rgba(155,210,164,.10)}
+.availability-status.unavailable{color:var(--bad);background:rgba(240,162,154,.10)}
+.availability-actions{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.availability-actions button{margin:0;padding:9px 11px;font-size:12px}
+.availability-actions .delete-btn{background:transparent;color:var(--bad);border:1px solid var(--bad)}
+@media(max-width:560px){.availability-row{align-items:flex-start}.availability-date{width:100%}.availability-actions{width:100%}.availability-actions button{flex:1}}.chef-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}.chef-card{border:1px solid var(--line);border-radius:10px;padding:15px;min-width:0}.chef-card h3{margin:0 0 6px;font-size:19px}.chef-card p{margin:6px 0}.state{font-size:12px;font-weight:bold}.state.ok{color:var(--ok)}.state.pending{color:var(--warn)}.notice{border-left:3px solid var(--gold);padding:10px 14px;background:#1d1b16;color:var(--muted)}.photo-picker{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px;border:1px dashed #8c7950;border-radius:10px;background:#1d1b16}.photo-preview{width:104px;height:104px;object-fit:cover;border-radius:8px;background:#343027;border:1px solid var(--line)}.photo-help{font-size:12px;color:var(--muted);line-height:1.5}.photo-controls{flex:1;min-width:190px}.photo-controls input[type=file]{padding:9px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.row button{margin-top:0}@media(max-width:560px){body{padding:12px}section{padding:18px}main{margin:8px auto}}
 </style>
 </head>
 <body>
@@ -246,17 +255,103 @@ async function loadChefs() {
 }
 
 async function loadAvailability() {
-  $("records").replaceChildren(); $("status").textContent = "";
-  if (!$("chef").value) { $("records").textContent = "Veritabanında kayıtlı şef seçilmedi."; return; }
+  $("records").replaceChildren();
+  $("status").textContent = "";
+  const chefId = $("chef").value;
+  if (!chefId) {
+    $("records").textContent = "Veritabanında kayıtlı şef seçilmedi.";
+    return;
+  }
+
   try {
-    const result = await api("/api/chefs/" + encodeURIComponent($("chef").value) + "/daily-availability");
-    if (!result.availability?.length) { $("records").textContent = "Kayıtlı gelecek tarih yok."; return; }
+    const result = await api("/api/chefs/" + encodeURIComponent(chefId) + "/daily-availability");
+    if (!result.availability?.length) {
+      $("records").textContent = "Kayıtlı gelecek tarih yok.";
+      return;
+    }
+
     result.availability.forEach(item => {
-      const row = document.createElement("div"); row.className = "item";
-      row.textContent = String(item.available_date).slice(0,10) + " — " + (item.is_available ? "Müsait" : "Müsait değil");
+      const date = String(item.available_date).slice(0, 10);
+      const isAvailable = item.is_available === true;
+      const row = document.createElement("div");
+      row.className = "availability-row";
+
+      const dateLabel = document.createElement("span");
+      dateLabel.className = "availability-date";
+      dateLabel.textContent = date;
+
+      const statusLabel = document.createElement("span");
+      statusLabel.className = "availability-status " + (isAvailable ? "available" : "unavailable");
+      statusLabel.textContent = isAvailable ? "Müsait" : "Müsait değil";
+
+      const actions = document.createElement("div");
+      actions.className = "availability-actions";
+
+      const availableBtn = document.createElement("button");
+      availableBtn.type = "button";
+      availableBtn.textContent = "Müsait";
+      availableBtn.className = "secondary";
+      availableBtn.disabled = isAvailable;
+      availableBtn.setAttribute("aria-label", date + " tarihini müsait yap");
+      availableBtn.addEventListener("click", () => updateAvailabilityRow(date, true, actions));
+
+      const unavailableBtn = document.createElement("button");
+      unavailableBtn.type = "button";
+      unavailableBtn.textContent = "Müsait değil";
+      unavailableBtn.className = "secondary";
+      unavailableBtn.disabled = !isAvailable;
+      unavailableBtn.setAttribute("aria-label", date + " tarihini müsait değil yap");
+      unavailableBtn.addEventListener("click", () => updateAvailabilityRow(date, false, actions));
+
+      const deleteBtn = document.createElement("button");
+      deleteBtn.type = "button";
+      deleteBtn.textContent = "Sil";
+      deleteBtn.className = "delete-btn";
+      deleteBtn.setAttribute("aria-label", date + " müsaitlik kaydını sil");
+      deleteBtn.addEventListener("click", () => deleteAvailabilityRow(date, deleteBtn));
+
+      actions.append(availableBtn, unavailableBtn, deleteBtn);
+      row.append(dateLabel, statusLabel, actions);
       $("records").append(row);
     });
-  } catch (error) { $("status").textContent = error.message; }
+  } catch (error) {
+    $("status").textContent = error.message;
+  }
+}
+
+async function updateAvailabilityRow(date, isAvailable, actions) {
+  const chefId = $("chef").value;
+  if (!chefId) return;
+  const buttons = actions.querySelectorAll("button");
+  buttons.forEach(button => { button.disabled = true; });
+  try {
+    await api("/api/admin/chefs/" + encodeURIComponent(chefId) + "/daily-availability", {
+      method: "PUT",
+      body: JSON.stringify({ date, isAvailable })
+    });
+    $("status").textContent = date + " — " + (isAvailable ? "Müsait" : "Müsait değil") + " olarak güncellendi.";
+    await loadAvailability();
+  } catch (error) {
+    $("status").textContent = error.message;
+    buttons.forEach(button => { button.disabled = false; });
+  }
+}
+
+async function deleteAvailabilityRow(date, deleteBtn) {
+  const chefId = $("chef").value;
+  if (!chefId) return;
+  if (!window.confirm(date + " tarihindeki müsaitlik kaydı silinsin mi?")) return;
+  deleteBtn.disabled = true;
+  try {
+    await api("/api/admin/chefs/" + encodeURIComponent(chefId) + "/daily-availability/" + encodeURIComponent(date), {
+      method: "DELETE"
+    });
+    $("status").textContent = date + " tarihindeki kayıt silindi.";
+    await loadAvailability();
+  } catch (error) {
+    $("status").textContent = error.message;
+    deleteBtn.disabled = false;
+  }
 }
 
 $("chef").addEventListener("change", loadAvailability);
