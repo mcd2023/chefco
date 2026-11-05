@@ -7,7 +7,7 @@
 <title>Merci Chef.Co | Yönetim</title>
 <style>
 :root{color-scheme:dark;--bg:#151410;--panel:#24221c;--line:#514832;--gold:#d7b66b;--text:#f8f4eb;--muted:#c9c1b1;--ok:#9bd2a4;--warn:#f0c878;--bad:#f0a29a}
-*{box-sizing:border-box}body{margin:0;padding:24px;background:var(--bg);color:var(--text);font:15px Arial,sans-serif}main{max-width:900px;margin:24px auto}section{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px;margin:0 0 20px}h1,h2,h3{color:var(--gold)}h1{margin-bottom:8px}h2{margin-top:0}p{line-height:1.55}label{display:block;margin:15px 0 7px;color:var(--muted)}input,select{box-sizing:border-box;width:100%;padding:13px;background:var(--bg);color:white;border:1px solid #655a40;border-radius:8px}button{padding:12px 16px;margin:10px 8px 0 0;border:0;border-radius:8px;background:var(--gold);color:#17140d;font-weight:bold;cursor:pointer}button:disabled{opacity:.55;cursor:wait}.secondary{background:transparent;color:var(--gold);border:1px solid var(--gold)}.status{white-space:pre-wrap;line-height:1.6}.hidden{display:none}.muted,small{color:var(--muted)}.item{padding:12px;border-bottom:1px solid var(--line)}.chef-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}.chef-card{border:1px solid var(--line);border-radius:10px;padding:15px;min-width:0}.chef-card h3{margin:0 0 6px;font-size:19px}.chef-card p{margin:6px 0}.state{font-size:12px;font-weight:bold}.state.ok{color:var(--ok)}.state.pending{color:var(--warn)}.notice{border-left:3px solid var(--gold);padding:10px 14px;background:#1d1b16;color:var(--muted)}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.row button{margin-top:0}@media(max-width:560px){body{padding:12px}section{padding:18px}main{margin:8px auto}}
+*{box-sizing:border-box}body{margin:0;padding:24px;background:var(--bg);color:var(--text);font:15px Arial,sans-serif}main{max-width:900px;margin:24px auto}section{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px;margin:0 0 20px}h1,h2,h3{color:var(--gold)}h1{margin-bottom:8px}h2{margin-top:0}p{line-height:1.55}label{display:block;margin:15px 0 7px;color:var(--muted)}input,select{box-sizing:border-box;width:100%;padding:13px;background:var(--bg);color:white;border:1px solid #655a40;border-radius:8px}button{padding:12px 16px;margin:10px 8px 0 0;border:0;border-radius:8px;background:var(--gold);color:#17140d;font-weight:bold;cursor:pointer}button:disabled{opacity:.55;cursor:wait}.secondary{background:transparent;color:var(--gold);border:1px solid var(--gold)}.status{white-space:pre-wrap;line-height:1.6}.hidden{display:none}.muted,small{color:var(--muted)}.item{padding:12px;border-bottom:1px solid var(--line)}.chef-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}.chef-card{border:1px solid var(--line);border-radius:10px;padding:15px;min-width:0}.chef-card h3{margin:0 0 6px;font-size:19px}.chef-card p{margin:6px 0}.state{font-size:12px;font-weight:bold}.state.ok{color:var(--ok)}.state.pending{color:var(--warn)}.notice{border-left:3px solid var(--gold);padding:10px 14px;background:#1d1b16;color:var(--muted)}.photo-picker{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px;border:1px dashed #8c7950;border-radius:10px;background:#1d1b16}.photo-preview{width:104px;height:104px;object-fit:cover;border-radius:8px;background:#343027;border:1px solid var(--line)}.photo-help{font-size:12px;color:var(--muted);line-height:1.5}.photo-controls{flex:1;min-width:190px}.photo-controls input[type=file]{padding:9px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.row button{margin-top:0}@media(max-width:560px){body{padding:12px}section{padding:18px}main{margin:8px auto}}
 </style>
 </head>
 <body>
@@ -34,7 +34,16 @@
 <input type="hidden" id="chefId">
 <label for="chefName">Şef adı</label><input id="chefName" maxlength="150" required>
 <label for="chefBio">Biyografi</label><textarea id="chefBio" rows="3" style="width:100%;padding:13px;background:var(--bg);color:white;border:1px solid #655a40;border-radius:8px"></textarea>
-<label for="chefPhoto">Fotoğraf adresi (URL)</label><input id="chefPhoto" type="url" placeholder="https://...">
+<label for="chefPhotoFile">Şef fotoğrafı</label>
+<div class="photo-picker">
+  <img id="chefPhotoPreview" class="photo-preview" alt="Şef fotoğrafı önizlemesi" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='104' height='104' viewBox='0 0 104 104'%3E%3Crect width='104' height='104' fill='%23343027'/%3E%3Ccircle cx='52' cy='37' r='18' fill='%23756b58'/%3E%3Cpath d='M18 100c3-23 16-34 34-34s31 11 34 34' fill='%23756b58'/%3E%3C/svg%3E">
+  <div class="photo-controls">
+    <input id="chefPhotoFile" type="file" accept=".jpg,.jpeg,.png,.webp,.avif,.gif,image/jpeg,image/png,image/webp,image/avif,image/gif">
+    <div class="photo-help">Bilgisayarından veya telefonundan bir fotoğraf seç. Fotoğraf kaydetme sırasında otomatik olarak buluta yüklenir. En fazla 10 MB.</div>
+    <button type="button" id="removePhotoBtn" class="secondary">Fotoğrafı kaldır</button>
+  </div>
+</div>
+<input id="chefPhoto" type="hidden">
 <button type="submit" id="chefSubmitBtn">Şefi kaydet</button>
 <button type="button" id="cancelEditBtn" class="secondary hidden">Düzenlemeyi iptal et</button>
 </form>
@@ -96,6 +105,8 @@ function renderChefCatalog() {
     edit.addEventListener("click", () => {
       $("chefId").value = chef.id; $("chefName").value = chef.name;
       $("chefBio").value = chef.bio || ""; $("chefPhoto").value = chef.photo_url || "";
+      $("chefPhotoFile").value = "";
+      setPhotoPreview(chef.photo_url || "");
       $("formTitle").textContent = "Şefi düzenle"; $("chefSubmitBtn").textContent = "Değişiklikleri kaydet";
       $("cancelEditBtn").classList.remove("hidden"); $("chefForm").scrollIntoView({behavior:"smooth"});
     });
@@ -114,20 +125,108 @@ function renderChefCatalog() {
   });
 }
 
+const MAX_PHOTO_BYTES = 10 * 1024 * 1024;
+const ALLOWED_PHOTO_TYPES = new Set(["image/jpeg", "image/png", "image/webp", "image/avif", "image/gif"]);
+let photoPreviewObjectUrl = "";
+
+function setPhotoPreview(url) {
+  const preview = $("chefPhotoPreview");
+  if (photoPreviewObjectUrl) {
+    URL.revokeObjectURL(photoPreviewObjectUrl);
+    photoPreviewObjectUrl = "";
+  }
+  preview.src = url || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='104' height='104' viewBox='0 0 104 104'%3E%3Crect width='104' height='104' fill='%23343027'/%3E%3Ccircle cx='52' cy='37' r='18' fill='%23756b58'/%3E%3Cpath d='M18 100c3-23 16-34 34-34s31 11 34 34' fill='%23756b58'/%3E%3C/svg%3E";
+}
+
+$("chefPhotoFile").addEventListener("change", () => {
+  const file = $("chefPhotoFile").files?.[0];
+  if (!file) return;
+  if (!ALLOWED_PHOTO_TYPES.has(file.type)) {
+    $("seedStatus").textContent = "Lütfen JPG, PNG, WEBP, AVIF veya GIF formatında fotoğraf seç.";
+    $("chefPhotoFile").value = "";
+    return;
+  }
+  if (file.size > MAX_PHOTO_BYTES) {
+    $("seedStatus").textContent = "Fotoğraf 10 MB sınırını aşıyor. Daha küçük bir fotoğraf seç.";
+    $("chefPhotoFile").value = "";
+    return;
+  }
+  if (photoPreviewObjectUrl) URL.revokeObjectURL(photoPreviewObjectUrl);
+  photoPreviewObjectUrl = URL.createObjectURL(file);
+  $("chefPhotoPreview").src = photoPreviewObjectUrl;
+  $("seedStatus").textContent = "Fotoğraf seçildi. Şefi kaydettiğinde otomatik yüklenecek.";
+});
+
+$("removePhotoBtn").addEventListener("click", () => {
+  $("chefPhotoFile").value = "";
+  $("chefPhoto").value = "";
+  setPhotoPreview("");
+  $("seedStatus").textContent = "Fotoğraf seçimi kaldırıldı. Kaydettiğinde mevcut fotoğraf bağlantısı silinir.";
+});
+
+async function uploadChefPhoto(file) {
+  const signed = await api("/api/admin/cloudinary-signature", {
+    method: "POST",
+    body: JSON.stringify({})
+  });
+  const form = new FormData();
+  form.append("file", file);
+  form.append("api_key", signed.apiKey);
+  form.append("timestamp", String(signed.timestamp));
+  form.append("folder", signed.folder);
+  form.append("signature", signed.signature);
+
+  let response;
+  try {
+    response = await fetch(`https://api.cloudinary.com/v1_1/${encodeURIComponent(signed.cloudName)}/image/upload`, {
+      method: "POST",
+      body: form
+    });
+  } catch {
+    throw new Error("Cloudinary bağlantısı kurulamadı. İnternet bağlantısını kontrol et.");
+  }
+  const result = await response.json().catch(() => ({}));
+  if (!response.ok || !result.secure_url) {
+    throw new Error(result.error?.message || "Fotoğraf buluta yüklenemedi.");
+  }
+  return result.secure_url;
+}
+
 function resetChefForm() {
-  $("chefForm").reset(); $("chefId").value = ""; $("formTitle").textContent = "Yeni şef ekle";
+  $("chefForm").reset(); $("chefId").value = ""; $("chefPhoto").value = "";
+  setPhotoPreview(""); $("formTitle").textContent = "Yeni şef ekle";
   $("chefSubmitBtn").textContent = "Şefi kaydet"; $("cancelEditBtn").classList.add("hidden");
 }
 $("chefForm").addEventListener("submit", async e => {
-  e.preventDefault(); $("chefSubmitBtn").disabled = true; $("seedStatus").textContent = "";
+  e.preventDefault();
+  const submit = $("chefSubmitBtn");
+  submit.disabled = true;
+  $("seedStatus").textContent = "";
   const id = $("chefId").value;
-  const body = { name:$("chefName").value.trim(), bio:$("chefBio").value.trim(), photo_url:$("chefPhoto").value.trim() };
+  const selectedFile = $("chefPhotoFile").files?.[0] || null;
+  const body = {
+    name: $("chefName").value.trim(),
+    bio: $("chefBio").value.trim(),
+    photo_url: $("chefPhoto").value.trim()
+  };
   try {
-    if (id) await api("/api/admin/chefs/" + encodeURIComponent(id), { method:"PUT", body:JSON.stringify(body) });
-    else await api("/api/admin/chefs", { method:"POST", body:JSON.stringify(body) });
-    resetChefForm(); await loadChefs(); $("seedStatus").textContent = "Şef kaydı başarıyla kaydedildi.";
-  } catch(error) { $("seedStatus").textContent = error.message; }
-  finally { $("chefSubmitBtn").disabled = false; }
+    if (selectedFile) {
+      $("seedStatus").textContent = "Fotoğraf güvenli şekilde buluta yükleniyor...";
+      body.photo_url = await uploadChefPhoto(selectedFile);
+    }
+    if (id) {
+      await api("/api/admin/chefs/" + encodeURIComponent(id), { method:"PUT", body:JSON.stringify(body) });
+    } else {
+      await api("/api/admin/chefs", { method:"POST", body:JSON.stringify(body) });
+    }
+    resetChefForm();
+    await loadChefs();
+    $("seedStatus").textContent = "Şef ve fotoğrafı başarıyla kaydedildi.";
+  } catch(error) {
+    $("seedStatus").textContent = error.message;
+  } finally {
+    submit.disabled = false;
+  }
 });
 $("cancelEditBtn").addEventListener("click", resetChefForm);
 
