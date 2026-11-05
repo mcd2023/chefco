@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -7,202 +6,180 @@
 <meta name="robots" content="noindex,nofollow">
 <title>Merci Chef.Co | Yönetim</title>
 <style>
-body{margin:0;padding:24px;background:#151410;color:#f8f4eb;font:15px Arial,sans-serif}
-main{max-width:650px;margin:30px auto}
-section{background:#24221c;border:1px solid #514832;border-radius:14px;padding:24px;margin-bottom:20px}
-h1,h2{color:#d7b66b}
-label{display:block;margin:15px 0 7px;color:#c9c1b1}
-input,select{box-sizing:border-box;width:100%;padding:13px;background:#151410;color:white;border:1px solid #655a40;border-radius:8px}
-button{padding:13px 18px;margin-top:16px;border:0;border-radius:8px;background:#d7b66b;color:#17140d;font-weight:bold;cursor:pointer}
-.status{white-space:pre-wrap;line-height:1.6}
-.hidden{display:none}
-.item{padding:12px;border-bottom:1px solid #514832}
-small{color:#c9c1b1}
+:root{color-scheme:dark;--bg:#151410;--panel:#24221c;--line:#514832;--gold:#d7b66b;--text:#f8f4eb;--muted:#c9c1b1;--ok:#9bd2a4;--warn:#f0c878;--bad:#f0a29a}
+*{box-sizing:border-box}body{margin:0;padding:24px;background:var(--bg);color:var(--text);font:15px Arial,sans-serif}main{max-width:900px;margin:24px auto}section{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px;margin:0 0 20px}h1,h2,h3{color:var(--gold)}h1{margin-bottom:8px}h2{margin-top:0}p{line-height:1.55}label{display:block;margin:15px 0 7px;color:var(--muted)}input,select{box-sizing:border-box;width:100%;padding:13px;background:var(--bg);color:white;border:1px solid #655a40;border-radius:8px}button{padding:12px 16px;margin:10px 8px 0 0;border:0;border-radius:8px;background:var(--gold);color:#17140d;font-weight:bold;cursor:pointer}button:disabled{opacity:.55;cursor:wait}.secondary{background:transparent;color:var(--gold);border:1px solid var(--gold)}.status{white-space:pre-wrap;line-height:1.6}.hidden{display:none}.muted,small{color:var(--muted)}.item{padding:12px;border-bottom:1px solid var(--line)}.chef-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}.chef-card{border:1px solid var(--line);border-radius:10px;padding:15px;min-width:0}.chef-card h3{margin:0 0 6px;font-size:19px}.chef-card p{margin:6px 0}.state{font-size:12px;font-weight:bold}.state.ok{color:var(--ok)}.state.pending{color:var(--warn)}.notice{border-left:3px solid var(--gold);padding:10px 14px;background:#1d1b16;color:var(--muted)}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.row button{margin-top:0}@media(max-width:560px){body{padding:12px}section{padding:18px}main{margin:8px auto}}
 </style>
 </head>
 <body>
 <main>
 <h1>MERCI CHEF.CO</h1>
-<p>Yönetici paneli · Günlük müsaitlik yönetimi</p>
+<p class="muted">Yönetici paneli · Şefler ve günlük müsaitlik</p>
 
 <section id="loginPanel">
 <h2>Yönetici girişi</h2>
 <form id="loginForm">
-<label for="username">Kullanıcı adı</label>
-<input id="username" autocomplete="username" required>
-<label for="password">Parola</label>
-<input id="password" type="password" autocomplete="current-password" required>
+<label for="username">Kullanıcı adı</label><input id="username" autocomplete="username" required>
+<label for="password">Parola</label><input id="password" type="password" autocomplete="current-password" required>
 <button type="submit" id="loginBtn">Giriş yap</button>
 </form>
 <p id="loginStatus" class="status"></p>
 </section>
 
-<section id="dashboard" class="hidden">
-<button id="logoutBtn">Çıkış yap</button>
-<h2>Şef müsaitliği</h2>
-
-<label for="chef">Şef</label>
-<select id="chef"></select>
-
-<label for="date">Tarih</label>
-<input id="date" type="date">
-
-<label for="available">Durum</label>
-<select id="available">
-<option value="true">Müsait</option>
-<option value="false">Müsait değil</option>
-</select>
-
-<button id="saveBtn">Durumu kaydet</button>
-<button id="refreshBtn">Takvimi yenile</button>
-<p id="status" class="status"></p>
-
-<h2>Kayıtlı gelecek tarihler</h2>
-<div id="records"><small>Yükleniyor...</small></div>
+<div id="dashboard" class="hidden">
+<section>
+<div class="row"><div><h2 style="margin-bottom:5px">Şef kataloğu</h2><small>Veritabanındaki tüm şefleri buradan yönetin. Kayıt sayısı sınırı yoktur.</small></div><button id="logoutBtn" class="secondary">Çıkış yap</button></div>
+<p class="notice">Yalnızca aktif şefler müşteri sitesindeki carousel'de görünür. Şefi kaldırmak için pasife alabilirsiniz; kayıt ve geçmiş rezervasyonlar korunur.</p>
+<h3 id="formTitle">Yeni şef ekle</h3>
+<form id="chefForm">
+<input type="hidden" id="chefId">
+<label for="chefName">Şef adı</label><input id="chefName" maxlength="150" required>
+<label for="chefBio">Biyografi</label><textarea id="chefBio" rows="3" style="width:100%;padding:13px;background:var(--bg);color:white;border:1px solid #655a40;border-radius:8px"></textarea>
+<label for="chefPhoto">Fotoğraf adresi (URL)</label><input id="chefPhoto" type="url" placeholder="https://...">
+<button type="submit" id="chefSubmitBtn">Şefi kaydet</button>
+<button type="button" id="cancelEditBtn" class="secondary hidden">Düzenlemeyi iptal et</button>
+</form>
+<p id="seedStatus" class="status" aria-live="polite"></p>
+<div class="row"><h3>Tüm şefler</h3><button id="refreshChefsBtn" class="secondary">Listeyi yenile</button></div>
+<div id="chefCatalog" class="chef-grid"></div>
 </section>
-</main>
 
+<section>
+<h2>Şef müsaitliği</h2>
+<label for="chef">Veritabanına kayıtlı şef</label><select id="chef"></select>
+<label for="date">Tarih</label><input id="date" type="date">
+<label for="available">Durum</label><select id="available"><option value="true">Müsait</option><option value="false">Müsait değil</option></select>
+<button id="saveBtn">Durumu kaydet</button><button id="refreshBtn" class="secondary">Takvimi yenile</button>
+<p id="status" class="status" aria-live="polite"></p>
+<h2>Kayıtlı gelecek tarihler</h2><div id="records"><small>Yükleniyor...</small></div>
+</section>
+</div>
+</main>
 <script>
 const API = "https://merci-chefco-api.onrender.com";
 let token = "";
-
+let apiChefs = [];
 const $ = id => document.getElementById(id);
 
 async function api(path, options = {}) {
-  const headers = {"Content-Type":"application/json"};
+  const headers = { "Content-Type":"application/json", "Accept":"application/json" };
   if (token) headers.Authorization = "Bearer " + token;
-
   let response;
-  try {
-    response = await fetch(API + path, {...options, headers});
-  } catch {
-    throw new Error("API bağlantısı kurulamadı. Render FRONTEND_URL ayarını kontrol et.");
-  }
-
+  try { response = await fetch(API + path, { ...options, headers }); }
+  catch { throw new Error("API bağlantısı kurulamadı. Render servisinin çalıştığını ve FRONTEND_URL ayarını kontrol et."); }
   const data = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(data.error || "İşlem başarısız.");
+  if (!response.ok) throw new Error((data.error || data.message || "İşlem başarısız.") + " (HTTP " + response.status + ")");
   return data;
 }
 
 $("loginForm").addEventListener("submit", async e => {
-  e.preventDefault();
-  $("loginBtn").disabled = true;
-  $("loginStatus").textContent = "";
-
+  e.preventDefault(); $("loginBtn").disabled = true; $("loginStatus").textContent = "";
   try {
-    const result = await api("/api/admin/login", {
-      method:"POST",
-      body:JSON.stringify({
-        username:$("username").value.trim(),
-        password:$("password").value
-      })
-    });
-
-    token = result.token;
-    $("password").value = "";
-    $("loginPanel").classList.add("hidden");
-    $("dashboard").classList.remove("hidden");
+    const result = await api("/api/admin/login", { method:"POST", body:JSON.stringify({ username:$("username").value.trim(), password:$("password").value }) });
+    if (!result.token) throw new Error("Giriş yanıtında oturum anahtarı bulunamadı.");
+    token = result.token; $("password").value = "";
+    $("loginPanel").classList.add("hidden"); $("dashboard").classList.remove("hidden");
     await loadChefs();
-  } catch (error) {
-    $("loginStatus").textContent = error.message;
-  } finally {
-    $("loginBtn").disabled = false;
-  }
+  } catch (error) { $("loginStatus").textContent = error.message; }
+  finally { $("loginBtn").disabled = false; }
 });
 
-async function loadChefs() {
-  const result = await api("/api/chefs");
-  const select = $("chef");
-  select.replaceChildren();
-
-  (result.chefs || []).forEach(chef => {
-    select.add(new Option(chef.name, chef.id));
+function renderChefCatalog() {
+  const grid = $("chefCatalog"); grid.replaceChildren();
+  if (!apiChefs.length) { grid.textContent = "Henüz şef kaydı yok. Yukarıdaki formdan ilk şefi ekleyebilirsiniz."; return; }
+  apiChefs.forEach(chef => {
+    const card = document.createElement("article"); card.className = "chef-card";
+    const title = document.createElement("h3"); title.textContent = chef.name;
+    const bio = document.createElement("p"); bio.textContent = chef.bio || "Biyografi eklenmemiş.";
+    const state = document.createElement("p"); state.className = "state " + (chef.is_active ? "ok" : "pending");
+    state.textContent = chef.is_active ? "Aktif · Ana sayfada görünür" : "Pasif · Ana sayfada görünmez";
+    const edit = document.createElement("button"); edit.textContent = "Düzenle"; edit.className = "secondary";
+    edit.addEventListener("click", () => {
+      $("chefId").value = chef.id; $("chefName").value = chef.name;
+      $("chefBio").value = chef.bio || ""; $("chefPhoto").value = chef.photo_url || "";
+      $("formTitle").textContent = "Şefi düzenle"; $("chefSubmitBtn").textContent = "Değişiklikleri kaydet";
+      $("cancelEditBtn").classList.remove("hidden"); $("chefForm").scrollIntoView({behavior:"smooth"});
+    });
+    const toggle = document.createElement("button"); toggle.textContent = chef.is_active ? "Pasife al" : "Yeniden aktifleştir";
+    toggle.className = chef.is_active ? "secondary" : "";
+    toggle.addEventListener("click", async () => {
+      toggle.disabled = true;
+      try {
+        await api("/api/admin/chefs/" + encodeURIComponent(chef.id) + "/status", {
+          method:"PATCH", body:JSON.stringify({ is_active:!chef.is_active })
+        });
+        await loadChefs();
+      } catch(error) { $("seedStatus").textContent = error.message; toggle.disabled = false; }
+    });
+    card.append(title, bio, state, edit, toggle); grid.append(card);
   });
+}
 
-  if (!select.value) {
-    $("records").textContent = "Aktif şef bulunamadı.";
-    return;
-  }
+function resetChefForm() {
+  $("chefForm").reset(); $("chefId").value = ""; $("formTitle").textContent = "Yeni şef ekle";
+  $("chefSubmitBtn").textContent = "Şefi kaydet"; $("cancelEditBtn").classList.add("hidden");
+}
+$("chefForm").addEventListener("submit", async e => {
+  e.preventDefault(); $("chefSubmitBtn").disabled = true; $("seedStatus").textContent = "";
+  const id = $("chefId").value;
+  const body = { name:$("chefName").value.trim(), bio:$("chefBio").value.trim(), photo_url:$("chefPhoto").value.trim() };
+  try {
+    if (id) await api("/api/admin/chefs/" + encodeURIComponent(id), { method:"PUT", body:JSON.stringify(body) });
+    else await api("/api/admin/chefs", { method:"POST", body:JSON.stringify(body) });
+    resetChefForm(); await loadChefs(); $("seedStatus").textContent = "Şef kaydı başarıyla kaydedildi.";
+  } catch(error) { $("seedStatus").textContent = error.message; }
+  finally { $("chefSubmitBtn").disabled = false; }
+});
+$("cancelEditBtn").addEventListener("click", resetChefForm);
 
+async function loadChefs() {
+  $("seedStatus").textContent = "Şef listesi yükleniyor...";
+  // Yönetici listesi aktif ve pasif tüm kayıtları döndürmelidir.
+  const result = await api("/api/admin/chefs");
+  apiChefs = Array.isArray(result.chefs) ? result.chefs : [];
+  renderChefCatalog();
+  const activeChefs = apiChefs.filter(c => c.is_active);
+  const select = $("chef"); const previous = select.value; select.replaceChildren();
+  activeChefs.forEach(chef => select.add(new Option(chef.name, chef.id)));
+  if (activeChefs.some(c => String(c.id) === previous)) select.value = previous;
+  $("seedStatus").textContent = "Toplam " + apiChefs.length + " şef · " + activeChefs.length + " aktif.";
+  if (!activeChefs.length) { $("records").textContent = "Müsaitlik yönetimi için aktif şef bulunmuyor."; return; }
   await loadAvailability();
 }
 
 async function loadAvailability() {
-  $("records").replaceChildren();
-
+  $("records").replaceChildren(); $("status").textContent = "";
+  if (!$("chef").value) { $("records").textContent = "Veritabanında kayıtlı şef seçilmedi."; return; }
   try {
-    const result = await api(
-      "/api/chefs/" + encodeURIComponent($("chef").value) +
-      "/daily-availability"
-    );
-
-    if (!result.availability?.length) {
-      $("records").textContent = "Kayıtlı gelecek tarih yok.";
-      return;
-    }
-
+    const result = await api("/api/chefs/" + encodeURIComponent($("chef").value) + "/daily-availability");
+    if (!result.availability?.length) { $("records").textContent = "Kayıtlı gelecek tarih yok."; return; }
     result.availability.forEach(item => {
-      const row = document.createElement("div");
-      row.className = "item";
-      const date = String(item.available_date).slice(0,10);
-      row.textContent = date + " — " +
-        (item.is_available ? "Müsait" : "Müsait değil");
+      const row = document.createElement("div"); row.className = "item";
+      row.textContent = String(item.available_date).slice(0,10) + " — " + (item.is_available ? "Müsait" : "Müsait değil");
       $("records").append(row);
     });
-  } catch (error) {
-    $("status").textContent = error.message;
-  }
+  } catch (error) { $("status").textContent = error.message; }
 }
 
 $("chef").addEventListener("change", loadAvailability);
 $("refreshBtn").addEventListener("click", loadAvailability);
-
+$("refreshChefsBtn").addEventListener("click", async () => { try { await loadChefs(); } catch(error) { $("seedStatus").textContent = error.message; } });
 $("saveBtn").addEventListener("click", async () => {
-  if (!$("chef").value || !$("date").value) {
-    $("status").textContent = "Şef ve tarih seçmelisin.";
-    return;
-  }
-
+  if (!$("chef").value || !$("date").value) { $("status").textContent = "Şef ve tarih seçmelisin."; return; }
   $("saveBtn").disabled = true;
-
   try {
-    await api(
-      "/api/admin/chefs/" + encodeURIComponent($("chef").value) +
-      "/daily-availability",
-      {
-        method:"PUT",
-        body:JSON.stringify({
-          date:$("date").value,
-          isAvailable:$("available").value === "true"
-        })
-      }
-    );
-
+    await api("/api/admin/chefs/" + encodeURIComponent($("chef").value) + "/daily-availability", { method:"PUT", body:JSON.stringify({ date:$("date").value, isAvailable:$("available").value === "true" }) });
     $("status").textContent = "Müsaitlik kaydedildi.";
     await loadAvailability();
-  } catch (error) {
-    $("status").textContent = error.message;
-  } finally {
-    $("saveBtn").disabled = false;
-  }
+  } catch(error) { $("status").textContent = error.message; }
+  finally { $("saveBtn").disabled = false; }
 });
-
 $("logoutBtn").addEventListener("click", () => {
-  token = "";
-  $("dashboard").classList.add("hidden");
-  $("loginPanel").classList.remove("hidden");
-  $("loginForm").reset();
-  $("status").textContent = "";
+  token = ""; apiChefs = [];
+  $("dashboard").classList.add("hidden"); $("loginPanel").classList.remove("hidden"); $("loginForm").reset();
+  $("loginStatus").textContent = ""; $("status").textContent = ""; $("seedStatus").textContent = "";
 });
-
 const today = new Date();
-$("date").value = [
-  today.getFullYear(),
-  String(today.getMonth()+1).padStart(2,"0"),
-  String(today.getDate()).padStart(2,"0")
-].join("-");
+$("date").value = [today.getFullYear(), String(today.getMonth()+1).padStart(2,"0"), String(today.getDate()).padStart(2,"0")].join("-");
 </script>
 </body>
 </html>
-
-
