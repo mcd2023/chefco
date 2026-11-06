@@ -247,105 +247,137 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="relative min-h-[100svh] xl:min-h-[700px] xl:h-screen flex flex-col justify-center overflow-hidden">
-        <!-- Background Image -->
-        <div class="absolute inset-0 z-0">
-            <img src="#" alt="Luxury Yacht Dining" class="w-full h-full object-cover">
-            <div class="hero-overlay absolute inset-0"></div>
-        </div>
+    
+    
+    <!-- Hero Content: Text + Academy + Videos -->
 
-        <!-- Hero Content: Text + YouTube Video -->
-        <div class="relative z-10 w-full px-6 lg:px-12 pt-28 pb-28 lg:pt-20 lg:pb-24">
-            <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 xl:gap-12 items-center">
+    <section id="home"
+ class="relative min-h-[100svh] xl:min-h-[700px] xl:h-screen flex flex-col justify-center overflow-hidden">
 
-                <!-- Left Content -->
-                <div class="max-w-3xl">
-                    <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl xl:text-7xl text-white leading-tight mb-8 fade-in">
-                        <span data-tr="Lüks Operasyonları" data-en="We Make Luxury">Lüks Operasyonları</span><br>
-                        <span data-tr="Kusursuz Hale Getiriyoruz." data-en="Operations Perfect.">Kusursuz Hale Getiriyoruz.</span>
-                    </h1>
+    <!-- Original Dark Hero Background -->
+    <div class="absolute inset-0 z-0 bg-merci-dark">
+        <div class="absolute inset-0 hero-overlay"></div>
+    </div>
 
-                    <div class="flex flex-col gap-3 mb-10 fade-in" style="transition-delay: 0.2s;">
-                        <div class="flex items-center gap-3 text-white/90">
-                            <i class="fas fa-ship text-merci-gold text-sm"></i>
-                            <span class="text-sm tracking-wide" data-tr="Süperyat Kumanya Yönetimi" data-en="Superyacht Provisioning Management">Süperyat Kumanya Yönetimi</span>
-                        </div>
-                        <div class="flex items-center gap-3 text-white/90">
-                            <i class="fas fa-utensils text-merci-gold text-sm"></i>
-                            <span class="text-sm tracking-wide" data-tr="Lüks Gastronomi Operasyonları" data-en="Luxury Gastronomy Operations">Lüks Gastronomi Operasyonları</span>
-                        </div>
-                        <div class="flex items-center gap-3 text-white/90">
-                            <i class="fas fa-concierge-bell text-merci-gold text-sm"></i>
-                            <span class="text-sm tracking-wide" data-tr="Hospitality Danışmanlığı" data-en="Hospitality Consulting">Hospitality Danışmanlığı</span>
-                        </div>
-                        <div class="flex items-center gap-3 text-white/90">
-                            <i class="fas fa-utensils text-merci-gold text-sm"></i>
-                            <span class="text-sm tracking-wide"
-                                  data-tr="Şef Kiralama"
-                                  data-en="Hire A Chef"
-                                  data-fr="Location de chef"
-                                  data-ar="استئجار شيف">Şef Kiralama</span>
-                        </div>
+    <div class="relative z-10 w-full px-6 lg:px-12 pt-28 pb-28 lg:pt-20 lg:pb-24">
+
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-8 xl:gap-5 items-center">
+
+            <!-- LEFT CONTENT -->
+            <div class="max-w-3xl xl:col-span-5">
+
+                <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl xl:text-7xl text-white leading-tight mb-8 fade-in">
+                    <span data-tr="Lüks Operasyonları" data-en="We Make Luxury">Lüks Operasyonları</span><br>
+                    <span data-tr="Kusursuz Hale Getiriyoruz." data-en="Operations Perfect.">Kusursuz Hale Getiriyoruz.</span>
+                </h1>
+
+                <div class="flex flex-col gap-3 mb-10 fade-in" style="transition-delay: 0.2s;">
+
+                    <div class="flex items-center gap-3 text-white/90">
+                        <i class="fas fa-ship text-merci-gold text-sm"></i>
+                        <span class="text-sm tracking-wide" data-tr="Süperyat Kumanya Yönetimi" data-en="Superyacht Provisioning Management">Süperyat Kumanya Yönetimi</span>
                     </div>
 
-                    <div class="flex flex-wrap gap-4 fade-in" style="transition-delay: 0.4s;">
-                        <a href="#contact"
-                           class="gold-gradient text-merci-dark px-8 py-3 text-xs tracking-widest uppercase font-semibold hover:shadow-lg hover:shadow-merci-gold/30 transition-all"
-                           data-tr="ÖZEL GÖRÜŞME TALEP ET"
-                           data-en="REQUEST PRIVATE MEETING">
-                            ÖZEL GÖRÜŞME TALEP ET
-                        </a>
+                    <div class="flex items-center gap-3 text-white/90">
+                        <i class="fas fa-utensils text-merci-gold text-sm"></i>
+                        <span class="text-sm tracking-wide" data-tr="Lüks Gastronomi Operasyonları" data-en="Luxury Gastronomy Operations">Lüks Gastronomi Operasyonları</span>
                     </div>
+
+                    <div class="flex items-center gap-3 text-white/90">
+                        <i class="fas fa-concierge-bell text-merci-gold text-sm"></i>
+                        <span class="text-sm tracking-wide" data-tr="Hospitality Danışmanlığı" data-en="Hospitality Consulting">Hospitality Danışmanlığı</span>
+                    </div>
+
+                    <div class="flex items-center gap-3 text-white/90">
+                        <i class="fas fa-utensils text-merci-gold text-sm"></i>
+                        <span class="text-sm tracking-wide" data-tr="Şef Kiralama" data-en="Hire A Chef">Şef Kiralama</span>
+                    </div>
+
                 </div>
 
-                <!-- Right Content: Two aligned YouTube Shorts videos -->
-                <div class="grid grid-cols-2 items-center justify-center gap-3 sm:gap-4 w-full max-w-[430px] mx-auto xl:ml-auto xl:mr-0 fade-in"
-                     style="transition-delay: 0.3s;">
+                <div class="flex flex-wrap gap-4 fade-in" style="transition-delay: 0.4s;">
+                    <a href="#contact"
+                    class="gold-gradient text-merci-dark px-8 py-3 text-xs tracking-widest uppercase font-semibold hover:shadow-lg hover:shadow-merci-gold/30 transition-all"
+                    data-tr="ÖZEL GÖRÜŞME TALEP ET"
+                    data-en="REQUEST PRIVATE MEETING">
+                        ÖZEL GÖRÜŞME TALEP ET
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- CENTER: ACADEMY (DESKTOP) -->
+            <div class="hidden xl:flex xl:col-span-3 flex-col items-center justify-center text-center px-2">
+
+                <h2 class="font-serif text-2xl text-white mb-4">
+                    MERCI CHEF.CO
+                </h2>
+
+                <p class="text-red-500 font-bold text-base leading-relaxed tracking-wide mb-5">
+                    AKADEMİ KAYITLARI BAŞLAMIŞTIR
+                </p>
+
+                <a href="assets/academy.pptx"
+                download
+                class="inline-flex items-center justify-center gap-2 border border-merci-gold text-merci-gold px-4 py-3 text-xs tracking-widest uppercase hover:bg-merci-gold hover:text-merci-dark transition-all">
+
+                    <i class="fas fa-file-powerpoint text-base"></i>
+                    <span>AKADEMİ SUNUMUNU İNDİR</span>
+
+                </a>
+
+            </div>
+
+            <!-- RIGHT: ACADEMY (MOBILE / TABLET) + TWO VIDEOS -->
+            <div class="xl:col-span-4 w-full max-w-[430px] mx-auto xl:ml-auto xl:mr-0 fade-in"
+                style="transition-delay: 0.3s;">
+
+                <!-- Academy Mobile -->
+                <div class="xl:hidden text-center mb-5">
+
+                    <h2 class="font-serif text-xl sm:text-2xl text-white mb-2">
+                        MERCI CHEF.CO
+                    </h2>
+
+                    <p class="font-serif text-2xl sm:text-3xl font-bold text-red-500 leading-tight tracking-wide mb-5">
+                     AKADEMİ KAYITLARI BAŞLAMIŞTIR
+                    </p>
+
+                    <a href="assets/academy.pptx"
+                    download
+                    class="inline-flex items-center justify-center gap-2 border border-merci-gold text-merci-gold px-4 py-3 text-xs tracking-widest uppercase hover:bg-merci-gold hover:text-merci-dark transition-all">
+
+                        <i class="fas fa-file-powerpoint"></i>
+                        AKADEMİ SUNUMUNU İNDİR
+
+                    </a>
+
+                </div>
+
+                <!-- Two Videos -->
+                <div class="grid grid-cols-2 items-center gap-3 sm:gap-4 w-full">
 
                     <!-- Video 1 -->
                     <div class="video-box">
-                        <video controls autoplay muted loop playsinline preload="metadata">
-                         <source src="VID-20261102-WA0012.mp4" type="video/mp4">
-                               
-                          </video>
-                     </div>
+                        <video controls muted loop playsinline preload="metadata">
+                            <source src="assets/VID-20261102-WA0012.mp4" type="video/mp4">
+                        </video>
+                    </div>
 
                     <!-- Video 2 -->
                     <div class="video-box">
-                        <video controls autoplay muted loop playsinline preload="metadata">
-                        <source src="VID-20261027-WA0001.mp4" type="video/mp4">
-                
+                        <video controls muted loop playsinline preload="metadata">
+                            <source src="assets/VID-20261027-WA0001.mp4" type="video/mp4">
                         </video>
                     </div>
 
                 </div>
-            </div>
-        </div>
 
-        <!-- Location Tags -->
-        <div class="absolute bottom-0 left-0 w-full z-10 border-t border-white/10 bg-gradient-to-t from-merci-dark/80 to-transparent">
-            <div class="px-6 lg:px-12 py-6 flex flex-wrap items-center justify-between gap-4">
-                <div class="flex flex-wrap gap-6 text-xs tracking-[0.2em] text-white/70">
-                    <span>DUBAI</span>
-                    <span class="text-merci-gold">|</span>
-                    <span>ISTANBUL</span>
-                    <span class="text-merci-gold">|</span>
-                    <span>BODRUM</span>
-                    <span class="text-merci-gold">|</span>
-                    <span>URLA</span>
-                    <span class="text-merci-gold">|</span>
-                    <span>GOCEK</span>
-                    <span class="text-merci-gold">|</span>
-                    <span>MARMARIS</span>
-                    <span></span>
-                </div>
-                <div class="text-xs tracking-widest text-merci-gold uppercase hidden md:block" data-tr="DÜNYA STANDARTLARINDA LÜKS OPERASYON YÖNETİMİ" data-en="WORLD-CLASS LUXURY OPERATION MANAGEMENT">
-                    DÜNYA STANDARTLARINDA LÜKS OPERASYON YÖNETİMİ
-                </div>
             </div>
+
         </div>
-    </section>
+    </div>
+ </section>
 
     <!-- About Section -->
     <section id="about" class="py-20 lg:py-32 bg-merci-cream">
