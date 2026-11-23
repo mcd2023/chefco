@@ -3,13 +3,13 @@
     const translations = {
     "private-chef": {
         "heading": [
-            "Özel Şef Kiralama",
+            "Özel Şef Kirala",
             "Private Chef in Turkey",
             "Chef privé en Turquie",
             "طاهٍ خاص في تركيا"
         ],
         "intro": [
-            "Türkiye’de özel şef ile kişiye özel menü ve özel davet yemeği planlayın. Tarih, kişi sayısı ve mutfak tercihlerinizi Merci Chef.Co ile paylaşın.",
+            "Eviniz, yat tatiliniz veya özel davetiniz için özel şef kiralayın. Tarih, kişi sayısı ve menü tercihlerinizi paylaşarak Merci Chef.Co’dan teklif isteyin.",
             "Plan luxury private dining in Turkey with Merci Chef.Co. Discuss your event, dietary preferences and personal chef requirements before requesting availability.",
             "Organisez un repas privé haut de gamme en Turquie avec Merci Chef.Co. Parlez-nous de votre événement, de vos préférences alimentaires et du service souhaité.",
             "خطط لتجربة طعام خاصة في تركيا مع Merci Chef.Co. شاركنا تفاصيل المناسبة وتفضيلات الطعام ونوع الخدمة المطلوبة."
