@@ -43,7 +43,33 @@
         .nav-link { position: relative; }
         .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: #C9A962; transition: width 0.3s; }
         .nav-link:hover::after { width: 100%; }
-        .lang-btn.active { color: #C9A962; border-bottom: 1px solid #C9A962; }
+        .language-switcher {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            padding: 2px;
+            border: 1px solid #C9A962;
+            border-radius: 4px;
+            background: #17233a;
+        }
+        .lang-btn {
+            min-width: 28px;
+            min-height: 32px;
+            padding: 0 4px;
+            color: #fff;
+            font-weight: 600;
+        }
+        .lang-btn:hover, .lang-btn.active {
+            background: #f0cf88;
+            color: #0f1729;
+        }
+        .lang-btn:focus-visible { outline: 2px solid #fff; outline-offset: -2px; }
+        .navbar-actions { flex-shrink: 0; gap: 10px; }
+        @media (min-width: 1280px) and (max-width: 1535px) {
+            #navbar .navbar-desktop-links { gap: 16px; }
+            #navbar .navbar-whatsapp { padding-inline: 12px; white-space: nowrap; }
+        }
         html[dir="rtl"] body { text-align: right; }
         html[dir="rtl"] .hero-overlay { background: linear-gradient(to left, rgba(15,23,41,0.95) 0%, rgba(15,23,41,0.7) 50%, rgba(15,23,41,0.3) 100%); }
         html[dir="rtl"] .nav-link::after { left: auto; right: 0; }
@@ -192,7 +218,7 @@
                 <img src="assets/logo_chefco.jpg" alt="Logo" style="width:100px; border-radius:50%;" class="flex">                    
 
                 <!-- Desktop Menu -->
-                <div class="hidden lg:flex items-center gap-8">
+                <div class="navbar-desktop-links hidden xl:flex items-center gap-8">
                     <a href="#home" class="nav-link text-white text-xs tracking-widest uppercase hover:text-merci-gold transition-colors" data-tr="ANA SAYFA" data-en="HOME">ANA SAYFA</a>
                     <a href="#about" class="nav-link text-white text-xs tracking-widest uppercase hover:text-merci-gold transition-colors" data-tr="HAKKIMIZDA" data-en="ABOUT">HAKKIMIZDA</a>
                     <a href="#services" class="nav-link text-white text-xs tracking-widest uppercase hover:text-merci-gold transition-colors" data-tr="YAT KİRALAMA" data-en="SERVICES">YAT KİRALAMA</a>
@@ -203,10 +229,10 @@
                 </div>
 
                 <!-- Right Side -->
-                <div class="flex items-center gap-6">
+                <div class="navbar-actions flex items-center">
                    <a href="https://wa.me/905304150729?text=Merhaba%20yat%20kiralama%20hakkında%20bilgi%20almak%20istiyorum."
                     target="_blank"
-                    class="hidden md:flex items-center gap-2 border border-merci-gold text-merci-gold px-6 py-2 text-xs tracking-widest uppercase hover:bg-merci-gold hover:text-merci-dark transition-all duration-300">
+                    class="navbar-whatsapp hidden md:flex items-center gap-2 border border-merci-gold text-merci-gold px-6 py-2 text-xs tracking-widest uppercase hover:bg-merci-gold hover:text-merci-dark transition-all duration-300">
 
                         <i class="fab fa-whatsapp"></i>
                         <span>WHATSAPP İLETİŞİM</span>
@@ -214,7 +240,7 @@
                     
                     <!-- Language Switcher -->
                    
-                    <div class="flex items-center gap-2 text-xs" aria-label="Language selector">
+                    <div class="language-switcher text-xs" role="group" aria-label="Language selector">
                       <button type="button" onclick="changeLang('tr')" id="btn-tr" class="lang-btn active" aria-label="Türkçe" aria-pressed="true">TR</button>
                       <button type="button" onclick="changeLang('en')" id="btn-en" class="lang-btn" aria-label="English" aria-pressed="false">EN</button>
                       <button type="button" onclick="changeLang('fr')" id="btn-fr" class="lang-btn" aria-label="Français" aria-pressed="false">FR</button>
@@ -223,7 +249,7 @@
 
 
                     <!-- Mobile Menu Button -->
-                    <button id="mobile-menu-btn" class="lg:hidden text-white text-xl">
+                    <button id="mobile-menu-btn" class="xl:hidden text-white text-xl">
                         <i class="fas fa-bars"></i>
                     </button>
                 </div>
@@ -231,7 +257,7 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="lg:hidden hidden bg-merci-dark/95 backdrop-blur-md absolute w-full">
+        <div id="mobile-menu" class="xl:hidden hidden bg-merci-dark/95 backdrop-blur-md absolute w-full">
             <div class="px-6 py-8 flex flex-col gap-4">
                 <a href="#home" class="text-white text-sm tracking-widest uppercase py-2 border-b border-white/10" data-tr="ANA SAYFA" data-en="HOME">ANA SAYFA</a>
                 <a href="#about" class="text-white text-sm tracking-widest uppercase py-2 border-b border-white/10" data-tr="HAKKIMIZDA" data-en="ABOUT US">HAKKIMIZDA</a>
