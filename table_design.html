@@ -150,7 +150,9 @@ main {
 
 .project-grid {
     display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-columns:minmax(0,1fr);
+    max-width:960px;
+    margin-inline:auto;
     gap:18px;
     align-items:start;
 }
@@ -191,6 +193,7 @@ main {
 }
 
 .carousel-track {
+    direction:ltr;
     display:flex;
     width:100%;
     height:100%;
@@ -378,6 +381,7 @@ html[dir=rtl] .project-caption {
     .navbar {
         min-height:68px;
         padding:12px 4%;
+        gap:8px;
     }
 
     .navbar nav {
@@ -397,9 +401,13 @@ html[dir=rtl] .project-caption {
     .navbar nav.open { display:flex; }
     .navbar nav a { font-size:12px; }
     .menu-btn { display:block; }
-    .logo { font-size:21px; }
+    .logo { font-size:clamp(17px,5vw,21px); letter-spacing:1px; }
+    .nav-right,.langs { gap:2px; }
+    .langs button { padding-inline:5px; }
 
-    .projects { padding:30px 4% 38px; }
+    .projects { padding:20px 4% 26px; }
+    .section-heading { margin-bottom:16px; }
+    .section-heading:after { margin-top:12px; }
 
     .project-grid {
         grid-template-columns:1fr;
@@ -407,7 +415,7 @@ html[dir=rtl] .project-caption {
     }
 
     .project-carousel {
-        aspect-ratio:16/9;
+        aspect-ratio:4/3;
     }
 
     .carousel-btn {
@@ -484,18 +492,17 @@ aria-controls="mainNav">☰</button>
 
 
 
-<!-- 3 FOTOĞRAFLI CAROUSEL 
-
+<div class="project-grid">
 <article class="project-card">
 
-<div class="project-media">-->
+<div class="project-media">
 
 <div class="project-carousel">
 
 <div class="carousel-track">
 
 <div class="carousel-slide">
-<img src="assets/IMG-20261114-WAOOOO.jpg"
+<img src="assets/IMG-20261114-WA0000.jpg"
 alt="Merci Chef masa tasarımı 1"
 fetchpriority="high"
 decoding="async">
@@ -571,6 +578,11 @@ aria-label="2. fotoğraf"></button>
 
 <button type="button"
 aria-label="3. fotoğraf"></button>
+<button type="button" aria-label="4. fotoğraf"></button>
+<button type="button" aria-label="5. fotoğraf"></button>
+<button type="button" aria-label="6. fotoğraf"></button>
+<button type="button" aria-label="7. fotoğraf"></button>
+<button type="button" aria-label="8. fotoğraf"></button>
 
 </div>
 
