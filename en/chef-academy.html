@@ -33,18 +33,23 @@ img{width:100%;height:auto;max-height:420px;object-fit:cover;border-radius:.5rem
 .actions{display:flex;gap:1rem;flex-wrap:wrap;margin:1.5rem 0}
 .actions a{background:#0f1729;color:#fff;padding:.65rem 1rem;border-radius:.3rem}
 main a{color:#523a05}
-</style>
+ .service-language{display:flex;gap:.25rem;flex-wrap:wrap}
+.service-language a,.service-language button{display:inline-grid;place-items:center;min-width:2rem;min-height:2rem;padding:.15rem .3rem;box-sizing:border-box;border:1px solid #f1d28a;border-radius:.25rem;background:transparent;color:#f1d28a;font:inherit;text-decoration:none;cursor:pointer}
+.service-language [aria-pressed=true],.service-language [aria-current=true]{background:#f1d28a;color:#0f1729}
+ </style>
 </head>
-<body>
-<header><nav><a href="/">Merci Chef.Co</a><a href="/">Home</a><a href="/sef-akademisi.html" lang="tr">Türkçe</a></nav></header>
+<body data-service="chef-academy">
+<script src="/assets/language-preference.js"></script>
+<header><nav><a href="/">Merci Chef.Co</a><a href="/" data-ui="home">Home</a><div class="service-language" role="group" aria-label="Language selector"><a data-lang="tr" aria-label="Türkçe" lang="tr" href="/sef-akademisi.html">TR</a><button type="button" data-lang="en" aria-label="English" aria-pressed="true">EN</button><button type="button" data-lang="fr" aria-label="Français" aria-pressed="false">FR</button><button type="button" data-lang="ar" aria-label="العربية" aria-pressed="false">AR</button></div></nav></header>
 <main>
-<h1>Chef Academy &amp; Professional Chef Training</h1>
-<p>Explore Merci Chef.Co’s culinary academy in Turkey. Download the academy presentation and contact the team about professional chef training.</p>
+<h1 data-ui="heading">Chef Academy &amp; Professional Chef Training</h1>
+<p data-ui="intro">Explore Merci Chef.Co’s culinary academy in Turkey. Download the academy presentation and contact the team about professional chef training.</p>
 <img src="/assets/logo_chefco.webp" alt="Chef Academy &amp; Professional Chef Training" fetchpriority="high" width="400" height="400" decoding="async">
-<section><h2>Professional chef training</h2><p>Download the academy presentation to learn about Merci Chef.Co’s training programme. Contact the team to confirm programme content, dates and enrolment requirements.</p></section>
-<div class="actions"><a href="https://wa.me/905304150729">Contact us on WhatsApp</a><a href="/assets/academy.pptx" download>Download the academy presentation (PPTX)</a></div>
-<section><h2>Related services</h2><ul><li><a href="/en/private-chef.html">Private Chef in Turkey</a></li><li><a href="/en/yacht-chef.html">Yacht Chef in Turkey</a></li><li><a href="/en/catering.html">Private Event &amp; Corporate Catering in Turkey</a></li></ul></section>
+<section><h2 data-ui="section">Professional chef training</h2><p data-ui="body">Download the academy presentation to learn about Merci Chef.Co’s training programme. Contact the team to confirm programme content, dates and enrolment requirements.</p></section>
+<div class="actions"><a data-ui="contact" href="https://wa.me/905304150729">Contact us on WhatsApp</a><a data-ui="academy" href="/assets/academy.pptx" download>Download the academy presentation (PPTX)</a></div>
+<section><h2 data-ui="related">Related services</h2><ul><li><a data-ui="service:private-chef" href="/en/private-chef.html">Private Chef in Turkey</a></li><li><a data-ui="service:yacht-chef" href="/en/yacht-chef.html">Yacht Chef in Turkey</a></li><li><a data-ui="service:catering" href="/en/catering.html">Private Event &amp; Corporate Catering in Turkey</a></li></ul></section>
 </main>
 <footer><a href="mailto:chefcomerci@gmail.com">chefcomerci@gmail.com</a></footer>
+<script src="/assets/service-language.js"></script>
 </body>
 </html>

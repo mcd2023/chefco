@@ -291,6 +291,7 @@
 </head>
 
 <body>
+<script src="/assets/language-preference.js"></script>
   <header class="navbar" id="navbar">
     <a class="logo" href="index.html">
       MERCI <span>CHEF.CO</span>
@@ -365,7 +366,7 @@
   <footer id="footer">
     <span class="footer-brand">MERCI CHEF.CO</span>
     <span>© <span id="year"></span> Merci Chef.Co. <span data-i18n="footerRights">Tüm hakları saklıdır.</span></span>
-    <span>Yacht &amp; Onboard Services</span>
+    <span data-i18n="yachtFooter">Yacht &amp; Onboard Services</span>
   </footer>
 
   <script>
@@ -422,7 +423,11 @@
 
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    document.querySelectorAll("[data-lang]").forEach(button => {
+    Object.assign(copy.tr, {"yachtFooter": "Yat ve Yat İçi Hizmetler"});
+Object.assign(copy.en, {"yachtFooter": "Yacht & Onboard Services"});
+Object.assign(copy.fr, {"yachtFooter": "Services à bord et pour yachts"});
+Object.assign(copy.ar, {"yachtFooter": "خدمات اليخوت والضيافة على متنها"});
+document.querySelectorAll("[data-lang]").forEach(button => {
       button.addEventListener("click", () => {
         const lang = button.dataset.lang;
         const translations = copy[lang];

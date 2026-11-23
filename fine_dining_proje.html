@@ -415,6 +415,7 @@ footer {
 </head>
 
 <body>
+<script src="/assets/language-preference.js"></script>
 
 <!-- HEADER -->
 <header class="navbar" id="navbar">
@@ -451,7 +452,7 @@ footer {
 
 <!-- MAIN CONTENT -->
 <main>
-<h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);">Fine Dining ve Restoran Projeleri</h1>
+<h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);" data-i18n="diningTitle">Fine Dining ve Restoran Projeleri</h1>
 
   <section class="projects" id="projects" aria-label="Projelerimiz">
 
@@ -482,14 +483,14 @@ footer {
             MERCI CHEF.CO
           </span>
 
-          <h2>RESTORAN<br>KURULUMU</h2>
+          <h2><span data-i18n="restaurantLead">RESTORAN</span><br><span data-i18n="restaurantAfterBreak">KURULUMU</span></h2>
 
-          <p>&amp; MUTFAK DANIŞMANLIĞI</p>
+          <p><span data-i18n="kitchen">&amp; MUTFAK DANIŞMANLIĞI</span></p>
 
           <div class="presentation-line"></div>
 
           <span class="presentation-subtitle">
-            Mekân konseptinden operasyonel mutfak düzenine
+            <span data-i18n="concept">Mekân konseptinden operasyonel mutfak düzenine</span>
           </span>
 
           <i class="fas fa-utensils presentation-icon"></i>
@@ -498,9 +499,9 @@ footer {
 
         <div class="project-caption">
 
-          <h2>Restoran Kurulumu</h2>
+          <h2><span data-i18n="restaurant">Restoran Kurulumu</span></h2>
 
-          <p>Mutfak Tasarımı · Operasyon · Danışmanlık</p>
+          <p><span data-i18n="operations">Mutfak Tasarımı · Operasyon · Danışmanlık</span></p>
 
           <a
             href="assets/restorankurulumu.pptx"
@@ -508,7 +509,7 @@ footer {
             class="presentation-button"
           >
             <i class="fas fa-file-powerpoint"></i>
-            SUNUMU İNDİR
+            <span data-i18n="download">SUNUMU İNDİR</span>
           </a>
 
         </div>
@@ -528,7 +529,7 @@ footer {
   </span>
 
   <span>
-    © <span id="year"></span> Merci Chef.Co. Tüm hakları saklıdır.
+    © <span id="year"></span> Merci Chef.Co. <span data-i18n="rights">Tüm hakları saklıdır.</span>
   </span>
 
   <span>
@@ -570,6 +571,10 @@ document.getElementById("year").textContent =
   new Date().getFullYear();
 
 /* LANGUAGE SWITCHER */
+Object.assign(copy.tr, {"diningTitle": "Fine Dining ve Restoran Projeleri", "restaurantLead": "RESTORAN", "restaurantAfterBreak": "KURULUMU", "kitchen": "& MUTFAK DANIŞMANLIĞI", "concept": "Mekân konseptinden operasyonel mutfak düzenine", "restaurant": "Restoran Kurulumu", "operations": "Mutfak Tasarımı · Operasyon · Danışmanlık", "download": "SUNUMU İNDİR", "rights": "Tüm hakları saklıdır.", "yachtFooter": "Yat ve Yat İçi Hizmetler"});
+Object.assign(copy.en, {"diningTitle": "Fine Dining and Restaurant Projects", "restaurantLead": "RESTAURANT", "restaurantAfterBreak": "SETUP", "kitchen": "& KITCHEN CONSULTING", "concept": "From venue concept to kitchen operations", "restaurant": "Restaurant Setup", "operations": "Kitchen Design · Operations · Consulting", "download": "DOWNLOAD THE PRESENTATION", "rights": "All rights reserved.", "yachtFooter": "Yacht & Onboard Services"});
+Object.assign(copy.fr, {"diningTitle": "Projets de restauration gastronomique", "restaurantLead": "CRÉATION DE", "restaurantAfterBreak": "RESTAURANT", "kitchen": "ET CONSEIL EN CUISINE", "concept": "Du concept du lieu à l’organisation de la cuisine", "restaurant": "Création de restaurant", "operations": "Conception de cuisine · Exploitation · Conseil", "download": "TÉLÉCHARGER LA PRÉSENTATION", "rights": "Tous droits réservés.", "yachtFooter": "Services à bord et pour yachts"});
+Object.assign(copy.ar, {"diningTitle": "مشاريع المطاعم وتجارب الطعام الفاخر", "restaurantLead": "تأسيس", "restaurantAfterBreak": "المطاعم", "kitchen": "واستشارات المطابخ", "concept": "من تصور المكان إلى تنظيم عمليات المطبخ", "restaurant": "تأسيس المطاعم", "operations": "تصميم المطابخ · التشغيل · الاستشارات", "download": "حمّل العرض التعريفي", "rights": "جميع الحقوق محفوظة.", "yachtFooter": "خدمات اليخوت والضيافة على متنها"});
 document.querySelectorAll("[data-lang]").forEach(button => {
 
   button.addEventListener("click", () => {
@@ -593,7 +598,8 @@ document.querySelectorAll("[data-lang]").forEach(button => {
 
     document.querySelectorAll("[data-i18n]").forEach(el => {
 
-      el.textContent = copy[lang][el.dataset.i18n];
+      const label = copy[lang][el.dataset.i18n];
+      if (label !== undefined) el.textContent = label;
 
     });
 

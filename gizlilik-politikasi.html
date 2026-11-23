@@ -31,6 +31,7 @@
 <link rel="stylesheet" href="/assets/site-utilities.css">
 </head>
 <body class="min-h-screen text-white">
+<script src="/assets/language-preference.js"></script>
   <header class="border-b border-white/10">
     <div class="max-w-5xl mx-auto px-6 py-5 flex flex-wrap items-center justify-between gap-4">
       <a href="index.html" class="font-serif text-2xl tracking-wide text-white">Merci<span class="text-merci-gold">Chef.Co</span></a>
@@ -96,7 +97,7 @@
         }
       });
     }
-    changeLang('tr');
+    changeLang(window.merciLanguage.read());
   </script>
 </body>
 </html>

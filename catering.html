@@ -33,19 +33,24 @@ img{width:100%;height:auto;max-height:420px;object-fit:cover;border-radius:.5rem
 .actions{display:flex;gap:1rem;flex-wrap:wrap;margin:1.5rem 0}
 .actions a{background:#0f1729;color:#fff;padding:.65rem 1rem;border-radius:.3rem}
 main a{color:#523a05}
-</style>
+ .service-language{display:flex;gap:.25rem;flex-wrap:wrap}
+.service-language a,.service-language button{display:inline-grid;place-items:center;min-width:2rem;min-height:2rem;padding:.15rem .3rem;box-sizing:border-box;border:1px solid #f1d28a;border-radius:.25rem;background:transparent;color:#f1d28a;font:inherit;text-decoration:none;cursor:pointer}
+.service-language [aria-pressed=true],.service-language [aria-current=true]{background:#f1d28a;color:#0f1729}
+ </style>
 </head>
-<body>
-<header><nav><a href="/">Merci Chef.Co</a><a href="/">Ana sayfa</a><a href="/en/catering.html" lang="en">English</a></nav></header>
+<body data-service="catering">
+<script src="/assets/language-preference.js"></script>
+<header><nav><a href="/">Merci Chef.Co</a><a href="/" data-ui="home">Ana sayfa</a><div class="service-language" role="group" aria-label="Language selector"><button type="button" data-lang="tr" aria-label="Türkçe" aria-pressed="true">TR</button><a data-lang="en" aria-label="English" lang="en" href="/en/catering.html">EN</a><button type="button" data-lang="fr" aria-label="Français" aria-pressed="false">FR</button><button type="button" data-lang="ar" aria-label="العربية" aria-pressed="false">AR</button></div></nav></header>
 <main>
-<h1>Özel Davet ve Kurumsal Catering</h1>
-<p>Özel davetler ve kurumsal etkinlikler için menü, mutfak ve servis planlaması. Merci Chef.Co ile catering ihtiyaçlarınızı görüşün.</p>
+<h1 data-ui="heading">Özel Davet ve Kurumsal Catering</h1>
+<p data-ui="intro">Özel davetler ve kurumsal etkinlikler için menü, mutfak ve servis planlaması. Merci Chef.Co ile catering ihtiyaçlarınızı görüşün.</p>
 <img src="/assets/project3.webp" alt="Özel Davet ve Kurumsal Catering" fetchpriority="high" width="1142" height="1520" decoding="async">
-<section><h2>Davet menüsü ve servis organizasyonu</h2><p>Etkinlik türüne, mekâna ve kişi sayısına göre menü ve servis akışı planlanır. Özel davet veya kurumsal organizasyon için tarih, konum ve servis beklentinizi paylaşın.</p></section>
-<p>Geçmiş çalışmalarımızdan <a href="/#projects">Urla Bahçe Event</a> projesini inceleyin.</p>
-<div class="actions"><a href="https://wa.me/905304150729">WhatsApp ile görüşün</a></div>
-<section><h2>Diğer hizmetler</h2><ul><li><a href="/ozel-sef.html">Özel Şef Kiralama</a></li><li><a href="/yat-sefi.html">Yat Şefi ve Yat Gastronomisi</a></li><li><a href="/sef-akademisi.html">Merci Chef.Co Akademi | Şef Eğitimi</a></li></ul></section>
+<section><h2 data-ui="section">Davet menüsü ve servis organizasyonu</h2><p data-ui="body">Etkinlik türüne, mekâna ve kişi sayısına göre menü ve servis akışı planlanır. Özel davet veya kurumsal organizasyon için tarih, konum ve servis beklentinizi paylaşın.</p></section>
+<p><span data-ui="urla-before">Geçmiş çalışmalarımızdan </span><a href="/#projects" data-ui="urla">Urla Bahçe Event</a><span data-ui="urla-after"> projesini inceleyin.</span></p>
+<div class="actions"><a data-ui="contact" href="https://wa.me/905304150729">WhatsApp ile görüşün</a></div>
+<section><h2 data-ui="related">Diğer hizmetler</h2><ul><li><a data-ui="service:private-chef" href="/ozel-sef.html">Özel Şef Kiralama</a></li><li><a data-ui="service:yacht-chef" href="/yat-sefi.html">Yat Şefi ve Yat Gastronomisi</a></li><li><a data-ui="service:chef-academy" href="/sef-akademisi.html">Merci Chef.Co Akademi | Şef Eğitimi</a></li></ul></section>
 </main>
 <footer><a href="mailto:chefcomerci@gmail.com">chefcomerci@gmail.com</a></footer>
+<script src="/assets/service-language.js"></script>
 </body>
 </html>

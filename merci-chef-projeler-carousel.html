@@ -909,6 +909,7 @@ html[dir=rtl] .project-caption {
 
 
 <body>
+<script src="/assets/language-preference.js"></script>
 
 
 
@@ -1101,7 +1102,7 @@ target="_blank"
 
 rel="noopener noreferrer">
 
-Videoyu YouTube’da izle
+<span data-i18n="watchVideo">Videoyu YouTube’da izle</span>
 
 </a>
 
@@ -1299,6 +1300,10 @@ menuBtn.setAttribute("aria-expanded",String(open));
 
 
 
+Object.assign(translations.tr, {"watchVideo": "Videoyu YouTube’da izle"});
+Object.assign(translations.en, {"watchVideo": "Watch the video on YouTube"});
+Object.assign(translations.fr, {"watchVideo": "Voir la vidéo sur YouTube"});
+Object.assign(translations.ar, {"watchVideo": "شاهد الفيديو على يوتيوب"});
 document.querySelectorAll("[data-lang]").forEach(button => {
 
 

@@ -33,19 +33,24 @@ img{width:100%;height:auto;max-height:420px;object-fit:cover;border-radius:.5rem
 .actions{display:flex;gap:1rem;flex-wrap:wrap;margin:1.5rem 0}
 .actions a{background:#0f1729;color:#fff;padding:.65rem 1rem;border-radius:.3rem}
 main a{color:#523a05}
-</style>
+ .service-language{display:flex;gap:.25rem;flex-wrap:wrap}
+.service-language a,.service-language button{display:inline-grid;place-items:center;min-width:2rem;min-height:2rem;padding:.15rem .3rem;box-sizing:border-box;border:1px solid #f1d28a;border-radius:.25rem;background:transparent;color:#f1d28a;font:inherit;text-decoration:none;cursor:pointer}
+.service-language [aria-pressed=true],.service-language [aria-current=true]{background:#f1d28a;color:#0f1729}
+ </style>
 </head>
-<body>
-<header><nav><a href="/">Merci Chef.Co</a><a href="/">Ana sayfa</a><a href="/en/yacht-chef.html" lang="en">English</a></nav></header>
+<body data-service="yacht-chef">
+<script src="/assets/language-preference.js"></script>
+<header><nav><a href="/">Merci Chef.Co</a><a href="/" data-ui="home">Ana sayfa</a><div class="service-language" role="group" aria-label="Language selector"><button type="button" data-lang="tr" aria-label="Türkçe" aria-pressed="true">TR</button><a data-lang="en" aria-label="English" lang="en" href="/en/yacht-chef.html">EN</a><button type="button" data-lang="fr" aria-label="Français" aria-pressed="false">FR</button><button type="button" data-lang="ar" aria-label="العربية" aria-pressed="false">AR</button></div></nav></header>
 <main>
-<h1>Yat Şefi ve Yat Gastronomisi</h1>
-<p>Yat seyahatleri için özel yat şefi, menü planlaması ve kumanya koordinasyonu. Merci Chef.Co ile seyir programınıza uygun hizmeti görüşün.</p>
+<h1 data-ui="heading">Yat Şefi ve Yat Gastronomisi</h1>
+<p data-ui="intro">Yat seyahatleri için özel yat şefi, menü planlaması ve kumanya koordinasyonu. Merci Chef.Co ile seyir programınıza uygun hizmeti görüşün.</p>
 <img src="/assets/superyacht.webp" alt="Yat Şefi ve Yat Gastronomisi" fetchpriority="high" width="600" height="400" decoding="async">
-<section><h2>Yatta menü ve kumanya planlaması</h2><p>Yat şefi planlaması, seyir programı, mutfak imkânları ve misafir tercihleri üzerinden yapılır. Biniş limanını, seyir tarihlerini ve misafir sayısını paylaşarak hizmet uygunluğunu sorabilirsiniz.</p></section>
-<p>Fethiye’de yat kiralama seçenekleri için <a href="/#services">Fethiye yat kiralama</a> bölümünü inceleyin. Yat şefi uygunluğu seyir planına göre doğrulanır.</p>
-<div class="actions"><a href="https://wa.me/905304150729">WhatsApp ile görüşün</a></div>
-<section><h2>Diğer hizmetler</h2><ul><li><a href="/ozel-sef.html">Özel Şef Kiralama</a></li><li><a href="/catering.html">Özel Davet ve Kurumsal Catering</a></li><li><a href="/sef-akademisi.html">Merci Chef.Co Akademi | Şef Eğitimi</a></li></ul></section>
+<section><h2 data-ui="section">Yatta menü ve kumanya planlaması</h2><p data-ui="body">Yat şefi planlaması, seyir programı, mutfak imkânları ve misafir tercihleri üzerinden yapılır. Biniş limanını, seyir tarihlerini ve misafir sayısını paylaşarak hizmet uygunluğunu sorabilirsiniz.</p></section>
+<p><span data-ui="fethiye-before">Fethiye’de yat kiralama seçenekleri için </span><a href="/#services" data-ui="fethiye">Fethiye yat kiralama</a><span data-ui="fethiye-after"> bölümünü inceleyin. Yat şefi uygunluğu seyir planına göre doğrulanır.</span></p>
+<div class="actions"><a data-ui="contact" href="https://wa.me/905304150729">WhatsApp ile görüşün</a></div>
+<section><h2 data-ui="related">Diğer hizmetler</h2><ul><li><a data-ui="service:private-chef" href="/ozel-sef.html">Özel Şef Kiralama</a></li><li><a data-ui="service:catering" href="/catering.html">Özel Davet ve Kurumsal Catering</a></li><li><a data-ui="service:chef-academy" href="/sef-akademisi.html">Merci Chef.Co Akademi | Şef Eğitimi</a></li></ul></section>
 </main>
 <footer><a href="mailto:chefcomerci@gmail.com">chefcomerci@gmail.com</a></footer>
+<script src="/assets/service-language.js"></script>
 </body>
 </html>

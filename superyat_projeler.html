@@ -306,6 +306,7 @@ html[dir="rtl"] .footer-brand {
 </head>
 
 <body>
+<script src="/assets/language-preference.js"></script>
 
 <!-- HEADER -->
 
@@ -349,7 +350,7 @@ aria-expanded="false" aria-controls="mainNav">☰</button>
 <!-- PROJECTS -->
 
 <main>
-<h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);">Süperyat Hizmetleri ve Projeleri</h1>
+<h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);" data-i18n="yachtTitle">Süperyat Hizmetleri ve Projeleri</h1>
 
 <section class="projects" id="projects" aria-label="Projelerimiz">
 
@@ -518,6 +519,10 @@ menuBtn.setAttribute("aria-expanded",String(isOpen));
 
 // DİL DEĞİŞTİRME
 
+Object.assign(translations.tr, {"yachtTitle": "Süperyat Hizmetleri ve Projeleri"});
+Object.assign(translations.en, {"yachtTitle": "Superyacht Services and Projects"});
+Object.assign(translations.fr, {"yachtTitle": "Services et projets pour superyachts"});
+Object.assign(translations.ar, {"yachtTitle": "خدمات ومشاريع اليخوت الفاخرة"});
 function changeLanguage(lang) {
 
 const c = translations[lang] || translations.tr;
@@ -587,7 +592,7 @@ updateMenuLabel(document.documentElement.lang);
 
 // İLK DİL
 
-changeLanguage("tr");
+changeLanguage(window.merciLanguage.read());
 
 </script>
 
